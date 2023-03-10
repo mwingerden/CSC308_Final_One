@@ -11,7 +11,7 @@ public class Main extends JFrame {
         add(new DrawArea(), BorderLayout.CENTER);
 
         setTitle("Final Project");
-        setSize(1000,1000);
+        setSize(1000, 1000);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

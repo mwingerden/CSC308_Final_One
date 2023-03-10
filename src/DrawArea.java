@@ -34,7 +34,7 @@ public class DrawArea extends JPanel {
         if (drawing) {
             g.setColor(Color.BLACK);
             if (currentDrawing.equalsIgnoreCase("if block")) {
-                g.fillRect(Math.min(x2, x1), Math.min(y2, y1), (x2>x1)?x2-x1:x1-x2, (y2>y1)?y2-y1:y1-y2);
+                g.fillRect(Math.min(x2, x1), Math.min(y2, y1), (x2 > x1) ? x2 - x1 : x1 - x2, (y2 > y1) ? y2 - y1 : y1 - y2);
             }
         }
     }

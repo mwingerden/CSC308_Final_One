@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class IfBlock extends CodeBlock {
     public IfBlock(int x, int y, int width, int height) {
-        super(x, y, width, height, Color.YELLOW);
+        super(x, y, Math.max(width, x + 50), Math.max(height, y + 50), Color.YELLOW);
     }
 
     @Override

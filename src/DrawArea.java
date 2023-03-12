@@ -35,6 +35,8 @@ public class DrawArea extends JPanel {
             g.setColor(Color.BLACK);
             if (currentDrawing.equalsIgnoreCase("if block")) {
                 g.fillRect(Math.min(x2, x1), Math.min(y2, y1), (x2 > x1) ? x2 - x1 : x1 - x2, (y2 > y1) ? y2 - y1 : y1 - y2);
+            } else if (currentDrawing.equalsIgnoreCase("command block")) {
+                g.fillRect(Math.min(x2, x1), Math.min(y2, y1), (x2 > x1) ? x2 - x1 : x1 - x2, (y2 > y1) ? y2 - y1 : y1 - y2);
             }
         }
     }
@@ -46,13 +48,17 @@ public class DrawArea extends JPanel {
     }
 
     public void setX2Y2(int x2, int y2) {
-        this.x2 = x2;
-        this.y2 = y2;
-        drawing = false;
-        if (currentDrawing.equalsIgnoreCase("if block")) {
-            codeBlocks.add(new IfBlock(this.x1, this.y1, this.x2, this.y2));
+        if(drawing) {
+            this.x2 = x2;
+            this.y2 = y2;
+            drawing = false;
+            if (currentDrawing.equalsIgnoreCase("if block")) {
+                codeBlocks.add(new IfBlock(this.x1, this.y1, this.x2, this.y2));
+            } else if (currentDrawing.equalsIgnoreCase("command block")) {
+                codeBlocks.add(new CommandBlock(this.x1, this.y1, this.x2, this.y2));
+            }
+            repaint();
         }
-        repaint();
     }
 
     public void dragging(int x2, int y2) {
@@ -60,5 +66,9 @@ public class DrawArea extends JPanel {
         this.y2 = y2;
         drawing = true;
         repaint();
+    }
+
+    public List<CodeBlock> getCodeBlocks() {
+        return codeBlocks;
     }
 }

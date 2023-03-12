@@ -13,6 +13,7 @@ public class MenuBarDraw extends JMenuBar {
         JMenuItem saveOption = new JMenuItem("Save");
         JMenuItem loadOption = new JMenuItem("Load");
         JMenuItem ifBlockOption = new JMenuItem("If Block");
+        JMenuItem commandBlockOption = new JMenuItem("Command Block");
         JMenuItem aboutOption = new JMenuItem("About");
 
         file.add(newOption);
@@ -23,6 +24,8 @@ public class MenuBarDraw extends JMenuBar {
         loadOption.addActionListener(controller);
         block.add(ifBlockOption);
         ifBlockOption.addActionListener(controller);
+        block.add(commandBlockOption);
+        commandBlockOption.addActionListener(controller);
         help.add(aboutOption);
         aboutOption.addActionListener(controller);
 

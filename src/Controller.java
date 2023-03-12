@@ -1,4 +1,6 @@
+import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 
 public class Controller implements ActionListener, MouseListener, MouseMotionListener {
     private final DrawArea drawArea;
@@ -19,14 +21,24 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
             System.out.println("Load Selected");
         } else if (e.getActionCommand().equals("If Block")) {
             repository.setBlockToDraw(e.getActionCommand());
-        } else if (e.getActionCommand().equals("About")) {
+        } else if (e.getActionCommand().equals("Command Block")) {
+            repository.setBlockToDraw(e.getActionCommand());
+        }else if (e.getActionCommand().equals("About")) {
             System.out.println("About Selected");
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        List<CodeBlock> codeBlocks = drawArea.getCodeBlocks();
+        for(CodeBlock codeBlock : codeBlocks) {
+            if(e.getX() > codeBlock.getX1() && e.getX() < codeBlock.getX2()
+                    && e.getY() > codeBlock.getY1() && e.getY() < codeBlock.getY2()) {
+                if(codeBlock.getColor() == Color.BLUE) {
+                    System.out.println("Command Block Test");
+                }
+            }
+        }
     }
 
     @Override

@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Set min size of If Block.">
-      <change afterPath="$PROJECT_DIR$/src/CommandBlock.java" afterDir="false" />
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added Command Block to be drawn and can click inside to print message.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CodeBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DrawArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MenuBarDraw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuBarDraw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EndBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EndBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StartBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StartBlock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678576438262</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added Command Block to be drawn and can click inside to print message.">
+      <created>1678585949384</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1678585949384</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -97,7 +103,8 @@
     <MESSAGE value="Added Code Block implementation along with start and end blocks." />
     <MESSAGE value="Added Controller and ability to add an if block to draw area." />
     <MESSAGE value="Set min size of If Block." />
-    <option name="LAST_COMMIT_MESSAGE" value="Set min size of If Block." />
+    <MESSAGE value="Added Command Block to be drawn and can click inside to print message." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Command Block to be drawn and can click inside to print message." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -106,6 +113,11 @@
           <url>file://$PROJECT_DIR$/src/Controller.java</url>
           <line>65</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/EndBlock.java</url>
+          <line>4</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

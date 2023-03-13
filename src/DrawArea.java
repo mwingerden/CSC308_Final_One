@@ -19,9 +19,8 @@ public class DrawArea extends JPanel {
         this.drawing = false;
         Controller controller = new Controller(this);
         setBackground(Color.PINK);
+        setPreferredSize(new Dimension(300, 300));
         codeBlocks = new ArrayList<>();
-        codeBlocks.add(new StartBlock());
-        codeBlocks.add(new EndBlock());
         addMouseListener(controller);
         addMouseMotionListener(controller);
     }
@@ -39,6 +38,11 @@ public class DrawArea extends JPanel {
                 g.fillRect(Math.min(x2, x1), Math.min(y2, y1), (x2 > x1) ? x2 - x1 : x1 - x2, (y2 > y1) ? y2 - y1 : y1 - y2);
             }
         }
+    }
+
+    public void drawStartEndPoints() {
+        codeBlocks.add(new StartBlock());
+        codeBlocks.add(new EndBlock(this.getWidth() - 60, this.getHeight() - 60));
     }
 
     public void setX1Y1(int x1, int y1) {

@@ -2,12 +2,14 @@ import java.awt.*;
 
 public class StartBlock extends CodeBlock {
     public StartBlock() {
-        super(10, 10, 40, 40, Color.WHITE);
+        super(0, 0, 60, 60, Color.WHITE);
     }
 
     @Override
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillOval(x1, y1, x2, y2);
+        g.setColor(Color.BLACK);
+        g.drawString("Begin", x1 + 15, (y2 + y1) / 2);
     }
 }

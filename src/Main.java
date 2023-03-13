@@ -5,14 +5,16 @@ public class Main extends JFrame {
 
     public Main() {
         setLayout(new BorderLayout());
+        DrawArea drawArea = new DrawArea();
 
         setJMenuBar(new MenuBarDraw());
         add(new ProgressBar(), BorderLayout.SOUTH);
-        add(new DrawArea(), BorderLayout.CENTER);
+        add(drawArea, BorderLayout.CENTER);
 
         setTitle("Final Project");
-        setSize(1000, 1000);
+        setSize(900, 900);
         setVisible(true);
+        drawArea.drawStartEndPoints();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 

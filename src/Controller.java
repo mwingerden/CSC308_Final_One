@@ -17,14 +17,10 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
             System.out.println("Save Selected");
         } else if (e.getActionCommand().equals("Load")) {
             System.out.println("Load Selected");
-        } else if (e.getActionCommand().equals("Variable Declaration Block")) {
-            repository.setBlockToDraw(e.getActionCommand());
-        }else if (e.getActionCommand().equals("If Block")) {
-            repository.setBlockToDraw(e.getActionCommand());
-        } else if (e.getActionCommand().equals("Command Block")) {
-            repository.setBlockToDraw(e.getActionCommand());
-        }else if (e.getActionCommand().equals("About")) {
+        } else if (e.getActionCommand().equals("About")) {
             System.out.println("About Selected");
+        } else {
+            repository.setBlockToDraw(e.getActionCommand());
         }
     }
 

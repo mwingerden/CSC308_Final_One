@@ -15,7 +15,7 @@ public class DrawArea extends JPanel {
 
     public DrawArea() {
         this.repository = Repository.getInstance();
-        this.currentDrawing = "If Block";
+        this.currentDrawing = "Command Block";
         this.drawing = false;
         Controller controller = new Controller(this);
         setBackground(Color.PINK);
@@ -47,12 +47,16 @@ public class DrawArea extends JPanel {
 
     public void drawBlock(int x, int y) {
         currentDrawing = repository.getBlockToDraw();
-        if (repository.getBlockToDraw().equalsIgnoreCase("if block")) {
-            codeBlocks.add(new IfBlock(x, y));
+        if (repository.getBlockToDraw().equalsIgnoreCase("condition block")) {
+            codeBlocks.add(new ConditionBlock(x, y));
         } else if (repository.getBlockToDraw().equalsIgnoreCase("variable declaration block")) {
             codeBlocks.add(new VariableDeclarationBlock(x, y));
-        }else if (repository.getBlockToDraw().equalsIgnoreCase("command block")) {
-            codeBlocks.add(new CommandBlock(x, y));
+        } else if (repository.getBlockToDraw().equalsIgnoreCase("instruction block")) {
+            codeBlocks.add(new InstructionBlock(x, y));
+        } else if (repository.getBlockToDraw().equalsIgnoreCase("call method block")) {
+            codeBlocks.add(new CallMethodBlock(x, y));
+        } else if (repository.getBlockToDraw().equalsIgnoreCase("input/output block")) {
+            codeBlocks.add(new InputOutputBlock(x, y));
         }
         repaint();
     }

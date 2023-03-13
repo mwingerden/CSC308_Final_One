@@ -12,9 +12,11 @@ public class MenuBarDraw extends JMenuBar {
         JMenuItem newOption = new JMenuItem("New");
         JMenuItem saveOption = new JMenuItem("Save");
         JMenuItem loadOption = new JMenuItem("Load");
+        JMenuItem callMethodOption = new JMenuItem("Call Method Block");
+        JMenuItem instructionOption = new JMenuItem("Instruction Block");
+        JMenuItem inputOutputOption = new JMenuItem("Input/Output Block");
         JMenuItem variableDeclarationOption = new JMenuItem("Variable Declaration Block");
-        JMenuItem ifBlockOption = new JMenuItem("If Block");
-        JMenuItem commandBlockOption = new JMenuItem("Command Block");
+        JMenuItem conditionOption = new JMenuItem("Condition Block");
         JMenuItem aboutOption = new JMenuItem("About");
 
         file.add(newOption);
@@ -23,12 +25,19 @@ public class MenuBarDraw extends JMenuBar {
         saveOption.addActionListener(controller);
         file.add(loadOption);
         loadOption.addActionListener(controller);
+
+        block.add(callMethodOption);
+        callMethodOption.addActionListener(controller);
+        block.add(instructionOption);
+        instructionOption.addActionListener(controller);
+        block.add(inputOutputOption);
+        inputOutputOption.addActionListener(controller);
         block.add(variableDeclarationOption);
         variableDeclarationOption.addActionListener(controller);
-        block.add(ifBlockOption);
-        ifBlockOption.addActionListener(controller);
-        block.add(commandBlockOption);
-        commandBlockOption.addActionListener(controller);
+        block.add(conditionOption);
+        conditionOption.addActionListener(controller);
+
+
         help.add(aboutOption);
         aboutOption.addActionListener(controller);
 

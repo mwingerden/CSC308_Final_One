@@ -30,14 +30,14 @@ public class DrawArea extends JPanel {
         for (CodeBlock codeBlock : codeBlocks) {
             codeBlock.draw(g);
         }
-        if (drawing) {
-            g.setColor(Color.BLACK);
-            if (currentDrawing.equalsIgnoreCase("if block")) {
-                g.fillRect(Math.min(x2, x1), Math.min(y2, y1), (x2 > x1) ? x2 - x1 : x1 - x2, (y2 > y1) ? y2 - y1 : y1 - y2);
-            } else if (currentDrawing.equalsIgnoreCase("command block")) {
-                g.fillRect(Math.min(x2, x1), Math.min(y2, y1), (x2 > x1) ? x2 - x1 : x1 - x2, (y2 > y1) ? y2 - y1 : y1 - y2);
-            }
-        }
+//        if (drawing) {
+//            g.setColor(Color.BLACK);
+//            if (currentDrawing.equalsIgnoreCase("if block")) {
+//                g.fillRect(Math.min(x2, x1), Math.min(y2, y1), (x2 > x1) ? x2 - x1 : x1 - x2, (y2 > y1) ? y2 - y1 : y1 - y2);
+//            } else if (currentDrawing.equalsIgnoreCase("command block")) {
+//                g.fillRect(Math.min(x2, x1), Math.min(y2, y1), (x2 > x1) ? x2 - x1 : x1 - x2, (y2 > y1) ? y2 - y1 : y1 - y2);
+//            }
+//        }
     }
 
     public void drawStartEndPoints() {
@@ -45,25 +45,31 @@ public class DrawArea extends JPanel {
         codeBlocks.add(new EndBlock(this.getWidth() - 60, this.getHeight() - 60));
     }
 
-    public void setX1Y1(int x1, int y1) {
-        this.x1 = x1;
-        this.y1 = y1;
+    public void drawBlock(int x, int y) {
         currentDrawing = repository.getBlockToDraw();
+        if (repository.getBlockToDraw().equalsIgnoreCase("if block")) {
+            codeBlocks.add(new IfBlock(x, y));
+        } else if (repository.getBlockToDraw().equalsIgnoreCase("variable declaration block")) {
+            codeBlocks.add(new VariableDeclarationBlock(x, y));
+        }else if (repository.getBlockToDraw().equalsIgnoreCase("command block")) {
+            codeBlocks.add(new CommandBlock(x, y));
+        }
+        repaint();
     }
 
-    public void setX2Y2(int x2, int y2) {
-        if(drawing) {
-            this.x2 = x2;
-            this.y2 = y2;
-            drawing = false;
-            if (currentDrawing.equalsIgnoreCase("if block")) {
-                codeBlocks.add(new IfBlock(this.x1, this.y1, this.x2, this.y2));
-            } else if (currentDrawing.equalsIgnoreCase("command block")) {
-                codeBlocks.add(new CommandBlock(this.x1, this.y1, this.x2, this.y2));
-            }
-            repaint();
-        }
-    }
+//    public void setX2Y2(int x2, int y2) {
+//        if(drawing) {
+//            this.x2 = x2;
+//            this.y2 = y2;
+//            drawing = false;
+//            if (currentDrawing.equalsIgnoreCase("if block")) {
+//                codeBlocks.add(new IfBlock(this.x1, this.y1, this.x2, this.y2));
+//            } else if (currentDrawing.equalsIgnoreCase("command block")) {
+//                codeBlocks.add(new CommandBlock(this.x1, this.y1, this.x2, this.y2));
+//            }
+//            repaint();
+//        }
+//    }
 
     public void dragging(int x2, int y2) {
         this.x2 = x2;

@@ -1,6 +1,4 @@
-import java.awt.*;
 import java.awt.event.*;
-import java.util.List;
 
 public class Controller implements ActionListener, MouseListener, MouseMotionListener {
     private final DrawArea drawArea;
@@ -19,7 +17,9 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
             System.out.println("Save Selected");
         } else if (e.getActionCommand().equals("Load")) {
             System.out.println("Load Selected");
-        } else if (e.getActionCommand().equals("If Block")) {
+        } else if (e.getActionCommand().equals("Variable Declaration Block")) {
+            repository.setBlockToDraw(e.getActionCommand());
+        }else if (e.getActionCommand().equals("If Block")) {
             repository.setBlockToDraw(e.getActionCommand());
         } else if (e.getActionCommand().equals("Command Block")) {
             repository.setBlockToDraw(e.getActionCommand());
@@ -30,25 +30,26 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        List<CodeBlock> codeBlocks = drawArea.getCodeBlocks();
-        for(CodeBlock codeBlock : codeBlocks) {
-            if(e.getX() > codeBlock.getX1() && e.getX() < codeBlock.getX2()
-                    && e.getY() > codeBlock.getY1() && e.getY() < codeBlock.getY2()) {
-                if(codeBlock.getColor() == Color.BLUE) {
-                    System.out.println("Command Block Test");
-                }
-            }
-        }
+        drawArea.drawBlock(e.getX(), e.getY());
+//        List<CodeBlock> codeBlocks = drawArea.getCodeBlocks();
+//        for(CodeBlock codeBlock : codeBlocks) {
+//            if(e.getX() > codeBlock.getX1() && e.getX() < codeBlock.getX2()
+//                    && e.getY() > codeBlock.getY1() && e.getY() < codeBlock.getY2()) {
+//                if(codeBlock.getColor() == Color.BLUE) {
+//                    System.out.println("Command Block Test");
+//                }
+//            }
+//        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        drawArea.setX1Y1(e.getX(), e.getY());
+//        drawArea.drawBlock(e.getX(), e.getY());
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        drawArea.setX2Y2(e.getX(), e.getY());
+//        drawArea.setX2Y2(e.getX(), e.getY());
     }
 
     @Override
@@ -63,7 +64,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        drawArea.dragging(e.getX(), e.getY());
+//        drawArea.dragging(e.getX(), e.getY());
     }
 
     @Override

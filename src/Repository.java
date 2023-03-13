@@ -6,7 +6,7 @@ public class Repository extends Observable {
     String blockToDraw;
 
     private Repository() {
-        this.blockToDraw = "If Block";
+        this.blockToDraw = "";
     }
 
     public static Repository getInstance() {

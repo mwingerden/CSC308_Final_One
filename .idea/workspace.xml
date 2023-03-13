@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added Variable Declaration Block and added just click and draw for the code blocks.">
-      <change afterPath="$PROJECT_DIR$/src/CallMethodBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ConditionBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InputOutputBlock.java" afterDir="false" />
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added the rest of the code blocks.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CommandBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InstructionBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DrawArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IfBlock.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MenuBarDraw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuBarDraw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678739023952</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added the rest of the code blocks.">
+      <created>1678742389055</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1678742389055</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -124,7 +124,8 @@
     <MESSAGE value="Added Command Block to be drawn and can click inside to print message." />
     <MESSAGE value="Fixed Start/End Block(for now)" />
     <MESSAGE value="Added Variable Declaration Block and added just click and draw for the code blocks." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Variable Declaration Block and added just click and draw for the code blocks." />
+    <MESSAGE value="Added the rest of the code blocks." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the rest of the code blocks." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -137,7 +138,7 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DrawArea.java</url>
           <line>49</line>
-          <option name="timeStamp" value="15" />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

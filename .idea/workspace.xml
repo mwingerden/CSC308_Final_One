@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added the rest of the code blocks.">
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Set min size of If Block.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CallMethodBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CallMethodBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CodeBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ConditionBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConditionBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DrawArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InputOutputBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputOutputBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InstructionBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InstructionBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VariableDeclarationBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VariableDeclarationBlock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,35 +93,7 @@
       <option name="project" value="LOCAL" />
       <updated>1678576438262</updated>
     </task>
-    <task id="LOCAL-00004" summary="Added Command Block to be drawn and can click inside to print message.">
-      <created>1678585949384</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1678585949384</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Fixed Start/End Block(for now)">
-      <created>1678737230066</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1678737230066</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added Variable Declaration Block and added just click and draw for the code blocks.">
-      <created>1678739023952</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1678739023952</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Added the rest of the code blocks.">
-      <created>1678742389055</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1678742389055</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -121,24 +101,15 @@
     <MESSAGE value="Added Code Block implementation along with start and end blocks." />
     <MESSAGE value="Added Controller and ability to add an if block to draw area." />
     <MESSAGE value="Set min size of If Block." />
-    <MESSAGE value="Added Command Block to be drawn and can click inside to print message." />
-    <MESSAGE value="Fixed Start/End Block(for now)" />
-    <MESSAGE value="Added Variable Declaration Block and added just click and draw for the code blocks." />
-    <MESSAGE value="Added the rest of the code blocks." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the rest of the code blocks." />
+    <option name="LAST_COMMIT_MESSAGE" value="Set min size of If Block." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller.java</url>
-          <line>62</line>
+          <line>55</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DrawArea.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -2,12 +2,12 @@ import java.awt.*;
 
 public class VariableDeclarationBlock extends CodeBlock {
     public VariableDeclarationBlock(int x, int y) {
-        super(x, y, 150, 75, Color.CYAN);
+        super(x, y, x + 150, y + 75, Color.DARK_GRAY);
     }
 
     @Override
     public void draw(Graphics g) {
         g.setColor(color);
-        g.fillRect(x1, y1, x2, y2);
+        g.fillRect(x1, y1, x2 - x1, y2 - y1);
     }
 }

@@ -6,17 +6,9 @@ import java.util.List;
 public class DrawArea extends JPanel {
     private final List<CodeBlock> codeBlocks;
     private final Repository repository;
-    private String currentDrawing;
-    private boolean drawing;
-    private int x1;
-    private int y1;
-    private int x2;
-    private int y2;
 
     public DrawArea() {
         this.repository = Repository.getInstance();
-        this.currentDrawing = "Command Block";
-        this.drawing = false;
         Controller controller = new Controller(this);
         setBackground(Color.PINK);
         setPreferredSize(new Dimension(300, 300));
@@ -30,14 +22,6 @@ public class DrawArea extends JPanel {
         for (CodeBlock codeBlock : codeBlocks) {
             codeBlock.draw(g);
         }
-//        if (drawing) {
-//            g.setColor(Color.BLACK);
-//            if (currentDrawing.equalsIgnoreCase("if block")) {
-//                g.fillRect(Math.min(x2, x1), Math.min(y2, y1), (x2 > x1) ? x2 - x1 : x1 - x2, (y2 > y1) ? y2 - y1 : y1 - y2);
-//            } else if (currentDrawing.equalsIgnoreCase("command block")) {
-//                g.fillRect(Math.min(x2, x1), Math.min(y2, y1), (x2 > x1) ? x2 - x1 : x1 - x2, (y2 > y1) ? y2 - y1 : y1 - y2);
-//            }
-//        }
     }
 
     public void drawStartEndPoints() {
@@ -46,7 +30,6 @@ public class DrawArea extends JPanel {
     }
 
     public void drawBlock(int x, int y) {
-        currentDrawing = repository.getBlockToDraw();
         if (repository.getBlockToDraw().equalsIgnoreCase("condition block")) {
             codeBlocks.add(new ConditionBlock(x, y));
         } else if (repository.getBlockToDraw().equalsIgnoreCase("variable declaration block")) {
@@ -61,28 +44,16 @@ public class DrawArea extends JPanel {
         repaint();
     }
 
-//    public void setX2Y2(int x2, int y2) {
-//        if(drawing) {
-//            this.x2 = x2;
-//            this.y2 = y2;
-//            drawing = false;
-//            if (currentDrawing.equalsIgnoreCase("if block")) {
-//                codeBlocks.add(new IfBlock(this.x1, this.y1, this.x2, this.y2));
-//            } else if (currentDrawing.equalsIgnoreCase("command block")) {
-//                codeBlocks.add(new CommandBlock(this.x1, this.y1, this.x2, this.y2));
-//            }
-//            repaint();
-//        }
-//    }
-
-    public void dragging(int x2, int y2) {
-        this.x2 = x2;
-        this.y2 = y2;
-        drawing = true;
-        repaint();
-    }
-
-    public List<CodeBlock> getCodeBlocks() {
-        return codeBlocks;
+    public void dragBlock(int x, int y) {
+        for (CodeBlock codeBlock : codeBlocks) {
+            if (codeBlock.contains(x, y)) {
+                if(codeBlock instanceof InstructionBlock) {
+                    codeBlocks.add(new InstructionBlock(x - 10, y - 10));
+                    codeBlocks.remove(codeBlock);
+                    repaint();
+                    break;
+                }
+            }
+        }
     }
 }

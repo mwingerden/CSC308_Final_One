@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DrawArea extends JPanel {
-    private final List<CodeBlock> codeBlocks;
+    private final List<Draw> drawings;
     private final Repository repository;
 
     public DrawArea() {
@@ -14,34 +14,34 @@ public class DrawArea extends JPanel {
         Controller controller = new Controller(this);
         setBackground(Color.PINK);
         setPreferredSize(new Dimension(300, 300));
-        codeBlocks = new ArrayList<>();
+        drawings = new ArrayList<>();
         addMouseListener(controller);
         addMouseMotionListener(controller);
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (CodeBlock codeBlock : codeBlocks) {
-            codeBlock.draw(g);
+        for (Draw drawing : drawings) {
+            drawing.draw(g);
         }
     }
 
     public void drawStartEndPoints() {
-        codeBlocks.add(new StartBlock());
-        codeBlocks.add(new EndBlock(this.getWidth() - 60, this.getHeight() - 60));
+        drawings.add(new StartBlock());
+        drawings.add(new EndBlock(this.getWidth() - 60, this.getHeight() - 60));
     }
 
     public void drawBlock(int x, int y) {
         if (repository.getBlockToDraw().equalsIgnoreCase("condition block")) {
-            codeBlocks.add(new ConditionBlock(x, y));
+            drawings.add(new ConditionBlock(x, y));
         } else if (repository.getBlockToDraw().equalsIgnoreCase("variable declaration block")) {
-            codeBlocks.add(new VariableDeclarationBlock(x, y));
+            drawings.add(new VariableDeclarationBlock(x, y));
         } else if (repository.getBlockToDraw().equalsIgnoreCase("instruction block")) {
-            codeBlocks.add(new InstructionBlock(x, y));
+            drawings.add(new InstructionBlock(x, y));
         } else if (repository.getBlockToDraw().equalsIgnoreCase("call method block")) {
-            codeBlocks.add(new CallMethodBlock(x, y));
+            drawings.add(new CallMethodBlock(x, y));
         } else if (repository.getBlockToDraw().equalsIgnoreCase("input/output block")) {
-            codeBlocks.add(new InputOutputBlock(x, y));
+            drawings.add(new InputOutputBlock(x, y));
         }
         repaint();
     }
@@ -49,26 +49,26 @@ public class DrawArea extends JPanel {
     public void dragBlock(int x, int y) {
         //TODO: Have user drag begin and end blocks
         CodeBlock temp = null;
-        for (CodeBlock codeBlock : codeBlocks) {
-            if (codeBlock.contains(x, y)) {
-                if (codeBlock instanceof InstructionBlock) {
+        for (Draw drawing : drawings) {
+            if (drawing.contains(x, y)) {
+                if (drawing instanceof InstructionBlock) {
                     temp = new InstructionBlock(x - 10, y - 10);
-                    temp.setText(codeBlock.getText());
-                } else if (codeBlock instanceof ConditionBlock) {
+                    temp.setText(drawing.getText());
+                } else if (drawing instanceof ConditionBlock) {
                     temp = new ConditionBlock(x - 10, y - 10);
-                    temp.setText(codeBlock.getText());
-                } else if (codeBlock instanceof VariableDeclarationBlock) {
+                    temp.setText(drawing.getText());
+                } else if (drawing instanceof VariableDeclarationBlock) {
                     temp = new VariableDeclarationBlock(x - 10, y - 10);
-                    temp.setText(codeBlock.getText());
-                } else if (codeBlock instanceof CallMethodBlock) {
+                    temp.setText(drawing.getText());
+                } else if (drawing instanceof CallMethodBlock) {
                     temp = new CallMethodBlock(x - 10, y - 10);
-                    temp.setText(codeBlock.getText());
-                } else if (codeBlock instanceof InputOutputBlock) {
+                    temp.setText(drawing.getText());
+                } else if (drawing instanceof InputOutputBlock) {
                     temp = new InputOutputBlock(x - 10, y - 10);
-                    temp.setText(codeBlock.getText());
+                    temp.setText(drawing.getText());
                 }
-                codeBlocks.add(temp);
-                codeBlocks.remove(codeBlock);
+                drawings.add(temp);
+                drawings.remove(drawing);
                 repaint();
                 return;
             }
@@ -76,9 +76,9 @@ public class DrawArea extends JPanel {
     }
 
     public void addText(int x, int y) {
-        for (CodeBlock codeBlock : codeBlocks) {
-            if (codeBlock.contains(x, y)) {
-                if (!(codeBlock instanceof StartBlock || codeBlock instanceof EndBlock)) {
+        for (Draw drawings : drawings) {
+            if (drawings.contains(x, y)) {
+                if (!(drawings instanceof StartBlock || drawings instanceof EndBlock)) {
                     String text = (String) JOptionPane.showInputDialog(
                             this,
                             "Name:",
@@ -88,7 +88,7 @@ public class DrawArea extends JPanel {
                             null,
                             ""
                     );
-                    codeBlock.setText(text);
+                    drawings.setText(text);
                     repaint();
                     return;
                 }

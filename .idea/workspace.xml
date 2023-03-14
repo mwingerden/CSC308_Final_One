@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added the rest of the blocks into a package and handled the rest of the drag blocks implementation.">
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added ability to add text to created blocks with right click.">
+      <change afterPath="$PROJECT_DIR$/src/Blocks/Draw.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blocks/CallMethodBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blocks/CallMethodBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Blocks/CodeBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blocks/CodeBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blocks/ConditionBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blocks/ConditionBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blocks/EndBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blocks/EndBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blocks/InputOutputBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blocks/InputOutputBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blocks/InstructionBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blocks/InstructionBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blocks/StartBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blocks/StartBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blocks/VariableDeclarationBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blocks/VariableDeclarationBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DrawArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawArea.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -108,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678821806512</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added ability to add text to created blocks with right click.">
+      <created>1678823366045</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1678823366045</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -118,7 +119,8 @@
     <MESSAGE value="Set min size of If Block." />
     <MESSAGE value="Implemented Drag Code Blocks, but just for InstructionBlock.java" />
     <MESSAGE value="Added the rest of the blocks into a package and handled the rest of the drag blocks implementation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the rest of the blocks into a package and handled the rest of the drag blocks implementation." />
+    <MESSAGE value="Added ability to add text to created blocks with right click." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ability to add text to created blocks with right click." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -2,7 +2,7 @@ package Blocks;
 
 import java.awt.*;
 
-public abstract class CodeBlock {
+public abstract class CodeBlock implements Draw {
     protected int x1;
     protected int y1;
     protected int x2;
@@ -18,16 +18,18 @@ public abstract class CodeBlock {
         this.color = color;
     }
 
-    public abstract void draw(Graphics g);
-
+    @Override
     public boolean contains(int x, int y) {
         return x >= x1 && x <= x2 && y >= y1 && y <= y2;
     }
 
+    @Override
+    public String getText() {
+        return text;
+    }
+
+    @Override
     public void setText(String text) {
         this.text = text;
-    }
-    public String getText() {
-        return this.text;
     }
 }

@@ -1,8 +1,10 @@
+package Blocks;
+
 import java.awt.*;
 
-public class InputOutputBlock extends CodeBlock {
-    public InputOutputBlock(int x, int y) {
-        super(x, y, x + 150, y + 75, Color.DARK_GRAY);
+public class ConditionBlock extends CodeBlock {
+    public ConditionBlock(int x, int y) {
+        super(x, y, x + 150, y + 75, Color.CYAN);
     }
 
     @Override

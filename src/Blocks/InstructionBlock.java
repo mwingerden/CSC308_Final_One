@@ -1,8 +1,10 @@
+package Blocks;
+
 import java.awt.*;
 
 public class InstructionBlock extends CodeBlock {
     public InstructionBlock(int x, int y) {
-        super(x, y, x + 150, y + 75, Color.DARK_GRAY);
+        super(x, y, x + 150, y + 75, Color.RED);
     }
 
     @Override

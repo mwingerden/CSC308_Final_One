@@ -1,3 +1,5 @@
+import Blocks.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -49,10 +51,18 @@ public class DrawArea extends JPanel {
             if (codeBlock.contains(x, y)) {
                 if(codeBlock instanceof InstructionBlock) {
                     codeBlocks.add(new InstructionBlock(x - 10, y - 10));
-                    codeBlocks.remove(codeBlock);
-                    repaint();
-                    break;
+                } else if (codeBlock instanceof ConditionBlock) {
+                    codeBlocks.add(new ConditionBlock(x - 10, y - 10));
+                } else if (codeBlock instanceof VariableDeclarationBlock) {
+                    codeBlocks.add(new VariableDeclarationBlock(x - 10, y - 10));
+                } else if (codeBlock instanceof CallMethodBlock) {
+                    codeBlocks.add(new CallMethodBlock(x - 10, y - 10));
+                } else if (codeBlock instanceof InputOutputBlock) {
+                    codeBlocks.add(new InputOutputBlock(x - 10, y - 10));
                 }
+                codeBlocks.remove(codeBlock);
+                repaint();
+                break;
             }
         }
     }

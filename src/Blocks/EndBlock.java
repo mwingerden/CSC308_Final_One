@@ -1,3 +1,5 @@
+package Blocks;
+
 import java.awt.*;
 
 public class EndBlock extends CodeBlock {

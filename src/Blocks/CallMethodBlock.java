@@ -1,8 +1,10 @@
+package Blocks;
+
 import java.awt.*;
 
 public class CallMethodBlock extends CodeBlock {
     public CallMethodBlock(int x, int y) {
-        super(x, y, x + 150, y + 75, Color.DARK_GRAY);
+        super(x, y, x + 150, y + 75, Color.YELLOW);
     }
 
     @Override

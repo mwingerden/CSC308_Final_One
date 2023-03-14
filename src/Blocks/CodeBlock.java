@@ -8,6 +8,7 @@ public abstract class CodeBlock {
     protected int x2;
     protected int y2;
     protected Color color;
+    protected String text;
 
     public CodeBlock(int x1, int y1, int x2, int y2, Color color) {
         this.x1 = x1;
@@ -21,5 +22,12 @@ public abstract class CodeBlock {
 
     public boolean contains(int x, int y) {
         return x >= x1 && x <= x2 && y >= y1 && y <= y2;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+    public String getText() {
+        return this.text;
     }
 }

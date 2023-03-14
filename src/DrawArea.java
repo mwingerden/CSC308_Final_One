@@ -47,22 +47,51 @@ public class DrawArea extends JPanel {
     }
 
     public void dragBlock(int x, int y) {
+        //TODO: Have user drag begin and end blocks
+        CodeBlock temp = null;
         for (CodeBlock codeBlock : codeBlocks) {
             if (codeBlock.contains(x, y)) {
-                if(codeBlock instanceof InstructionBlock) {
-                    codeBlocks.add(new InstructionBlock(x - 10, y - 10));
+                if (codeBlock instanceof InstructionBlock) {
+                    temp = new InstructionBlock(x - 10, y - 10);
+                    temp.setText(codeBlock.getText());
                 } else if (codeBlock instanceof ConditionBlock) {
-                    codeBlocks.add(new ConditionBlock(x - 10, y - 10));
+                    temp = new ConditionBlock(x - 10, y - 10);
+                    temp.setText(codeBlock.getText());
                 } else if (codeBlock instanceof VariableDeclarationBlock) {
-                    codeBlocks.add(new VariableDeclarationBlock(x - 10, y - 10));
+                    temp = new VariableDeclarationBlock(x - 10, y - 10);
+                    temp.setText(codeBlock.getText());
                 } else if (codeBlock instanceof CallMethodBlock) {
-                    codeBlocks.add(new CallMethodBlock(x - 10, y - 10));
+                    temp = new CallMethodBlock(x - 10, y - 10);
+                    temp.setText(codeBlock.getText());
                 } else if (codeBlock instanceof InputOutputBlock) {
-                    codeBlocks.add(new InputOutputBlock(x - 10, y - 10));
+                    temp = new InputOutputBlock(x - 10, y - 10);
+                    temp.setText(codeBlock.getText());
                 }
+                codeBlocks.add(temp);
                 codeBlocks.remove(codeBlock);
                 repaint();
-                break;
+                return;
+            }
+        }
+    }
+
+    public void addText(int x, int y) {
+        for (CodeBlock codeBlock : codeBlocks) {
+            if (codeBlock.contains(x, y)) {
+                if (!(codeBlock instanceof StartBlock || codeBlock instanceof EndBlock)) {
+                    String text = (String) JOptionPane.showInputDialog(
+                            this,
+                            "Name:",
+                            "Enter Name",
+                            JOptionPane.PLAIN_MESSAGE,
+                            null,
+                            null,
+                            ""
+                    );
+                    codeBlock.setText(text);
+                    repaint();
+                    return;
+                }
             }
         }
     }

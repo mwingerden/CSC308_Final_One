@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.event.*;
 
 public class Controller implements ActionListener, MouseListener, MouseMotionListener {
@@ -26,7 +27,11 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        drawArea.drawBlock(e.getX(), e.getY());
+        if (SwingUtilities.isRightMouseButton(e)) {
+            drawArea.addText(e.getX(), e.getY());
+        } else {
+            drawArea.drawBlock(e.getX(), e.getY());
+        }
     }
 
     @Override
@@ -49,7 +54,9 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        drawArea.dragBlock(e.getX(), e.getY());
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            drawArea.dragBlock(e.getX(), e.getY());
+        }
     }
 
     @Override

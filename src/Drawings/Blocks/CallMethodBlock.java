@@ -1,10 +1,10 @@
-package Blocks;
+package Drawings.Blocks;
 
 import java.awt.*;
 
-public class VariableDeclarationBlock extends CodeBlock {
-    public VariableDeclarationBlock(int x, int y) {
-        super(x, y, x + 150, y + 75, Color.GREEN);
+public class CallMethodBlock extends CodeBlock {
+    public CallMethodBlock(int x, int y) {
+        super(x, y, x + 150, y + 75, Color.YELLOW);
         setText("");
     }
 

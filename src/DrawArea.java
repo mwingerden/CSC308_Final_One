@@ -1,4 +1,5 @@
-import Blocks.*;
+import Drawings.Blocks.*;
+import Drawings.Draw;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +28,7 @@ public class DrawArea extends JPanel {
     }
 
     public void drawStartEndPoints() {
-        drawings.add(new StartBlock());
+        drawings.add(new StartBlock(0, 0));
         drawings.add(new EndBlock(this.getWidth() - 60, this.getHeight() - 60));
     }
 
@@ -65,6 +66,12 @@ public class DrawArea extends JPanel {
                     temp.setText(drawing.getText());
                 } else if (drawing instanceof InputOutputBlock) {
                     temp = new InputOutputBlock(x - 10, y - 10);
+                    temp.setText(drawing.getText());
+                } else if (drawing instanceof StartBlock) {
+                    temp = new StartBlock(x - 10, y - 10);
+                    temp.setText(drawing.getText());
+                } else if (drawing instanceof EndBlock) {
+                    temp = new EndBlock(x - 10, y - 10);
                     temp.setText(drawing.getText());
                 }
                 drawings.add(temp);

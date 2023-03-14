@@ -1,4 +1,4 @@
-package Blocks;
+package Drawings;
 
 import java.awt.*;
 

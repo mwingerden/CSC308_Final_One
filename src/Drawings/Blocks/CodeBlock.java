@@ -1,4 +1,6 @@
-package Blocks;
+package Drawings.Blocks;
+
+import Drawings.Draw;
 
 import java.awt.*;
 

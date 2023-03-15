@@ -12,6 +12,7 @@ import java.util.List;
 
 public class Load {
     private static final List<Draw> drawingsList = new ArrayList<>();
+
     @SuppressWarnings("unchecked")
     public static List<Draw> load(String name) {
         JSONParser jsonParser = new JSONParser();
@@ -28,34 +29,34 @@ public class Load {
     private static void parseDrawingObject(JSONObject drawing) {
         JSONObject drawingObject = (JSONObject) drawing.get("Drawing");
         Draw temp = null;
-        if(drawingObject.get("Name").equals("CallMethodBlock")) {
-            temp = new CallMethodBlock(Integer.parseInt((String)drawingObject.get("X1")),
-                    Integer.parseInt((String)drawingObject.get("Y1")));
-            temp.setText((String)drawingObject.get("Text"));
-        } else if(drawingObject.get("Name").equals("ConditionBlock")) {
-            temp = new ConditionBlock(Integer.parseInt((String)drawingObject.get("X1")),
-                    Integer.parseInt((String)drawingObject.get("Y1")));
-            temp.setText((String)drawingObject.get("Text"));
-        }else if(drawingObject.get("Name").equals("EndBlock")) {
-            temp = new EndBlock(Integer.parseInt((String)drawingObject.get("X1")),
-                    Integer.parseInt((String)drawingObject.get("Y1")));
-            temp.setText((String)drawingObject.get("Text"));
-        }else if(drawingObject.get("Name").equals("InputOutputBlock")) {
-            temp = new InputOutputBlock(Integer.parseInt((String)drawingObject.get("X1")),
-                    Integer.parseInt((String)drawingObject.get("Y1")));
-            temp.setText((String)drawingObject.get("Text"));
-        }else if(drawingObject.get("Name").equals("InstructionBlock")) {
-            temp = new InstructionBlock(Integer.parseInt((String)drawingObject.get("X1")),
-                    Integer.parseInt((String)drawingObject.get("Y1")));
-            temp.setText((String)drawingObject.get("Text"));
-        }else if(drawingObject.get("Name").equals("StartBlock")) {
-            temp = new StartBlock(Integer.parseInt((String)drawingObject.get("X1")),
-                                  Integer.parseInt((String)drawingObject.get("Y1")));
-            temp.setText((String)drawingObject.get("Text"));
-        }else if(drawingObject.get("Name").equals("VariableDeclarationBlock")) {
-            temp = new VariableDeclarationBlock(Integer.parseInt((String)drawingObject.get("X1")),
-                    Integer.parseInt((String)drawingObject.get("Y1")));
-            temp.setText((String)drawingObject.get("Text"));
+        if (drawingObject.get("Name").equals("CallMethodBlock")) {
+            temp = new CallMethodBlock(Integer.parseInt((String) drawingObject.get("X1")),
+                    Integer.parseInt((String) drawingObject.get("Y1")));
+            temp.setText((String) drawingObject.get("Text"));
+        } else if (drawingObject.get("Name").equals("ConditionBlock")) {
+            temp = new ConditionBlock(Integer.parseInt((String) drawingObject.get("X1")),
+                    Integer.parseInt((String) drawingObject.get("Y1")));
+            temp.setText((String) drawingObject.get("Text"));
+        } else if (drawingObject.get("Name").equals("EndBlock")) {
+            temp = new EndBlock(Integer.parseInt((String) drawingObject.get("X1")),
+                    Integer.parseInt((String) drawingObject.get("Y1")));
+            temp.setText((String) drawingObject.get("Text"));
+        } else if (drawingObject.get("Name").equals("InputOutputBlock")) {
+            temp = new InputOutputBlock(Integer.parseInt((String) drawingObject.get("X1")),
+                    Integer.parseInt((String) drawingObject.get("Y1")));
+            temp.setText((String) drawingObject.get("Text"));
+        } else if (drawingObject.get("Name").equals("InstructionBlock")) {
+            temp = new InstructionBlock(Integer.parseInt((String) drawingObject.get("X1")),
+                    Integer.parseInt((String) drawingObject.get("Y1")));
+            temp.setText((String) drawingObject.get("Text"));
+        } else if (drawingObject.get("Name").equals("StartBlock")) {
+            temp = new StartBlock(Integer.parseInt((String) drawingObject.get("X1")),
+                    Integer.parseInt((String) drawingObject.get("Y1")));
+            temp.setText((String) drawingObject.get("Text"));
+        } else if (drawingObject.get("Name").equals("VariableDeclarationBlock")) {
+            temp = new VariableDeclarationBlock(Integer.parseInt((String) drawingObject.get("X1")),
+                    Integer.parseInt((String) drawingObject.get("Y1")));
+            temp.setText((String) drawingObject.get("Text"));
         }
         drawingsList.add(temp);
     }

@@ -151,9 +151,16 @@ public class DrawArea extends JPanel implements Observer {
             clearArea();
             drawings = Load.load(name);
             repaint();
+        } else if (option.equalsIgnoreCase("undo")) {
+            undo();
         } else {
             currentDrawing = option;
         }
+    }
+
+    private void undo() {
+        drawings.remove(drawings.size() - 1);
+        repaint();
     }
 
     private void clearArea() {

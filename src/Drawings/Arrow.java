@@ -53,16 +53,6 @@ public class Arrow implements Draw {
     }
 
     @Override
-    public int getX2() {
-        return this.x2;
-    }
-
-    @Override
-    public int getY2() {
-        return this.y2;
-    }
-
-    @Override
     public Color getColor() {
         return this.color;
     }

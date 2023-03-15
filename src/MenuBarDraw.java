@@ -51,10 +51,13 @@ public class MenuBarDraw extends JMenuBar {
 
         help.add(aboutOption);
         aboutOption.addActionListener(controller);
+        JButton undo = new JButton("Undo");
+        undo.addActionListener(controller);
 
         menuBar.add(file);
         menuBar.add(help);
         menuBar.add(block);
+        menuBar.add(undo);
         add(menuBar);
     }
 }

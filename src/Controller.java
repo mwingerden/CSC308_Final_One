@@ -12,17 +12,6 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if (e.getActionCommand().equals("New")) {
-//            repository.updateOption(e.getActionCommand());
-//        } else if (e.getActionCommand().equals("Save")) {
-//            System.out.println("Save Selected");
-//        } else if (e.getActionCommand().equals("Load")) {
-//            System.out.println("Load Selected");
-//        } else if (e.getActionCommand().equals("About")) {
-//            System.out.println("About Selected");
-//        } else {
-//            repository.setBlockToDraw(e.getActionCommand());
-//        }
         repository.updateOption(e.getActionCommand());
     }
 

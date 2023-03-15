@@ -8,7 +8,7 @@ public class Main extends JFrame {
         DrawArea drawArea = new DrawArea();
 
         setJMenuBar(new MenuBarDraw());
-        add(new ProgressBar(), BorderLayout.SOUTH);
+        add(new StatusBar(), BorderLayout.SOUTH);
         add(drawArea, BorderLayout.CENTER);
 
         setTitle("Final Project");

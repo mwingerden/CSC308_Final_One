@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Implemented New Option.">
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Created DrawArea to be an observer of Repository.">
       <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DrawArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProgressBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StatusBar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678848822599</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Created DrawArea to be an observer of Repository.">
+      <created>1678849169869</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1678849169869</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -143,14 +150,15 @@
     <MESSAGE value="Added Draw Interface" />
     <MESSAGE value="Added new Package and able to draw begin and end blocks." />
     <MESSAGE value="Implemented New Option." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented New Option." />
+    <MESSAGE value="Created DrawArea to be an observer of Repository." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created DrawArea to be an observer of Repository." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller.java</url>
-          <line>62</line>
+          <line>51</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>

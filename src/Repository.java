@@ -13,14 +13,6 @@ public class Repository extends Observable {
         return instance;
     }
 
-    public String getBlockToDraw() {
-        return blockToDraw;
-    }
-
-    public void setBlockToDraw(String blockToDraw) {
-        this.blockToDraw = blockToDraw;
-    }
-
     public void updateOption(String option) {
         setChanged();
         notifyObservers(option);

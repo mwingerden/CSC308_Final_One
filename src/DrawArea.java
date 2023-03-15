@@ -11,10 +11,12 @@ import java.util.Observer;
 public class DrawArea extends JPanel implements Observer {
     private final List<Draw> drawings;
     private final Repository repository;
+    private String currentDrawing;
 
     public DrawArea() {
         this.repository = Repository.getInstance();
         repository.addObserver(this);
+        this.currentDrawing = "";
         Controller controller = new Controller(this);
         setBackground(Color.PINK);
         setPreferredSize(new Dimension(300, 300));
@@ -37,7 +39,7 @@ public class DrawArea extends JPanel implements Observer {
 //    }
 
     public void drawBlock(int x, int y) {
-        if (repository.getBlockToDraw().equalsIgnoreCase("arrow")) {
+        if (currentDrawing.equalsIgnoreCase("arrow")) {
 //            for(Draw drawing : drawings) {
 //                if(drawing instanceof CodeBlock) {
 //                    if(drawing.contains(x, y)) {
@@ -46,19 +48,19 @@ public class DrawArea extends JPanel implements Observer {
 //                }
 //            }
         } else {
-            if (repository.getBlockToDraw().equalsIgnoreCase("condition block")) {
+            if (currentDrawing.equalsIgnoreCase("condition block")) {
                 drawings.add(new ConditionBlock(x, y));
-            } else if (repository.getBlockToDraw().equalsIgnoreCase("variable declaration block")) {
+            } else if (currentDrawing.equalsIgnoreCase("variable declaration block")) {
                 drawings.add(new VariableDeclarationBlock(x, y));
-            } else if (repository.getBlockToDraw().equalsIgnoreCase("instruction block")) {
+            } else if (currentDrawing.equalsIgnoreCase("instruction block")) {
                 drawings.add(new InstructionBlock(x, y));
-            } else if (repository.getBlockToDraw().equalsIgnoreCase("call method block")) {
+            } else if (currentDrawing.equalsIgnoreCase("call method block")) {
                 drawings.add(new CallMethodBlock(x, y));
-            } else if (repository.getBlockToDraw().equalsIgnoreCase("input/output block")) {
+            } else if (currentDrawing.equalsIgnoreCase("input/output block")) {
                 drawings.add(new InputOutputBlock(x, y));
-            } else if (repository.getBlockToDraw().equalsIgnoreCase("start block")) {
+            } else if (currentDrawing.equalsIgnoreCase("start block")) {
                 drawings.add(new StartBlock(x, y));
-            } else if (repository.getBlockToDraw().equalsIgnoreCase("end block")) {
+            } else if (currentDrawing.equalsIgnoreCase("end block")) {
                 drawings.add(new EndBlock(x, y));
             }
             repaint();
@@ -125,6 +127,8 @@ public class DrawArea extends JPanel implements Observer {
         String option = (String) arg;
         if (option.equalsIgnoreCase("new")) {
             clearArea();
+        } else {
+            currentDrawing = option;
         }
 //        else if(option.equalsIgnoreCase("save")) {
 //

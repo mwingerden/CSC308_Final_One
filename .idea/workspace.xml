@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added new Package and able to draw begin and end blocks.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Implemented New Option.">
       <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DrawArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Drawings/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Arrow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MenuBarDraw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuBarDraw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678825855915</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Implemented New Option.">
+      <created>1678848822599</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1678848822599</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -138,20 +142,16 @@
     <MESSAGE value="Added ability to add text to created blocks with right click." />
     <MESSAGE value="Added Draw Interface" />
     <MESSAGE value="Added new Package and able to draw begin and end blocks." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new Package and able to draw begin and end blocks." />
+    <MESSAGE value="Implemented New Option." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented New Option." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller.java</url>
-          <line>61</line>
+          <line>62</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DrawArea.java</url>
-          <line>126</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -20,17 +20,15 @@ public class Arrow implements Draw {
         this.codeBlocks = new ArrayList<>();
         this.color = Color.BLACK;
         this.text = "";
+        this.x1 = 0;
+        this.y1 = 0;
+        this.x2 = 0;
+        this.y2 = 0;
     }
 
     @Override
     public void draw(Graphics g) {
         g.setColor(color);
-        CodeBlock first = codeBlocks.get(0);
-        CodeBlock second = codeBlocks.get(1);
-        this.x1 = first.getX1() + ((first.getX2() - first.getX1()) / 2);
-        this.y1 = first.getY1() + ((first.getY2() - first.getY1()) / 2);
-        this.x2 = second.getX1();
-        this.y2 = second.getY1() + ((second.getY2() - second.getY1()) / 2);
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.draw(new Line2D.Float(x1, y1, x2, y2));
     }
@@ -83,9 +81,21 @@ public class Arrow implements Draw {
         } else {
             codeBlocks.add(block);
         }
+        if(codeBlocks.size() == 2) {
+            CodeBlock first = codeBlocks.get(0);
+            CodeBlock second = codeBlocks.get(1);
+            this.x1 = first.getX1() + ((first.getX2() - first.getX1()) / 2);
+            this.y1 = first.getY1() + ((first.getY2() - first.getY1()) / 2);
+            this.x2 = second.getX1();
+            this.y2 = second.getY1() + ((second.getY2() - second.getY1()) / 2);
+        }
     }
 
     public int getBlocksSize() {
         return codeBlocks.size();
+    }
+
+    public List<CodeBlock> getCodeBlocks() {
+        return codeBlocks;
     }
 }

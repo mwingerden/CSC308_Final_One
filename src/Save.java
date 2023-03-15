@@ -1,3 +1,4 @@
+import Drawings.Arrow;
 import Drawings.Blocks.*;
 import Drawings.Draw;
 import org.json.simple.JSONArray;
@@ -11,35 +12,13 @@ public class Save {
     @SuppressWarnings("unchecked")
     public static void save(List<Draw> drawings, String name) {
         JSONArray drawingsList = new JSONArray();
-        JSONObject jsonObject;
-        JSONObject jsonObjectDetails;
+        JSONObject jsonObject = null;
         for (Draw drawing : drawings) {
-            jsonObject = new JSONObject();
-            jsonObjectDetails = new JSONObject();
-            jsonObjectDetails.put("X1", Integer.toString(drawing.getX1()));
-            jsonObjectDetails.put("Y1", Integer.toString(drawing.getY1()));
-            jsonObjectDetails.put("Text", drawing.getText());
-            if (drawing instanceof CallMethodBlock) {
-                jsonObjectDetails.put("Name", "CallMethodBlock");
-                jsonObject.put("Drawing", jsonObjectDetails);
-            } else if (drawing instanceof ConditionBlock) {
-                jsonObjectDetails.put("Name", "ConditionBlock");
-                jsonObject.put("Drawing", jsonObjectDetails);
-            } else if (drawing instanceof EndBlock) {
-                jsonObjectDetails.put("Name", "EndBlock");
-                jsonObject.put("Drawing", jsonObjectDetails);
-            } else if (drawing instanceof InputOutputBlock) {
-                jsonObjectDetails.put("Name", "InputOutputBlock");
-                jsonObject.put("Drawing", jsonObjectDetails);
-            } else if (drawing instanceof InstructionBlock) {
-                jsonObjectDetails.put("Name", "InstructionBlock");
-                jsonObject.put("Drawing", jsonObjectDetails);
-            } else if (drawing instanceof StartBlock) {
-                jsonObjectDetails.put("Name", "StartBlock");
-                jsonObject.put("Drawing", jsonObjectDetails);
-            } else if (drawing instanceof VariableDeclarationBlock) {
-                jsonObjectDetails.put("Name", "VariableDeclarationBlock");
-                jsonObject.put("Drawing", jsonObjectDetails);
+            if(drawing instanceof CodeBlock) {
+                jsonObject = storeCodeBlock(drawing);
+            }
+            else if(drawing instanceof Arrow) {
+                jsonObject = storeArrow(drawing);
             }
             drawingsList.add(jsonObject);
         }
@@ -51,5 +30,53 @@ public class Save {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    @SuppressWarnings("unchecked")
+    private static JSONObject storeCodeBlock(Draw codeBlock) {
+        JSONObject jsonObject = new JSONObject();
+        JSONObject jsonObjectDetails = new JSONObject();
+        jsonObjectDetails.put("X1", Integer.toString(codeBlock.getX1()));
+        jsonObjectDetails.put("Y1", Integer.toString(codeBlock.getY1()));
+        jsonObjectDetails.put("Text", codeBlock.getText());
+        if (codeBlock instanceof CallMethodBlock) {
+            jsonObjectDetails.put("Name", "CallMethodBlock");
+            jsonObject.put("CodeBlock", jsonObjectDetails);
+        } else if (codeBlock instanceof ConditionBlock) {
+            jsonObjectDetails.put("Name", "ConditionBlock");
+            jsonObject.put("CodeBlock", jsonObjectDetails);
+        } else if (codeBlock instanceof EndBlock) {
+            jsonObjectDetails.put("Name", "EndBlock");
+            jsonObject.put("CodeBlock", jsonObjectDetails);
+        } else if (codeBlock instanceof InputOutputBlock) {
+            jsonObjectDetails.put("Name", "InputOutputBlock");
+            jsonObject.put("CodeBlock", jsonObjectDetails);
+        } else if (codeBlock instanceof InstructionBlock) {
+            jsonObjectDetails.put("Name", "InstructionBlock");
+            jsonObject.put("CodeBlock", jsonObjectDetails);
+        } else if (codeBlock instanceof StartBlock) {
+            jsonObjectDetails.put("Name", "StartBlock");
+            jsonObject.put("CodeBlock", jsonObjectDetails);
+        } else if (codeBlock instanceof VariableDeclarationBlock) {
+            jsonObjectDetails.put("Name", "VariableDeclarationBlock");
+            jsonObject.put("CodeBlock", jsonObjectDetails);
+        }
+        return jsonObject;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static JSONObject storeArrow(Draw arrowDraw) {
+        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObjectDetails;
+        Arrow arrow = (Arrow) arrowDraw;
+
+        List<CodeBlock> codeBlocks = arrow.getCodeBlocks();
+        for(CodeBlock codeBlock : codeBlocks) {
+            jsonObjectDetails = storeCodeBlock(codeBlock);
+            jsonArray.add(jsonObjectDetails);
+        }
+        jsonObject.put("Arrow", jsonArray);
+        return jsonObject;
     }
 }

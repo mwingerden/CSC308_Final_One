@@ -1,3 +1,4 @@
+import Drawings.Arrow;
 import Drawings.Blocks.*;
 import Drawings.Draw;
 import org.json.simple.JSONArray;
@@ -19,7 +20,7 @@ public class Load {
         try (FileReader reader = new FileReader("./DrawingJSONFiles/" + name + ".json")) {
             Object obj = jsonParser.parse(reader);
             JSONArray drawings = (JSONArray) obj;
-            drawings.forEach(emp -> parseDrawingObject((JSONObject) emp));
+            drawings.forEach(drawing -> parseDrawingObject((JSONObject) drawing));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -27,37 +28,58 @@ public class Load {
     }
 
     private static void parseDrawingObject(JSONObject drawing) {
-        JSONObject drawingObject = (JSONObject) drawing.get("Drawing");
-        Draw temp = null;
-        if (drawingObject.get("Name").equals("CallMethodBlock")) {
-            temp = new CallMethodBlock(Integer.parseInt((String) drawingObject.get("X1")),
-                    Integer.parseInt((String) drawingObject.get("Y1")));
-            temp.setText((String) drawingObject.get("Text"));
-        } else if (drawingObject.get("Name").equals("ConditionBlock")) {
-            temp = new ConditionBlock(Integer.parseInt((String) drawingObject.get("X1")),
-                    Integer.parseInt((String) drawingObject.get("Y1")));
-            temp.setText((String) drawingObject.get("Text"));
-        } else if (drawingObject.get("Name").equals("EndBlock")) {
-            temp = new EndBlock(Integer.parseInt((String) drawingObject.get("X1")),
-                    Integer.parseInt((String) drawingObject.get("Y1")));
-            temp.setText((String) drawingObject.get("Text"));
-        } else if (drawingObject.get("Name").equals("InputOutputBlock")) {
-            temp = new InputOutputBlock(Integer.parseInt((String) drawingObject.get("X1")),
-                    Integer.parseInt((String) drawingObject.get("Y1")));
-            temp.setText((String) drawingObject.get("Text"));
-        } else if (drawingObject.get("Name").equals("InstructionBlock")) {
-            temp = new InstructionBlock(Integer.parseInt((String) drawingObject.get("X1")),
-                    Integer.parseInt((String) drawingObject.get("Y1")));
-            temp.setText((String) drawingObject.get("Text"));
-        } else if (drawingObject.get("Name").equals("StartBlock")) {
-            temp = new StartBlock(Integer.parseInt((String) drawingObject.get("X1")),
-                    Integer.parseInt((String) drawingObject.get("Y1")));
-            temp.setText((String) drawingObject.get("Text"));
-        } else if (drawingObject.get("Name").equals("VariableDeclarationBlock")) {
-            temp = new VariableDeclarationBlock(Integer.parseInt((String) drawingObject.get("X1")),
-                    Integer.parseInt((String) drawingObject.get("Y1")));
-            temp.setText((String) drawingObject.get("Text"));
+        JSONObject drawingObject = (JSONObject) drawing.get("CodeBlock");
+        if(drawingObject != null) {
+            drawingsList.add(loadCodeBlock(drawingObject));
+            return;
         }
-        drawingsList.add(temp);
+        JSONArray drawingObjects = (JSONArray) drawing.get("Arrow");
+        if(drawingObjects != null) {
+            drawingsList.add(loadArrow(drawingObjects));
+        }
+    }
+
+    private static Draw loadCodeBlock(JSONObject codeBlock) {
+        Draw drawing = null;
+        if (codeBlock.get("Name").equals("CallMethodBlock")) {
+            drawing = new CallMethodBlock(Integer.parseInt((String) codeBlock.get("X1")),
+                    Integer.parseInt((String) codeBlock.get("Y1")));
+            drawing.setText((String) codeBlock.get("Text"));
+        } else if (codeBlock.get("Name").equals("ConditionBlock")) {
+            drawing = new ConditionBlock(Integer.parseInt((String) codeBlock.get("X1")),
+                    Integer.parseInt((String) codeBlock.get("Y1")));
+            drawing.setText((String) codeBlock.get("Text"));
+        } else if (codeBlock.get("Name").equals("EndBlock")) {
+            drawing = new EndBlock(Integer.parseInt((String) codeBlock.get("X1")),
+                    Integer.parseInt((String) codeBlock.get("Y1")));
+            drawing.setText((String) codeBlock.get("Text"));
+        } else if (codeBlock.get("Name").equals("InputOutputBlock")) {
+            drawing = new InputOutputBlock(Integer.parseInt((String) codeBlock.get("X1")),
+                    Integer.parseInt((String) codeBlock.get("Y1")));
+            drawing.setText((String) codeBlock.get("Text"));
+        } else if (codeBlock.get("Name").equals("InstructionBlock")) {
+            drawing = new InstructionBlock(Integer.parseInt((String) codeBlock.get("X1")),
+                    Integer.parseInt((String) codeBlock.get("Y1")));
+            drawing.setText((String) codeBlock.get("Text"));
+        } else if (codeBlock.get("Name").equals("StartBlock")) {
+            drawing = new StartBlock(Integer.parseInt((String) codeBlock.get("X1")),
+                    Integer.parseInt((String) codeBlock.get("Y1")));
+            drawing.setText((String) codeBlock.get("Text"));
+        } else if (codeBlock.get("Name").equals("VariableDeclarationBlock")) {
+            drawing = new VariableDeclarationBlock(Integer.parseInt((String) codeBlock.get("X1")),
+                    Integer.parseInt((String) codeBlock.get("Y1")));
+            drawing.setText((String) codeBlock.get("Text"));
+        }
+        return drawing;
+    }
+
+    private static Draw loadArrow(JSONArray arrow) {
+        Arrow arrowFinal = new Arrow();
+        for (Object o : arrow) {
+            JSONObject temp = (JSONObject) o;
+            Draw codeBlock = loadCodeBlock((JSONObject) temp.get("CodeBlock"));
+            arrowFinal.addBlock((CodeBlock) codeBlock);
+        }
+        return arrowFinal;
     }
 }

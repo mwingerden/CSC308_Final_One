@@ -34,4 +34,29 @@ public abstract class CodeBlock implements Draw {
     public void setText(String text) {
         this.text = text;
     }
+
+    @Override
+    public int getX1() {
+        return x1;
+    }
+
+    @Override
+    public int getY1() {
+        return y1;
+    }
+
+    @Override
+    public int getX2() {
+        return x2;
+    }
+
+    @Override
+    public int getY2() {
+        return y2;
+    }
+
+    @Override
+    public Color getColor() {
+        return color;
+    }
 }

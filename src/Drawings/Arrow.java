@@ -41,4 +41,29 @@ public class Arrow implements Draw {
     public void setText(String text) {
         this.text = text;
     }
+
+    @Override
+    public int getX1() {
+        return this.x1;
+    }
+
+    @Override
+    public int getY1() {
+        return this.y1;
+    }
+
+    @Override
+    public int getX2() {
+        return this.x2;
+    }
+
+    @Override
+    public int getY2() {
+        return this.y2;
+    }
+
+    @Override
+    public Color getColor() {
+        return this.color;
+    }
 }

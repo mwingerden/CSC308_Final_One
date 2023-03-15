@@ -9,12 +9,11 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class DrawArea extends JPanel implements Observer {
-    private final List<Draw> drawings;
-    private final Repository repository;
+    private List<Draw> drawings;
     private String currentDrawing;
 
     public DrawArea() {
-        this.repository = Repository.getInstance();
+        Repository repository = Repository.getInstance();
         repository.addObserver(this);
         this.currentDrawing = "";
         Controller controller = new Controller(this);
@@ -125,27 +124,40 @@ public class DrawArea extends JPanel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         String option = (String) arg;
+        String name;
         if (option.equalsIgnoreCase("new")) {
             clearArea();
+        } else if (option.equalsIgnoreCase("save")) {
+            name = (String) JOptionPane.showInputDialog(
+                    this,
+                    "Type Name for the Save File:",
+                    "Save File",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    ""
+            );
+            Save.save(drawings, name);
+        } else if (option.equalsIgnoreCase("load")) {
+            name = (String) JOptionPane.showInputDialog(
+                    this,
+                    "Enter Name to Load File:",
+                    "Enter Name",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    ""
+            );
+            clearArea();
+            drawings = Load.load(name);
+            repaint();
         } else {
             currentDrawing = option;
         }
-//        else if(option.equalsIgnoreCase("save")) {
-//
-//        }
     }
 
     private void clearArea() {
         drawings.clear();
         repaint();
     }
-
-//    private void save() {
-//
-//    }
-//
-//    private void load() {
-//
-//    }
-
 }

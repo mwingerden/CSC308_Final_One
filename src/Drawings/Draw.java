@@ -10,4 +10,13 @@ public interface Draw {
     String getText();
 
     void setText(String text);
+
+    int getX1();
+
+    int getY1();
+
+    int getX2();
+
+     int getY2();
+     Color getColor();
 }

@@ -46,16 +46,6 @@ public abstract class CodeBlock implements Draw {
     }
 
     @Override
-    public int getX2() {
-        return x2;
-    }
-
-    @Override
-    public int getY2() {
-        return y2;
-    }
-
-    @Override
     public Color getColor() {
         return color;
     }

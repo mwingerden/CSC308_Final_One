@@ -46,7 +46,30 @@ public abstract class CodeBlock implements Draw {
     }
 
     @Override
+    public int getX2() {
+        return x2;
+    }
+
+    @Override
+    public int getY2() {
+        return y2;
+    }
+
+    @Override
     public Color getColor() {
         return color;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof CodeBlock block)) {
+            return false;
+        }
+        return block.color == this.color && block.x1 == this.x1 && block.y1 == this.y1
+                && block.x2 == this.x2 && block.y2 == this.y2 && block.text.equals(this.text);
+    }
+
 }

@@ -5,7 +5,7 @@ import java.awt.*;
 public class StartBlock extends CodeBlock {
     public StartBlock(int x, int y) {
         super(x, y, x + 60, y + 60, Color.WHITE);
-        setText("Begin");
+        text = "Begin";
     }
 
     @Override

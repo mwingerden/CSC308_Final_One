@@ -5,7 +5,7 @@ import java.awt.*;
 public class InstructionBlock extends CodeBlock {
     public InstructionBlock(int x, int y) {
         super(x, y, x + 150, y + 75, Color.RED);
-        setText("");
+        text = "";
     }
 
     @Override

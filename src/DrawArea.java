@@ -1,3 +1,4 @@
+import Drawings.Arrow;
 import Drawings.Blocks.*;
 import Drawings.Draw;
 
@@ -11,11 +12,13 @@ import java.util.Observer;
 public class DrawArea extends JPanel implements Observer {
     private List<Draw> drawings;
     private String currentDrawing;
+    private Arrow arrow;
 
     public DrawArea() {
         Repository repository = Repository.getInstance();
         repository.addObserver(this);
         this.currentDrawing = "";
+        this.arrow = new Arrow();
         Controller controller = new Controller(this);
         setBackground(Color.PINK);
         setPreferredSize(new Dimension(300, 300));
@@ -39,13 +42,19 @@ public class DrawArea extends JPanel implements Observer {
 
     public void drawBlock(int x, int y) {
         if (currentDrawing.equalsIgnoreCase("arrow")) {
-//            for(Draw drawing : drawings) {
-//                if(drawing instanceof CodeBlock) {
-//                    if(drawing.contains(x, y)) {
-//
-//                    }
-//                }
-//            }
+            if (arrow.getBlocksSize() == 2) {
+                arrow = new Arrow();
+            }
+            for (Draw drawing : drawings) {
+                if (drawing instanceof CodeBlock) {
+                    if (drawing.contains(x, y)) {
+                        arrow.addBlock((CodeBlock) drawing);
+                    }
+                }
+            }
+            if (arrow.getBlocksSize() == 2) {
+                drawings.add(0, arrow);
+            }
         } else {
             if (currentDrawing.equalsIgnoreCase("condition block")) {
                 drawings.add(new ConditionBlock(x, y));
@@ -62,8 +71,8 @@ public class DrawArea extends JPanel implements Observer {
             } else if (currentDrawing.equalsIgnoreCase("end block")) {
                 drawings.add(new EndBlock(x, y));
             }
-            repaint();
         }
+        repaint();
     }
 
     public void dragBlock(int x, int y) {

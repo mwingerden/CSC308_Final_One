@@ -5,7 +5,7 @@ import java.awt.*;
 public class InputOutputBlock extends CodeBlock {
     public InputOutputBlock(int x, int y) {
         super(x, y, x + 150, y + 75, Color.ORANGE);
-        setText("");
+        text = "";
     }
 
     @Override

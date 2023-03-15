@@ -15,5 +15,9 @@ public interface Draw {
 
     int getY1();
 
+    int getX2();
+
+    int getY2();
+
     Color getColor();
 }

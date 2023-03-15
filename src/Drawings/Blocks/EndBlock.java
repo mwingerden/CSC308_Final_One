@@ -5,7 +5,7 @@ import java.awt.*;
 public class EndBlock extends CodeBlock {
     public EndBlock(int x, int y) {
         super(x, y, x + 60, y + 60, Color.BLACK);
-        setText("End");
+        text = "End";
     }
 
     @Override

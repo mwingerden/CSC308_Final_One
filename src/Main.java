@@ -14,7 +14,6 @@ public class Main extends JFrame {
         setTitle("Final Project");
         setSize(900, 900);
         setVisible(true);
-        drawArea.drawStartEndPoints();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 

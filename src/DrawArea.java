@@ -5,13 +5,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class DrawArea extends JPanel {
+public class DrawArea extends JPanel implements Observer {
     private final List<Draw> drawings;
     private final Repository repository;
 
     public DrawArea() {
         this.repository = Repository.getInstance();
+        repository.addObserver(this);
         Controller controller = new Controller(this);
         setBackground(Color.PINK);
         setPreferredSize(new Dimension(300, 300));
@@ -27,28 +30,42 @@ public class DrawArea extends JPanel {
         }
     }
 
-    public void drawStartEndPoints() {
-        drawings.add(new StartBlock(0, 0));
-        drawings.add(new EndBlock(this.getWidth() - 60, this.getHeight() - 60));
-    }
+//    public void drawStartEndPoints() {
+//        //TODO: Have user draw the blocks instead of drawing it for them.
+//        drawings.add(new StartBlock(0, 0));
+//        drawings.add(new EndBlock(this.getWidth() - 60, this.getHeight() - 60));
+//    }
 
     public void drawBlock(int x, int y) {
-        if (repository.getBlockToDraw().equalsIgnoreCase("condition block")) {
-            drawings.add(new ConditionBlock(x, y));
-        } else if (repository.getBlockToDraw().equalsIgnoreCase("variable declaration block")) {
-            drawings.add(new VariableDeclarationBlock(x, y));
-        } else if (repository.getBlockToDraw().equalsIgnoreCase("instruction block")) {
-            drawings.add(new InstructionBlock(x, y));
-        } else if (repository.getBlockToDraw().equalsIgnoreCase("call method block")) {
-            drawings.add(new CallMethodBlock(x, y));
-        } else if (repository.getBlockToDraw().equalsIgnoreCase("input/output block")) {
-            drawings.add(new InputOutputBlock(x, y));
+        if (repository.getBlockToDraw().equalsIgnoreCase("arrow")) {
+//            for(Draw drawing : drawings) {
+//                if(drawing instanceof CodeBlock) {
+//                    if(drawing.contains(x, y)) {
+//
+//                    }
+//                }
+//            }
+        } else {
+            if (repository.getBlockToDraw().equalsIgnoreCase("condition block")) {
+                drawings.add(new ConditionBlock(x, y));
+            } else if (repository.getBlockToDraw().equalsIgnoreCase("variable declaration block")) {
+                drawings.add(new VariableDeclarationBlock(x, y));
+            } else if (repository.getBlockToDraw().equalsIgnoreCase("instruction block")) {
+                drawings.add(new InstructionBlock(x, y));
+            } else if (repository.getBlockToDraw().equalsIgnoreCase("call method block")) {
+                drawings.add(new CallMethodBlock(x, y));
+            } else if (repository.getBlockToDraw().equalsIgnoreCase("input/output block")) {
+                drawings.add(new InputOutputBlock(x, y));
+            } else if (repository.getBlockToDraw().equalsIgnoreCase("start block")) {
+                drawings.add(new StartBlock(x, y));
+            } else if (repository.getBlockToDraw().equalsIgnoreCase("end block")) {
+                drawings.add(new EndBlock(x, y));
+            }
+            repaint();
         }
-        repaint();
     }
 
     public void dragBlock(int x, int y) {
-        //TODO: Have user drag begin and end blocks
         CodeBlock temp = null;
         for (Draw drawing : drawings) {
             if (drawing.contains(x, y)) {
@@ -102,4 +119,29 @@ public class DrawArea extends JPanel {
             }
         }
     }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        String option = (String) arg;
+        if (option.equalsIgnoreCase("new")) {
+            clearArea();
+        }
+//        else if(option.equalsIgnoreCase("save")) {
+//
+//        }
+    }
+
+    private void clearArea() {
+        drawings.clear();
+        repaint();
+    }
+
+//    private void save() {
+//
+//    }
+//
+//    private void load() {
+//
+//    }
+
 }

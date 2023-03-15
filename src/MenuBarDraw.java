@@ -6,17 +6,22 @@ public class MenuBarDraw extends JMenuBar {
         Controller controller = new Controller(null);
 
         JMenu file = new JMenu("File");
-        JMenu block = new JMenu("Code Block");
         JMenu help = new JMenu("Help");
+        JMenu block = new JMenu("Draw");
 
         JMenuItem newOption = new JMenuItem("New");
         JMenuItem saveOption = new JMenuItem("Save");
         JMenuItem loadOption = new JMenuItem("Load");
+
+        JMenuItem startOption = new JMenuItem("Start Block");
+        JMenuItem endOption = new JMenuItem("End Block");
         JMenuItem callMethodOption = new JMenuItem("Call Method Block");
         JMenuItem instructionOption = new JMenuItem("Instruction Block");
         JMenuItem inputOutputOption = new JMenuItem("Input/Output Block");
         JMenuItem variableDeclarationOption = new JMenuItem("Variable Declaration Block");
         JMenuItem conditionOption = new JMenuItem("Condition Block");
+        JMenuItem ArrowOption = new JMenuItem("Arrow");
+
         JMenuItem aboutOption = new JMenuItem("About");
 
         file.add(newOption);
@@ -26,6 +31,10 @@ public class MenuBarDraw extends JMenuBar {
         file.add(loadOption);
         loadOption.addActionListener(controller);
 
+        block.add(startOption);
+        startOption.addActionListener(controller);
+        block.add(endOption);
+        endOption.addActionListener(controller);
         block.add(callMethodOption);
         callMethodOption.addActionListener(controller);
         block.add(instructionOption);
@@ -36,14 +45,16 @@ public class MenuBarDraw extends JMenuBar {
         variableDeclarationOption.addActionListener(controller);
         block.add(conditionOption);
         conditionOption.addActionListener(controller);
+        block.add(ArrowOption);
+        ArrowOption.addActionListener(controller);
 
 
         help.add(aboutOption);
         aboutOption.addActionListener(controller);
 
         menuBar.add(file);
-        menuBar.add(block);
         menuBar.add(help);
+        menuBar.add(block);
         add(menuBar);
     }
 }

@@ -20,4 +20,9 @@ public class Repository extends Observable {
     public void setBlockToDraw(String blockToDraw) {
         this.blockToDraw = blockToDraw;
     }
+
+    public void updateOption(String option) {
+        setChanged();
+        notifyObservers(option);
+    }
 }

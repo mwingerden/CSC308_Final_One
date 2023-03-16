@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Arrows can now be saved and loaded.">
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Made repository more robust.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DrawArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawArea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Drawings/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Arrow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/CodeBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/CodeBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Draw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Draw.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Load.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Load.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MenuBarDraw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuBarDraw.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Save.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Save.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StatusBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StatusBar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678908486196</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Made repository more robust.">
+      <created>1678937168435</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1678937168435</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -219,7 +225,8 @@
     <MESSAGE value="Implemented Undo and reformatted code." />
     <MESSAGE value="Able to draw rudimentary arrows." />
     <MESSAGE value="Arrows can now be saved and loaded." />
-    <option name="LAST_COMMIT_MESSAGE" value="Arrows can now be saved and loaded." />
+    <MESSAGE value="Made repository more robust." />
+    <option name="LAST_COMMIT_MESSAGE" value="Made repository more robust." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -231,17 +238,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Save.java</url>
-          <line>15</line>
+          <line>79</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Load.java</url>
-          <line>79</line>
+          <line>137</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Load.java</url>
-          <line>76</line>
+          <line>134</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

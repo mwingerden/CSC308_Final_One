@@ -1,10 +1,8 @@
 package Drawings.Blocks;
 
-import Drawings.Draw;
-
 import java.awt.*;
 
-public abstract class CodeBlock implements Draw {
+public abstract class CodeBlock {
     protected int x1;
     protected int y1;
     protected int x2;
@@ -20,47 +18,40 @@ public abstract class CodeBlock implements Draw {
         this.color = color;
     }
 
-    @Override
+    abstract public void draw(Graphics g);
+
     public boolean contains(int x, int y) {
         return x >= x1 && x <= x2 && y >= y1 && y <= y2;
     }
 
-    @Override
     public String getText() {
         return text;
     }
 
-    @Override
     public void setText(String text) {
         this.text = text;
     }
 
-    @Override
     public int getX1() {
         return x1;
     }
 
-    @Override
     public int getY1() {
         return y1;
     }
 
-    @Override
     public int getX2() {
         return x2;
     }
 
-    @Override
     public int getY2() {
         return y2;
     }
 
-    @Override
     public Color getColor() {
         return color;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

@@ -1,4 +1,4 @@
-import Drawings.Draw;
+import Drawings.Blocks.CodeBlock;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ public class DrawArea extends JPanel implements Observer {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Draw drawing : repository.getDrawings()) {
+        for (CodeBlock drawing : repository.getDrawings()) {
             drawing.draw(g);
         }
     }

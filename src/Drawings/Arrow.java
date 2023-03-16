@@ -7,7 +7,7 @@ import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Arrow implements Draw {
+public class Arrow {
     private final Color color;
     private final List<CodeBlock> codeBlocks;
     private String text;
@@ -26,49 +26,40 @@ public class Arrow implements Draw {
         this.y2 = 0;
     }
 
-    @Override
     public void draw(Graphics g) {
         g.setColor(color);
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.draw(new Line2D.Float(x1, y1, x2, y2));
     }
 
-    @Override
     public boolean contains(int x, int y) {
         return false;
     }
 
-    @Override
     public String getText() {
         return this.text;
     }
 
-    @Override
     public void setText(String text) {
         this.text = text;
     }
 
-    @Override
     public int getX1() {
         return this.x1;
     }
 
-    @Override
     public int getY1() {
         return this.y1;
     }
 
-    @Override
     public int getX2() {
         return this.x2;
     }
 
-    @Override
     public int getY2() {
         return this.y2;
     }
 
-    @Override
     public Color getColor() {
         return this.color;
     }
@@ -86,7 +77,7 @@ public class Arrow implements Draw {
             CodeBlock second = codeBlocks.get(1);
             this.x1 = first.getX1() + ((first.getX2() - first.getX1()) / 2);
             this.y1 = first.getY1() + ((first.getY2() - first.getY1()) / 2);
-            this.x2 = second.getX1();
+            this.x2 = second.getX1() + ((second.getX2() - second.getX1()) / 2);
             this.y2 = second.getY1() + ((second.getY2() - second.getY1()) / 2);
         }
     }

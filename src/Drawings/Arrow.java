@@ -81,7 +81,7 @@ public class Arrow implements Draw {
         } else {
             codeBlocks.add(block);
         }
-        if(codeBlocks.size() == 2) {
+        if (codeBlocks.size() == 2) {
             CodeBlock first = codeBlocks.get(0);
             CodeBlock second = codeBlocks.get(1);
             this.x1 = first.getX1() + ((first.getX2() - first.getX1()) / 2);

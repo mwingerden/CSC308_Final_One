@@ -3,7 +3,7 @@ import javax.swing.*;
 public class MenuBarDraw extends JMenuBar {
     public MenuBarDraw() {
         JMenuBar menuBar = new JMenuBar();
-        Controller controller = new Controller(null);
+        Controller controller = new Controller();
 
         JMenu file = new JMenu("File");
         JMenu help = new JMenu("Help");

@@ -29,12 +29,12 @@ public class Load {
 
     private static void parseDrawingObject(JSONObject drawing) {
         JSONObject drawingObject = (JSONObject) drawing.get("CodeBlock");
-        if(drawingObject != null) {
+        if (drawingObject != null) {
             drawingsList.add(loadCodeBlock(drawingObject));
             return;
         }
         JSONArray drawingObjects = (JSONArray) drawing.get("Arrow");
-        if(drawingObjects != null) {
+        if (drawingObjects != null) {
             drawingsList.add(loadArrow(drawingObjects));
         }
     }

@@ -2,25 +2,35 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Controller implements ActionListener, MouseListener, MouseMotionListener {
-    private final DrawArea drawArea;
     private final Repository repository;
 
-    public Controller(DrawArea drawArea) {
-        this.drawArea = drawArea;
+    public Controller() {
         this.repository = Repository.getInstance();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        repository.updateOption(e.getActionCommand());
+        if (e.getActionCommand().equalsIgnoreCase("new")) {
+            repository.newList();
+        } else if (e.getActionCommand().equalsIgnoreCase("save")) {
+            repository.saveList();
+        } else if (e.getActionCommand().equalsIgnoreCase("load")) {
+            repository.loadList();
+        } else if (e.getActionCommand().equalsIgnoreCase("undo")) {
+            repository.undo();
+        } else if (e.getActionCommand().equalsIgnoreCase("about")) {
+            repository.about();
+        } else {
+            repository.setCurrentDrawing(e.getActionCommand());
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if (SwingUtilities.isRightMouseButton(e)) {
-            drawArea.addText(e.getX(), e.getY());
+            repository.addText(e.getX(), e.getY());
         } else {
-            drawArea.drawBlock(e.getX(), e.getY());
+            repository.addBlock(e.getX(), e.getY());
         }
     }
 
@@ -45,7 +55,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
     @Override
     public void mouseDragged(MouseEvent e) {
         if (SwingUtilities.isLeftMouseButton(e)) {
-            drawArea.dragBlock(e.getX(), e.getY());
+            repository.dragBlock(e.getX(), e.getY());
         }
     }
 

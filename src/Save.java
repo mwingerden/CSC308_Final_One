@@ -14,10 +14,9 @@ public class Save {
         JSONArray drawingsList = new JSONArray();
         JSONObject jsonObject = null;
         for (Draw drawing : drawings) {
-            if(drawing instanceof CodeBlock) {
+            if (drawing instanceof CodeBlock) {
                 jsonObject = storeCodeBlock(drawing);
-            }
-            else if(drawing instanceof Arrow) {
+            } else if (drawing instanceof Arrow) {
                 jsonObject = storeArrow(drawing);
             }
             drawingsList.add(jsonObject);
@@ -31,7 +30,7 @@ public class Save {
             e.printStackTrace();
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     private static JSONObject storeCodeBlock(Draw codeBlock) {
         JSONObject jsonObject = new JSONObject();
@@ -72,7 +71,7 @@ public class Save {
         Arrow arrow = (Arrow) arrowDraw;
 
         List<CodeBlock> codeBlocks = arrow.getCodeBlocks();
-        for(CodeBlock codeBlock : codeBlocks) {
+        for (CodeBlock codeBlock : codeBlocks) {
             jsonObjectDetails = storeCodeBlock(codeBlock);
             jsonArray.add(jsonObjectDetails);
         }

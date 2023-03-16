@@ -26,7 +26,9 @@ public class StatusBar extends JPanel implements Observer {
             progressbar.setText("Loaded a Board");
         } else if (option.equalsIgnoreCase("about")) {
             progressbar.setText("Opened About Page");
-        } else if (option.equalsIgnoreCase("start block")) {
+        } else if (option.equalsIgnoreCase("undo")) {
+            progressbar.setText("Undo Drawing");
+        }else if (option.equalsIgnoreCase("start block")) {
             progressbar.setText("Drawing " + option);
         } else if (option.equalsIgnoreCase("end block")) {
             progressbar.setText("Drawing " + option);
@@ -55,8 +57,6 @@ public class StatusBar extends JPanel implements Observer {
         } else if (option.equalsIgnoreCase("dragging condition block")) {
             progressbar.setText(option);
         } else if (option.equalsIgnoreCase("dragging instruction block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("dragging arrow")) {
             progressbar.setText(option);
         } else if (option.equalsIgnoreCase("set text to call method block")) {
             progressbar.setText(option);

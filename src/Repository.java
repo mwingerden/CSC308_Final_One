@@ -11,10 +11,12 @@ public class Repository extends Observable {
     private static final Repository instance = new Repository();
     private List<Draw> drawings;
     private String currentDrawing;
+    private Arrow arrow;
 
     private Repository() {
         this.drawings = new ArrayList<>();
         this.currentDrawing = "";
+        this.arrow = new Arrow();
     }
 
     public static Repository getInstance() {
@@ -61,7 +63,12 @@ public class Repository extends Observable {
     }
 
     public void undo() {
-        drawings.remove(drawings.size() - 1);
+        if(!drawings.isEmpty()) {
+            drawings.remove(drawings.size() - 1);
+            sortList();
+            setChanged();
+            notifyObservers("Undo");
+        }
     }
 
     public void about() {
@@ -81,7 +88,6 @@ public class Repository extends Observable {
 
     public void addDrawing(int x, int y) {
         if (currentDrawing.equalsIgnoreCase("arrow")) {
-            Arrow arrow = new Arrow();
             if (arrow.getBlocksSize() == 2) {
                 arrow = new Arrow();
             }

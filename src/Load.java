@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.swing.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +23,11 @@ public class Load {
             JSONArray drawings = (JSONArray) obj;
             drawings.forEach(drawing -> parseDrawingObject((JSONObject) drawing));
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(
+                    new DrawArea(),
+                    "There is no file by the name of " + name + ".",
+                    "Warning",
+                    JOptionPane.WARNING_MESSAGE);
         }
         return drawingsList;
     }

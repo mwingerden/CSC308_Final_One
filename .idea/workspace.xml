@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Load now tells user that there is no file if entered name does not exist.">
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Cannot draw block on top of another block.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
     </list>
@@ -233,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678994879267</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Cannot draw block on top of another block.">
+      <created>1678995731784</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1678995731784</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -260,7 +267,8 @@
     <MESSAGE value="Finished Dragging Arrows." />
     <MESSAGE value="Arrow and Blocks now draw correctly." />
     <MESSAGE value="Load now tells user that there is no file if entered name does not exist." />
-    <option name="LAST_COMMIT_MESSAGE" value="Load now tells user that there is no file if entered name does not exist." />
+    <MESSAGE value="Cannot draw block on top of another block." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cannot draw block on top of another block." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -272,7 +280,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>161</line>
+          <line>182</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

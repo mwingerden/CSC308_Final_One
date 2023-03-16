@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Can drag a block across other blocks without glitching." />
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Fixed Undo.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Arrow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/CallMethodBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/CallMethodBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/CodeBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/CodeBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/ConditionBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/ConditionBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/EndBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/EndBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/InputOutputBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/InputOutputBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/InstructionBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/InstructionBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/StartBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/StartBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/VariableDeclarationBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/VariableDeclarationBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Draw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Draw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StatusBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StatusBar.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -251,11 +265,17 @@
       <option name="project" value="LOCAL" />
       <updated>1678996539026</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Fixed Undo.">
+      <created>1678997000491</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1678997000491</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Set up the view. Does nothing yet." />
     <MESSAGE value="Added Code Block implementation along with start and end blocks." />
     <MESSAGE value="Added Controller and ability to add an if block to draw area." />
     <MESSAGE value="Set min size of If Block." />
@@ -280,7 +300,8 @@
     <MESSAGE value="Load now tells user that there is no file if entered name does not exist." />
     <MESSAGE value="Cannot draw block on top of another block." />
     <MESSAGE value="Can drag a block across other blocks without glitching." />
-    <option name="LAST_COMMIT_MESSAGE" value="Can drag a block across other blocks without glitching." />
+    <MESSAGE value="Fixed Undo." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Undo." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -292,38 +313,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>159</line>
-          <option name="timeStamp" value="30" />
+          <line>176</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="31" />
+          <line>135</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/StatusBar.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="35" />
+          <url>file://$PROJECT_DIR$/src/Repository.java</url>
+          <line>167</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/StatusBar.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/StatusBar.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/StatusBar.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/StatusBar.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="40" />
+          <url>file://$PROJECT_DIR$/src/Repository.java</url>
+          <line>130</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

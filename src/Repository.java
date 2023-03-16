@@ -63,7 +63,7 @@ public class Repository extends Observable {
     }
 
     public void undo() {
-        if(!drawings.isEmpty()) {
+        if (!drawings.isEmpty()) {
             drawings.remove(drawings.size() - 1);
             sortList();
             setChanged();
@@ -124,31 +124,32 @@ public class Repository extends Observable {
     }
 
     public void dragBlock(int x, int y) {
+//        Collections.reverse(drawings);
         CodeBlock blockToDrag = null;
         int dragX;
         int dragY;
-        for(Draw drawing : drawings) {
-            if(drawing.contains(x, y) && drawing instanceof CodeBlock) {
+        for (Draw drawing : drawings) {
+            if (drawing instanceof CodeBlock && drawing.contains(x, y)) {
                 blockToDrag = (CodeBlock) drawing;
             }
         }
-        if (blockToDrag != null && blockToDrag.contains(x, y)) {
+        if (blockToDrag != null) {
             dragX = ((blockToDrag.getX2() - blockToDrag.getX1()) / 2);
             dragY = ((blockToDrag.getY2() - blockToDrag.getY1()) / 2);
             if (blockToDrag instanceof InstructionBlock) {
-                drag(blockToDrag, new InstructionBlock(x - dragX, y -dragY));
+                drag(blockToDrag, new InstructionBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof ConditionBlock) {
-                drag(blockToDrag, new ConditionBlock(x - dragX, y -dragY));
+                drag(blockToDrag, new ConditionBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof VariableDeclarationBlock) {
-                drag(blockToDrag, new VariableDeclarationBlock(x - dragX, y -dragY));
+                drag(blockToDrag, new VariableDeclarationBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof CallMethodBlock) {
-                drag(blockToDrag, new CallMethodBlock(x - dragX, y -dragY));
+                drag(blockToDrag, new CallMethodBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof InputOutputBlock) {
-                drag(blockToDrag, new InputOutputBlock(x - dragX, y -dragY));
+                drag(blockToDrag, new InputOutputBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof StartBlock) {
-                drag(blockToDrag, new StartBlock(x - dragX, y -dragY));
+                drag(blockToDrag, new StartBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof EndBlock) {
-                drag(blockToDrag, new EndBlock(x - dragX, y -dragY));
+                drag(blockToDrag, new EndBlock(x - dragX, y - dragY));
             }
         }
         sortList();
@@ -157,6 +158,7 @@ public class Repository extends Observable {
     }
 
     private void drag(Draw drawing, CodeBlock newBlock) {
+//        sortList();
         List<Draw> placeHolder = new ArrayList<>(drawings);
         newBlock.setText(drawing.getText());
         drawings.add(newBlock);
@@ -164,18 +166,21 @@ public class Repository extends Observable {
         for (Draw temp : placeHolder) {
             if (temp instanceof Arrow draggingArrow) {
                 List<CodeBlock> arrowCodeBlocks = draggingArrow.getCodeBlocks();
+                if (!(arrowCodeBlocks.size() == 2)) {
+                    break;
+                }
                 int count = 1;
                 for (CodeBlock codeBlock : arrowCodeBlocks) {
                     if (codeBlock.equals(drawing)) {
                         drawings.remove(draggingArrow);
                         CodeBlock temp1 = arrowCodeBlocks.get(count);
                         draggingArrow.clearCodeBlocks();
+//                        temp1.resetCount();
                         draggingArrow.addBlock(newBlock);
                         draggingArrow.addBlock(temp1);
                         drawings.add(draggingArrow);
                         break;
-                    }
-                    else {
+                    } else {
                         count--;
                     }
                 }
@@ -209,11 +214,10 @@ public class Repository extends Observable {
     private void sortList() {
         List<Draw> codeBlockList = new ArrayList<>();
         List<Draw> arrowList = new ArrayList<>();
-        for(Draw drawing : drawings) {
-            if(drawing instanceof CodeBlock) {
+        for (Draw drawing : drawings) {
+            if (drawing instanceof CodeBlock) {
                 codeBlockList.add(drawing);
-            }
-            else if(drawing instanceof Arrow) {
+            } else if (drawing instanceof Arrow) {
                 arrowList.add(drawing);
             }
         }

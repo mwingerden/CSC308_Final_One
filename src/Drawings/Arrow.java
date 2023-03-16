@@ -76,11 +76,6 @@ public class Arrow implements Draw {
         return this.y2;
     }
 
-    @Override
-    public Color getColor() {
-        return this.color;
-    }
-
     public void addBlock(CodeBlock block) {
         if (codeBlocks.size() == 1) {
             if (!block.equals(codeBlocks.get(0))) {
@@ -89,6 +84,17 @@ public class Arrow implements Draw {
         } else {
             codeBlocks.add(block);
         }
+//        if (codeBlocks.size() == 1) {
+//            if (!block.equals(codeBlocks.get(0))) {
+//                if (block.checkIncomingArrowLimit()) {
+//                    codeBlocks.add(block);
+//                }
+//            }
+//        } else {
+//            if (block.checkOutgoingArrowLimit()) {
+//                codeBlocks.add(block);
+//            }
+//        }
     }
 
     public int getBlocksSize() {

@@ -18,6 +18,4 @@ public interface Draw {
     int getX2();
 
     int getY2();
-
-    Color getColor();
 }

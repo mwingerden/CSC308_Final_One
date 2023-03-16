@@ -28,7 +28,7 @@ public class StatusBar extends JPanel implements Observer {
             progressbar.setText("Opened About Page");
         } else if (option.equalsIgnoreCase("undo")) {
             progressbar.setText("Undo Drawing");
-        }else if (option.equalsIgnoreCase("start block")) {
+        } else if (option.equalsIgnoreCase("start block")) {
             progressbar.setText("Drawing " + option);
         } else if (option.equalsIgnoreCase("end block")) {
             progressbar.setText("Drawing " + option);

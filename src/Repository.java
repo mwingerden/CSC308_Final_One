@@ -116,200 +116,55 @@ public class Repository extends Observable {
     }
 
     public void dragBlock(int x, int y) {
-        for (Draw drawing : drawings) {
+        List<Draw> placeHolder = new ArrayList<>(drawings);
+        for (Draw drawing : placeHolder) {
             if (drawing.contains(x, y)) {
                 if (drawing instanceof InstructionBlock) {
-                    for (Draw temp : drawings) {
-                        if (temp instanceof Arrow draggingArrow) {
-                            List<CodeBlock> arrowCodeBlocks = draggingArrow.getCodeBlocks();
-                            int count = 1;
-                            for (CodeBlock codeBlock : arrowCodeBlocks) {
-                                if (codeBlock.equals(drawing)) {
-                                    CodeBlock newBlock = new InstructionBlock(x - 10, y - 10);
-                                    newBlock.setText(drawing.getText());
-                                    drawings.add(newBlock);
-                                    drawings.remove(drawing);
-                                    drawings.remove(draggingArrow);
-                                    CodeBlock temp1 = arrowCodeBlocks.get(count);
-                                    draggingArrow.clearCodeBlocks();
-                                    draggingArrow.addBlock(newBlock);
-                                    draggingArrow.addBlock(temp1);
-                                    drawings.add(draggingArrow);
-                                    setChanged();
-                                    notifyObservers("Dragging " + currentDrawing);
-                                    return;
-                                }
-                                else {
-                                    count--;
-                                }
-                            }
-                        }
-                    }
+                    drag(drawing, new InstructionBlock(x - 10, y -10));
                 } else if (drawing instanceof ConditionBlock) {
-                    for (Draw temp : drawings) {
-                        if (temp instanceof Arrow draggingArrow) {
-                            List<CodeBlock> arrowCodeBlocks = draggingArrow.getCodeBlocks();
-                            int count = 1;
-                            for (CodeBlock codeBlock : arrowCodeBlocks) {
-                                if (codeBlock.equals(drawing)) {
-                                    CodeBlock newBlock = new ConditionBlock(x - 10, y - 10);
-                                    newBlock.setText(drawing.getText());
-                                    drawings.add(newBlock);
-                                    drawings.remove(drawing);
-                                    drawings.remove(draggingArrow);
-                                    CodeBlock temp1 = arrowCodeBlocks.get(count);
-                                    draggingArrow.clearCodeBlocks();
-                                    draggingArrow.addBlock(newBlock);
-                                    draggingArrow.addBlock(temp1);
-                                    drawings.add(draggingArrow);
-                                    setChanged();
-                                    notifyObservers("Dragging " + currentDrawing);
-                                    return;
-                                }
-                                else {
-                                    count--;
-                                }
-                            }
-                        }
-                    }
+                    drag(drawing, new ConditionBlock(x - 10, y -10));
                 } else if (drawing instanceof VariableDeclarationBlock) {
-                    for (Draw temp : drawings) {
-                        if (temp instanceof Arrow draggingArrow) {
-                            List<CodeBlock> arrowCodeBlocks = draggingArrow.getCodeBlocks();
-                            int count = 1;
-                            for (CodeBlock codeBlock : arrowCodeBlocks) {
-                                if (codeBlock.equals(drawing)) {
-                                    CodeBlock newBlock = new VariableDeclarationBlock(x - 10, y - 10);
-                                    newBlock.setText(drawing.getText());
-                                    drawings.add(newBlock);
-                                    drawings.remove(drawing);
-                                    drawings.remove(draggingArrow);
-                                    CodeBlock temp1 = arrowCodeBlocks.get(count);
-                                    draggingArrow.clearCodeBlocks();
-                                    draggingArrow.addBlock(newBlock);
-                                    draggingArrow.addBlock(temp1);
-                                    drawings.add(draggingArrow);
-                                    setChanged();
-                                    notifyObservers("Dragging " + currentDrawing);
-                                    return;
-                                }
-                                else {
-                                    count--;
-                                }
-                            }
-                        }
-                    }
+                    drag(drawing, new VariableDeclarationBlock(x - 10, y -10));
                 } else if (drawing instanceof CallMethodBlock) {
-                    CodeBlock newBlock = new CallMethodBlock(x - 10, y - 10);
-                    newBlock.setText(drawing.getText());
-                    drawings.add(newBlock);
-                    drawings.remove(drawing);
-                    for (Draw temp : drawings) {
-                        if (temp instanceof Arrow draggingArrow) {
-                            List<CodeBlock> arrowCodeBlocks = draggingArrow.getCodeBlocks();
-                            int count = 1;
-                            for (CodeBlock codeBlock : arrowCodeBlocks) {
-                                if (codeBlock.equals(drawing)) {
-                                    drawings.remove(draggingArrow);
-                                    CodeBlock temp1 = arrowCodeBlocks.get(count);
-                                    draggingArrow.clearCodeBlocks();
-                                    draggingArrow.addBlock(newBlock);
-                                    draggingArrow.addBlock(temp1);
-                                    drawings.add(draggingArrow);
-                                    return;
-                                }
-                                else {
-                                    count--;
-                                }
-                            }
-                        }
-                    }
+                    drag(drawing, new CallMethodBlock(x - 10, y -10));
                 } else if (drawing instanceof InputOutputBlock) {
-                    for (Draw temp : drawings) {
-                        if (temp instanceof Arrow draggingArrow) {
-                            List<CodeBlock> arrowCodeBlocks = draggingArrow.getCodeBlocks();
-                            int count = 1;
-                            for (CodeBlock codeBlock : arrowCodeBlocks) {
-                                if (codeBlock.equals(drawing)) {
-                                    CodeBlock newBlock = new InputOutputBlock(x - 10, y - 10);
-                                    newBlock.setText(drawing.getText());
-                                    drawings.add(newBlock);
-                                    drawings.remove(drawing);
-                                    drawings.remove(draggingArrow);
-                                    CodeBlock temp1 = arrowCodeBlocks.get(count);
-                                    draggingArrow.clearCodeBlocks();
-                                    draggingArrow.addBlock(newBlock);
-                                    draggingArrow.addBlock(temp1);
-                                    drawings.add(draggingArrow);
-                                    setChanged();
-                                    notifyObservers("Dragging " + currentDrawing);
-                                    return;
-                                }
-                                else {
-                                    count--;
-                                }
-                            }
-                        }
-                    }
+                    drag(drawing, new InputOutputBlock(x - 10, y -10));
                 } else if (drawing instanceof StartBlock) {
-                    for (Draw temp : drawings) {
-                        if (temp instanceof Arrow draggingArrow) {
-                            List<CodeBlock> arrowCodeBlocks = draggingArrow.getCodeBlocks();
-                            int count = 1;
-                            for (CodeBlock codeBlock : arrowCodeBlocks) {
-                                if (codeBlock.equals(drawing)) {
-                                    CodeBlock newBlock = new StartBlock(x - 10, y - 10);
-                                    newBlock.setText(drawing.getText());
-                                    drawings.add(newBlock);
-                                    drawings.remove(drawing);
-                                    drawings.remove(draggingArrow);
-                                    CodeBlock temp1 = arrowCodeBlocks.get(count);
-                                    draggingArrow.clearCodeBlocks();
-                                    draggingArrow.addBlock(newBlock);
-                                    draggingArrow.addBlock(temp1);
-                                    drawings.add(draggingArrow);
-                                    setChanged();
-                                    notifyObservers("Dragging " + currentDrawing);
-                                    return;
-                                }
-                                else {
-                                    count--;
-                                }
-                            }
-                        }
-                    }
+                    drag(drawing, new StartBlock(x - 10, y -10));
                 } else if (drawing instanceof EndBlock) {
-                    for (Draw temp : drawings) {
-                        if (temp instanceof Arrow draggingArrow) {
-                            List<CodeBlock> arrowCodeBlocks = draggingArrow.getCodeBlocks();
-                            int count = 1;
-                            for (CodeBlock codeBlock : arrowCodeBlocks) {
-                                if (codeBlock.equals(drawing)) {
-                                    CodeBlock newBlock = new EndBlock(x - 10, y - 10);
-                                    newBlock.setText(drawing.getText());
-                                    drawings.add(newBlock);
-                                    drawings.remove(drawing);
-                                    drawings.remove(draggingArrow);
-                                    CodeBlock temp1 = arrowCodeBlocks.get(count);
-                                    draggingArrow.clearCodeBlocks();
-                                    draggingArrow.addBlock(newBlock);
-                                    draggingArrow.addBlock(temp1);
-                                    drawings.add(draggingArrow);
-                                    setChanged();
-                                    notifyObservers("Dragging " + currentDrawing);
-                                    return;
-                                }
-                                else {
-                                    count--;
-                                }
-                            }
-                        }
-                    }
+                    drag(drawing, new EndBlock(x - 10, y -10));
                 }
             }
         }
         setChanged();
         notifyObservers("Dragging " + currentDrawing);
+    }
+
+    private void drag(Draw drawing, CodeBlock newBlock) {
+        List<Draw> placeHolder = new ArrayList<>(drawings);
+        newBlock.setText(drawing.getText());
+        drawings.add(newBlock);
+        drawings.remove(drawing);
+        for (Draw temp : placeHolder) {
+            if (temp instanceof Arrow draggingArrow) {
+                List<CodeBlock> arrowCodeBlocks = draggingArrow.getCodeBlocks();
+                int count = 1;
+                for (CodeBlock codeBlock : arrowCodeBlocks) {
+                    if (codeBlock.equals(drawing)) {
+                        drawings.remove(draggingArrow);
+                        CodeBlock temp1 = arrowCodeBlocks.get(count);
+                        draggingArrow.clearCodeBlocks();
+                        draggingArrow.addBlock(newBlock);
+                        draggingArrow.addBlock(temp1);
+                        drawings.add(draggingArrow);
+                        break;
+                    }
+                    else {
+                        count--;
+                    }
+                }
+            }
+        }
     }
 
     public void addText(int x, int y) {

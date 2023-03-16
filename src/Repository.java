@@ -57,6 +57,7 @@ public class Repository extends Observable {
         );
         drawings.clear();
         drawings = Load.load(name);
+        sortList();
         setChanged();
         notifyObservers("load");
     }
@@ -71,6 +72,7 @@ public class Repository extends Observable {
 
     public void setCurrentDrawing(String currentDrawing) {
         this.currentDrawing = currentDrawing;
+        sortList();
         setChanged();
         notifyObservers(currentDrawing);
     }
@@ -111,6 +113,7 @@ public class Repository extends Observable {
                 drawings.add(new EndBlock(x, y));
             }
         }
+        sortList();
         setChanged();
         notifyObservers(currentDrawing);
     }
@@ -136,6 +139,7 @@ public class Repository extends Observable {
                 }
             }
         }
+        sortList();
         setChanged();
         notifyObservers("Dragging " + currentDrawing);
     }
@@ -180,6 +184,7 @@ public class Repository extends Observable {
                             null,
                             ""
                     );
+                    sortList();
                     drawings.setText(text);
                     setChanged();
                     notifyObservers("Set Text to " + currentDrawing);
@@ -187,5 +192,21 @@ public class Repository extends Observable {
                 }
             }
         }
+    }
+
+    private void sortList() {
+        List<Draw> codeBlockList = new ArrayList<>();
+        List<Draw> arrowList = new ArrayList<>();
+        for(Draw drawing : drawings) {
+            if(drawing instanceof CodeBlock) {
+                codeBlockList.add(drawing);
+            }
+            else if(drawing instanceof Arrow) {
+                arrowList.add(drawing);
+            }
+        }
+        drawings.clear();
+        drawings.addAll(arrowList);
+        drawings.addAll(codeBlockList);
     }
 }

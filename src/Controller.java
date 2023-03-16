@@ -30,7 +30,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
         if (SwingUtilities.isRightMouseButton(e)) {
             repository.addText(e.getX(), e.getY());
         } else {
-            repository.addBlock(e.getX(), e.getY());
+            repository.addDrawing(e.getX(), e.getY());
         }
     }
 

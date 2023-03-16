@@ -1,14 +1,20 @@
 package Drawings.Blocks;
 
-import java.awt.*;
+import Drawings.Arrow;
+import Drawings.Draw;
 
-public abstract class CodeBlock {
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class CodeBlock implements Draw {
     protected int x1;
     protected int y1;
     protected int x2;
     protected int y2;
     protected Color color;
     protected String text;
+    protected List<Arrow> arrows;
 
     public CodeBlock(int x1, int y1, int x2, int y2, Color color) {
         this.x1 = x1;
@@ -16,6 +22,7 @@ public abstract class CodeBlock {
         this.x2 = x2;
         this.y2 = y2;
         this.color = color;
+        this.arrows = new ArrayList<>();
     }
 
     abstract public void draw(Graphics g);

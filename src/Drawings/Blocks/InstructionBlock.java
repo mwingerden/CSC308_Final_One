@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class InstructionBlock extends CodeBlock {
     public InstructionBlock(int x, int y) {
-        super(x, y, x + 150, y + 75, 1, 1, Color.ORANGE, "");
+        super(x, y, x + 150, y + 75, Color.ORANGE, "");
         text = "";
     }
 

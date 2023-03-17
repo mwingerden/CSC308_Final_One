@@ -28,14 +28,6 @@ public class Arrow implements Draw {
 
     @Override
     public void draw(Graphics g) {
-        if (codeBlocks.size() == 2) {
-            CodeBlock first = codeBlocks.get(0);
-            CodeBlock second = codeBlocks.get(1);
-            this.x1 = first.getX1() + ((first.getX2() - first.getX1()) / 2);
-            this.y1 = first.getY1() + ((first.getY2() - first.getY1()) / 2);
-            this.x2 = second.getX1() + ((second.getX2() - second.getX1()) / 2);
-            this.y2 = second.getY1() + ((second.getY2() - second.getY1()) / 2);
-        }
         g.setColor(color);
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.draw(new Line2D.Float(x1, y1, x2, y2));
@@ -76,25 +68,21 @@ public class Arrow implements Draw {
         return this.y2;
     }
 
-    public void addBlock(CodeBlock block) {
+    public void addBlock(Draw drawing) {
+        CodeBlock block = (CodeBlock) drawing;
         if (codeBlocks.size() == 1) {
             if (!block.equals(codeBlocks.get(0))) {
                 codeBlocks.add(block);
+                CodeBlock first = codeBlocks.get(0);
+                CodeBlock second = codeBlocks.get(1);
+                this.x1 = first.getX1() + ((first.getX2() - first.getX1()) / 2);
+                this.y1 = first.getY1() + ((first.getY2() - first.getY1()) / 2);
+                this.x2 = second.getX1() + ((second.getX2() - second.getX1()) / 2);
+                this.y2 = second.getY1() + ((second.getY2() - second.getY1()) / 2);
             }
         } else {
             codeBlocks.add(block);
         }
-//        if (codeBlocks.size() == 1) {
-//            if (!block.equals(codeBlocks.get(0))) {
-//                if (block.checkIncomingArrowLimit()) {
-//                    codeBlocks.add(block);
-//                }
-//            }
-//        } else {
-//            if (block.checkOutgoingArrowLimit()) {
-//                codeBlocks.add(block);
-//            }
-//        }
     }
 
     public int getBlocksSize() {
@@ -107,5 +95,18 @@ public class Arrow implements Draw {
 
     public void clearCodeBlocks() {
         codeBlocks.clear();
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Arrow arrow)) {
+            return false;
+        }
+        return (arrow.color == this.color && arrow.x1 == this.x1 && arrow.y1 == this.y1
+                && arrow.x2 == this.x2 && arrow.y2 == this.y2 && arrow.text.equals(this.text)) ||
+                (arrow.color == this.color && arrow.x1 == this.x2 && arrow.y1 == this.y2
+                        && arrow.x2 == this.x1 && arrow.y2 == this.y1 && arrow.text.equals(this.text));
     }
 }

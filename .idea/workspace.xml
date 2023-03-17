@@ -4,15 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Remade the Blocks into individual shapes.">
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Centered Text for all the Blocks.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Arrow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/CallMethodBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/CallMethodBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/CodeBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/CodeBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/ConditionBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/ConditionBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/EndBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/EndBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/InputOutputBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/InputOutputBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/InstructionBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/InstructionBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/StartBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/StartBlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/VariableDeclarationBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/VariableDeclarationBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,11 +277,17 @@
       <option name="project" value="LOCAL" />
       <updated>1679001805790</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Centered Text for all the Blocks.">
+      <created>1679016136789</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1679016136789</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Controller and ability to add an if block to draw area." />
     <MESSAGE value="Set min size of If Block." />
     <MESSAGE value="Implemented Drag Code Blocks, but just for InstructionBlock.java" />
     <MESSAGE value="Added the rest of the blocks into a package and handled the rest of the drag blocks implementation." />
@@ -303,7 +312,8 @@
     <MESSAGE value="Can drag a block across other blocks without glitching." />
     <MESSAGE value="Fixed Undo." />
     <MESSAGE value="Remade the Blocks into individual shapes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remade the Blocks into individual shapes." />
+    <MESSAGE value="Centered Text for all the Blocks." />
+    <option name="LAST_COMMIT_MESSAGE" value="Centered Text for all the Blocks." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -315,23 +325,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>176</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>135</line>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>167</line>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>130</line>
-          <option name="timeStamp" value="46" />
+          <line>126</line>
+          <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

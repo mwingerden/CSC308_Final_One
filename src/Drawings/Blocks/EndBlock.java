@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class EndBlock extends CodeBlock {
     public EndBlock(int x, int y) {
-        super(x, y, x + 75, y + 75, 1, 0, Color.BLACK, "End");
+        super(x, y, x + 75, y + 75, Color.BLACK, "End");
     }
 
     @Override

@@ -14,6 +14,10 @@ public class EndBlock extends CodeBlock {
         g.drawOval(x1, y1, x2 - x1, y2 - y1);
         g.setColor(Color.WHITE);
         g.drawOval(x1, y1, x2 - x1, y2 - y1);
-        g.drawString(text, x1 + 15, y1 + 30);
+        Font font = new Font("Helvetica", Font.PLAIN, 22);
+        g.setFont(font);
+        FontMetrics fm = g.getFontMetrics();
+        g.drawString(text, x1 + (((x2 - x1) - fm.stringWidth(text)) / 2),
+                y1 + (((y2 - y1) - fm.getHeight()) / 2) + fm.getAscent());
     }
 }

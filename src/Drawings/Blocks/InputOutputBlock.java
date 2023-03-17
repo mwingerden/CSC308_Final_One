@@ -23,6 +23,10 @@ public class InputOutputBlock extends CodeBlock {
         g.setColor(Color.BLACK);
         g2D.draw(parallelogram);
         g.setColor(Color.BLACK);
-        g.drawString(text, x1, y1);
+        Font font = new Font("Helvetica", Font.PLAIN, 22);
+        g.setFont(font);
+        FontMetrics fm = g.getFontMetrics();
+        g.drawString(text, x1 + (((x2 - x1) - fm.stringWidth(text)) / 2),
+                y1 + (((y2 - y1) - fm.getHeight()) / 2) + fm.getAscent());
     }
 }

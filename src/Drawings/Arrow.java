@@ -34,13 +34,13 @@ public class Arrow implements Draw {
         graphics2D.draw(new Line2D.Float(x1, y1, x2, y2));
         Polygon arrowHead = new Polygon();
         AffineTransform tx = new AffineTransform();
-        arrowHead.addPoint( 0,5);
-        arrowHead.addPoint( -5, -5);
-        arrowHead.addPoint( 5,-5);
+        arrowHead.addPoint(0, 5);
+        arrowHead.addPoint(-5, -5);
+        arrowHead.addPoint(5, -5);
         tx.setToIdentity();
         double angle = Math.atan2(y2 - y1, x2 - x1);
-        tx.translate(x1 + ((double)(x2 - x1) / 2), y1 + ((double)(y2 - y1) / 2));
-        tx.rotate((angle-Math.PI/2d));
+        tx.translate(x1 + ((double) (x2 - x1) / 2), y1 + ((double) (y2 - y1) / 2));
+        tx.rotate((angle - Math.PI / 2d));
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setTransform(tx);
         g2d.fill(arrowHead);

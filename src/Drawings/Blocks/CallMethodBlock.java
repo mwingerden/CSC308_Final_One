@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class CallMethodBlock extends CodeBlock {
     public CallMethodBlock(int x, int y) {
-        super(x, y, x + 150, y + 75, Color.CYAN, "");
+        super(x, y, x + 150, y + 80, Color.CYAN, "");
     }
 
     @Override

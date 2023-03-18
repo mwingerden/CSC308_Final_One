@@ -5,8 +5,7 @@ import java.awt.geom.Path2D;
 
 public class InputOutputBlock extends CodeBlock {
     public InputOutputBlock(int x, int y) {
-        super(x, y, x + 150, y + 75, Color.RED, "");
-        text = "";
+        super(x, y, x + 150, y + 80, Color.RED, "");
     }
 
     @Override

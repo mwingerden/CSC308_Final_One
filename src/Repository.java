@@ -11,8 +11,6 @@ public class Repository extends Observable {
     private static final Repository instance = new Repository();
     private List<Draw> drawings;
     private Arrow arrow;
-    //    private List<CodeBlock> codeBlocks;
-//    private List<Arrow> arrows;
     private String currentDrawing;
 
     private Repository() {

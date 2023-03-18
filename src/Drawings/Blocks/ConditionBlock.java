@@ -5,7 +5,7 @@ import java.awt.geom.Path2D;
 
 public class ConditionBlock extends CodeBlock {
     public ConditionBlock(int x, int y) {
-        super(x, y, x + 150, y + 75, Color.green, "");
+        super(x, y, x + 150, y + 80, Color.green, "");
         text = "";
     }
 

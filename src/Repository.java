@@ -129,14 +129,12 @@ public class Repository extends Observable {
                     first = (CodeBlock) drawing;
                     if (first.checkOutgoingArrowLimit()) {
                         clickCount++;
-                        first.increaseOutgoingArrowCount();
                     }
                     break;
                 } else if (clickCount == 1) {
                     second = (CodeBlock) drawing;
                     if (second.checkIncomingArrowLimit()) {
                         clickCount++;
-                        second.increaseIncomingArrowCount();
                     }
                     break;
                 }
@@ -152,6 +150,8 @@ public class Repository extends Observable {
                     }
                 }
             }
+            first.increaseOutgoingArrowCount();
+            second.increaseIncomingArrowCount();
             drawings.add(newArrow);
             clickCount = 0;
         }

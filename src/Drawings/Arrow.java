@@ -32,11 +32,10 @@ public class Arrow implements Draw {
         int barb = 20;
         double x, y, rho = theta + phi;
         Graphics2D g2 = (Graphics2D) g;
-        for(int j = 0; j < 2; j++)
-        {
-            x = x1 + ((double)(x2 - x1) / 2) - barb * Math.cos(rho);
-            y = y1 + ((double)(y2 - y1) / 2) - barb * Math.sin(rho);
-            g2.draw(new Line2D.Double(x1 + ((double)(x2 - x1) / 2), y1 + ((double)(y2 - y1) / 2), x, y));
+        for (int j = 0; j < 2; j++) {
+            x = x1 + ((double) (x2 - x1) / 2) - barb * Math.cos(rho);
+            y = y1 + ((double) (y2 - y1) / 2) - barb * Math.sin(rho);
+            g2.draw(new Line2D.Double(x1 + ((double) (x2 - x1) / 2), y1 + ((double) (y2 - y1) / 2), x, y));
             rho = theta - phi;
         }
     }

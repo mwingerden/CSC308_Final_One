@@ -23,18 +23,22 @@ public class Arrow implements Draw {
         g.setColor(Color.BLACK);
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.draw(new Line2D.Float(x1, y1, x2, y2));
-//        Polygon arrowHead = new Polygon();
-//        AffineTransform tx = new AffineTransform();
-//        arrowHead.addPoint(0, 5);
-//        arrowHead.addPoint(-5, -5);
-//        arrowHead.addPoint(5, -5);
-//        tx.setToIdentity();
-//        double angle = Math.atan2(y2 - y1, x2 - x1);
-//        tx.translate(x1 + ((double) (x2 - x1) / 2), y1 + ((double) (y2 - y1) / 2));
-//        tx.rotate((angle - Math.PI / 2d));
-//        Graphics2D g2d = (Graphics2D) g.create();
-//        g2d.setTransform(tx);
-//        g2d.fill(arrowHead);
+
+        //Draw ArrowHead
+        double dy = y2 - y1;
+        double dx = x2 - x1;
+        double theta = Math.atan2(dy, dx);
+        double phi = Math.toRadians(40);
+        int barb = 20;
+        double x, y, rho = theta + phi;
+        Graphics2D g2 = (Graphics2D) g;
+        for(int j = 0; j < 2; j++)
+        {
+            x = x1 + ((double)(x2 - x1) / 2) - barb * Math.cos(rho);
+            y = y1 + ((double)(y2 - y1) / 2) - barb * Math.sin(rho);
+            g2.draw(new Line2D.Double(x1 + ((double)(x2 - x1) / 2), y1 + ((double)(y2 - y1) / 2), x, y));
+            rho = theta - phi;
+        }
     }
 
     public boolean equals(Object obj) {

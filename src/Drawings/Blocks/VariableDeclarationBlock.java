@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class VariableDeclarationBlock extends CodeBlock {
     public VariableDeclarationBlock(int x, int y) {
-        super(x, y, x + 150, y + 80, Color.LIGHT_GRAY, "");
+        super(x, y, x + 150, y + 80, Color.LIGHT_GRAY, "", 1, 1);
         text = "";
     }
 

@@ -45,7 +45,7 @@ public class Load {
     }
 
     private static Draw loadCodeBlock(JSONObject codeBlock) {
-        Draw drawing = null;
+        CodeBlock drawing = null;
         if (codeBlock.get("Name").equals("CallMethodBlock")) {
             drawing = new CallMethodBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")));
@@ -79,12 +79,11 @@ public class Load {
     }
 
     private static Draw loadArrow(JSONArray arrow) {
-        Arrow arrowFinal = new Arrow();
+        List<CodeBlock> codeBlocks = new ArrayList<>();
         for (Object o : arrow) {
             JSONObject temp = (JSONObject) o;
-            Draw codeBlock = loadCodeBlock((JSONObject) temp.get("CodeBlock"));
-            arrowFinal.addBlock((CodeBlock) codeBlock);
+            codeBlocks.add((CodeBlock) loadCodeBlock((JSONObject) temp.get("CodeBlock")));
         }
-        return arrowFinal;
+        return new Arrow(codeBlocks.get(0), codeBlocks.get(1));
     }
 }

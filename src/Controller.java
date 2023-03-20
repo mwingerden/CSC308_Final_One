@@ -55,7 +55,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
     @Override
     public void mouseDragged(MouseEvent e) {
         if (SwingUtilities.isLeftMouseButton(e)) {
-            repository.dragBlock(e.getX(), e.getY());
+            repository.drag(e.getX(), e.getY());
         }
     }
 

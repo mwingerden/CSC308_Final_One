@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class StartBlock extends CodeBlock {
     public StartBlock(int x, int y) {
-        super(x, y, x + 75, y + 80, Color.WHITE, "Start");
+        super(x, y, x + 75, y + 80, Color.WHITE, "Start", 0, 1);
     }
 
     @Override

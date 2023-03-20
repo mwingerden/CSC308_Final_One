@@ -10,13 +10,14 @@ import java.util.Observable;
 public class Repository extends Observable {
     private static final Repository instance = new Repository();
     private List<Draw> drawings;
-    private Arrow arrow;
     private String currentDrawing;
+    CodeBlock first;
+    CodeBlock second;
+    int clickCount = 0;
 
     private Repository() {
         this.drawings = new ArrayList<>();
         this.currentDrawing = "";
-        this.arrow = new Arrow();
     }
 
     public static Repository getInstance() {
@@ -25,6 +26,7 @@ public class Repository extends Observable {
     }
 
     public void newList() {
+        clickCount = 0;
         drawings.clear();
         setChanged();
         notifyObservers("new");
@@ -40,9 +42,12 @@ public class Repository extends Observable {
                 null,
                 ""
         );
-        Save.save(drawings, name);
-        setChanged();
-        notifyObservers("save");
+        if (name != null) {
+            clickCount = 0;
+            Save.save(drawings, name);
+            setChanged();
+            notifyObservers("save");
+        }
     }
 
     public void loadList() {
@@ -55,17 +60,18 @@ public class Repository extends Observable {
                 null,
                 ""
         );
-        drawings.clear();
-        drawings = Load.load(name);
-        sortList();
-        setChanged();
-        notifyObservers("load");
+        if (name != null) {
+            clickCount = 0;
+            drawings.clear();
+            drawings = Load.load(name);
+            setChanged();
+            notifyObservers("load");
+        }
     }
 
     public void undo() {
         if (!drawings.isEmpty()) {
             drawings.remove(drawings.size() - 1);
-            sortList();
             setChanged();
             notifyObservers("Undo");
         }
@@ -76,8 +82,9 @@ public class Repository extends Observable {
     }
 
     public void setCurrentDrawing(String currentDrawing) {
+        clickCount = 0;
         this.currentDrawing = currentDrawing;
-        sortList();
+//        sortList();
         setChanged();
         notifyObservers(currentDrawing);
     }
@@ -92,7 +99,7 @@ public class Repository extends Observable {
         } else {
             addBlock(x, y);
         }
-        sortList();
+//        sortList();
         setChanged();
         notifyObservers(currentDrawing);
     }
@@ -116,88 +123,96 @@ public class Repository extends Observable {
     }
 
     private void addArrow(int x, int y) {
-        if (arrow.getBlocksSize() == 2) {
-            arrow = new Arrow();
-        }
         for (Draw drawing : drawings) {
-            if (drawing instanceof CodeBlock) {
-                if (drawing.contains(x, y)) {
-                    arrow.addBlock(drawing);
+            if (drawing instanceof CodeBlock && ((CodeBlock) drawing).contains(x, y)) {
+                if (clickCount <= 0) {
+                    first = (CodeBlock) drawing;
+                    if (first.checkOutgoingArrowLimit()) {
+                        clickCount++;
+                        first.increaseOutgoingArrowCount();
+                    }
+                    break;
+                } else if (clickCount == 1) {
+                    second = (CodeBlock) drawing;
+                    if (second.checkIncomingArrowLimit()) {
+                        clickCount++;
+                        second.increaseIncomingArrowCount();
+                    }
+                    break;
                 }
             }
         }
-        if (arrow.getBlocksSize() == 2) {
-            drawings.add(arrow);
+
+        if (clickCount == 2) {
+            Arrow newArrow = new Arrow(first, second);
+            for (Draw drawing : drawings) {
+                if (drawing instanceof Arrow arrow) {
+                    if (newArrow.equals(arrow)) {
+                        return;
+                    }
+                }
+            }
+            drawings.add(newArrow);
+            clickCount = 0;
         }
     }
 
-    public void dragBlock(int x, int y) {
+    public void drag(int x, int y) {
         CodeBlock blockToDrag = null;
         int dragX;
         int dragY;
+
         for (Draw drawing : drawings) {
-            if (drawing instanceof CodeBlock && drawing.contains(x, y)) {
+            if (drawing instanceof CodeBlock && ((CodeBlock) drawing).contains(x, y)) {
                 blockToDrag = (CodeBlock) drawing;
             }
         }
+
         if (blockToDrag != null) {
             dragX = ((blockToDrag.getX2() - blockToDrag.getX1()) / 2);
             dragY = ((blockToDrag.getY2() - blockToDrag.getY1()) / 2);
             if (blockToDrag instanceof InstructionBlock) {
-                drag(blockToDrag, new InstructionBlock(x - dragX, y - dragY));
+                dragging(blockToDrag, new InstructionBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof ConditionBlock) {
-                drag(blockToDrag, new ConditionBlock(x - dragX, y - dragY));
+                dragging(blockToDrag, new ConditionBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof VariableDeclarationBlock) {
-                drag(blockToDrag, new VariableDeclarationBlock(x - dragX, y - dragY));
+                dragging(blockToDrag, new VariableDeclarationBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof CallMethodBlock) {
-                drag(blockToDrag, new CallMethodBlock(x - dragX, y - dragY));
+                dragging(blockToDrag, new CallMethodBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof InputOutputBlock) {
-                drag(blockToDrag, new InputOutputBlock(x - dragX, y - dragY));
+                dragging(blockToDrag, new InputOutputBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof StartBlock) {
-                drag(blockToDrag, new StartBlock(x - dragX, y - dragY));
+                dragging(blockToDrag, new StartBlock(x - dragX, y - dragY));
             } else if (blockToDrag instanceof EndBlock) {
-                drag(blockToDrag, new EndBlock(x - dragX, y - dragY));
+                dragging(blockToDrag, new EndBlock(x - dragX, y - dragY));
             }
         }
-        sortList();
         setChanged();
         notifyObservers("Dragging " + currentDrawing);
     }
 
-    private void drag(Draw drawing, CodeBlock newBlock) {
-        List<Draw> placeHolder = new ArrayList<>(drawings);
-        newBlock.setText(drawing.getText());
-        drawings.add(newBlock);
-        drawings.remove(drawing);
-        for (Draw temp : placeHolder) {
-            if (temp instanceof Arrow draggingArrow) {
-                List<CodeBlock> arrowCodeBlocks = draggingArrow.getCodeBlocks();
-                if (!(arrowCodeBlocks.size() == 2)) {
-                    break;
-                }
-                int count = 1;
-                for (CodeBlock codeBlock : arrowCodeBlocks) {
-                    if (codeBlock.equals(drawing)) {
-                        drawings.remove(draggingArrow);
-                        CodeBlock temp1 = arrowCodeBlocks.get(count);
-                        draggingArrow.clearCodeBlocks();
-//                        temp1.resetCount();
-                        draggingArrow.addBlock(newBlock);
-                        draggingArrow.addBlock(temp1);
-                        drawings.add(draggingArrow);
-                        break;
-                    } else {
-                        count--;
-                    }
+    private void dragging(CodeBlock block, CodeBlock newBlock) {
+        List<Draw> tempList = new ArrayList<>(drawings);
+        newBlock.setText(block.getText());
+        for (Draw temp1 : tempList) {
+            if (temp1 instanceof Arrow arrow) {
+                if (arrow.getBlock1().equals(block)) {
+                    drawings.add(new Arrow(newBlock, arrow.getBlock2()));
+                    drawings.remove(arrow);
+                } else if (arrow.getBlock2().equals(block)) {
+                    drawings.add(new Arrow(arrow.getBlock1(), newBlock));
+                    drawings.remove(arrow);
                 }
             }
         }
+        drawings.remove(block);
+        drawings.add(newBlock);
     }
 
     public void addText(int x, int y) {
-        for (Draw drawings : drawings) {
-            if (drawings.contains(x, y)) {
-                if (!(drawings instanceof StartBlock || drawings instanceof EndBlock)) {
+        for (Draw drawing : drawings) {
+            if (drawing instanceof CodeBlock && ((CodeBlock) drawing).contains(x, y)) {
+                if (!(drawing instanceof StartBlock || drawing instanceof EndBlock)) {
                     String text = (String) JOptionPane.showInputDialog(
                             new DrawArea(),
                             "Name:",
@@ -207,28 +222,12 @@ public class Repository extends Observable {
                             null,
                             ""
                     );
-                    sortList();
-                    drawings.setText(text);
+                    ((CodeBlock) drawing).setText(text);
                     setChanged();
                     notifyObservers("Set Text to " + currentDrawing);
                     return;
                 }
             }
         }
-    }
-
-    private void sortList() {
-        List<Draw> codeBlockList = new ArrayList<>();
-        List<Draw> arrowList = new ArrayList<>();
-        for (Draw drawing : drawings) {
-            if (drawing instanceof CodeBlock) {
-                codeBlockList.add(drawing);
-            } else if (drawing instanceof Arrow) {
-                arrowList.add(drawing);
-            }
-        }
-        drawings.clear();
-        drawings.addAll(arrowList);
-        drawings.addAll(codeBlockList);
     }
 }

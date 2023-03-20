@@ -11,13 +11,16 @@ import java.util.List;
 public class Save {
     @SuppressWarnings("unchecked")
     public static void save(List<Draw> drawings, String name) {
+        if (name.equals("")) {
+            return;
+        }
         JSONArray drawingsList = new JSONArray();
         JSONObject jsonObject = null;
         for (Draw drawing : drawings) {
             if (drawing instanceof CodeBlock) {
-                jsonObject = storeCodeBlock(drawing);
+                jsonObject = storeCodeBlock((CodeBlock) drawing);
             } else if (drawing instanceof Arrow) {
-                jsonObject = storeArrow(drawing);
+                jsonObject = storeArrow((Arrow) drawing);
             }
             drawingsList.add(jsonObject);
         }
@@ -32,7 +35,7 @@ public class Save {
     }
 
     @SuppressWarnings("unchecked")
-    private static JSONObject storeCodeBlock(Draw codeBlock) {
+    private static JSONObject storeCodeBlock(CodeBlock codeBlock) {
         JSONObject jsonObject = new JSONObject();
         JSONObject jsonObjectDetails = new JSONObject();
         jsonObjectDetails.put("X1", Integer.toString(codeBlock.getX1()));
@@ -64,17 +67,18 @@ public class Save {
     }
 
     @SuppressWarnings("unchecked")
-    private static JSONObject storeArrow(Draw arrowDraw) {
+    private static JSONObject storeArrow(Arrow arrow) {
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonArray = new JSONArray();
-        JSONObject jsonObjectDetails;
-        Arrow arrow = (Arrow) arrowDraw;
 
-        List<CodeBlock> codeBlocks = arrow.getCodeBlocks();
-        for (CodeBlock codeBlock : codeBlocks) {
-            jsonObjectDetails = storeCodeBlock(codeBlock);
-            jsonArray.add(jsonObjectDetails);
-        }
+        jsonArray.add(storeCodeBlock(arrow.getBlock1()));
+        jsonArray.add(storeCodeBlock(arrow.getBlock2()));
+
+//        List<CodeBlock> codeBlocks = arrow.getCodeBlocks();
+//        for (CodeBlock codeBlock : codeBlocks) {
+//            jsonObjectDetails = storeCodeBlock(codeBlock);
+//            jsonArray.add(jsonObjectDetails);
+//        }
         jsonObject.put("Arrow", jsonArray);
         return jsonObject;
     }

@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class InstructionBlock extends CodeBlock {
     public InstructionBlock(int x, int y) {
-        super(x, y, x + 150, y + 80, Color.ORANGE, "");
+        super(x, y, x + 150, y + 80, Color.ORANGE, "", 1, 1);
     }
 
     @Override

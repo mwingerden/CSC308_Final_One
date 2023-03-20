@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Finished the final pieces of the project.">
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added Drawable Arrow Head.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Drawings/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Arrow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/CallMethodBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/CallMethodBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/ConditionBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/ConditionBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/InputOutputBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/InputOutputBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/InstructionBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/InstructionBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/StartBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/StartBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Drawings/Blocks/VariableDeclarationBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Drawings/Blocks/VariableDeclarationBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,17 +304,11 @@
       <option name="project" value="LOCAL" />
       <updated>1679020665016</updated>
     </task>
-    <task id="LOCAL-00033" summary="Finished the final pieces of the project.">
-      <created>1679278511437</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1679278511437</updated>
-    </task>
-    <option name="localTasksCounter" value="34" />
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added ability to add text to created blocks with right click." />
     <MESSAGE value="Added Draw Interface" />
     <MESSAGE value="Added new Package and able to draw begin and end blocks." />
     <MESSAGE value="Implemented New Option." />
@@ -331,8 +333,7 @@
     <MESSAGE value="Finished Project." />
     <MESSAGE value="Add File Directory." />
     <MESSAGE value="Added Drawable Arrow Head." />
-    <MESSAGE value="Finished the final pieces of the project." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished the final pieces of the project." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Drawable Arrow Head." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -341,6 +342,11 @@
           <url>file://$PROJECT_DIR$/src/Controller.java</url>
           <line>61</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Repository.java</url>
+          <line>173</line>
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -9,11 +9,11 @@ import java.util.Observable;
 
 public class Repository extends Observable {
     private static final Repository instance = new Repository();
-    private List<Draw> drawings;
-    private String currentDrawing;
     CodeBlock first;
     CodeBlock second;
     int clickCount = 0;
+    private List<Draw> drawings;
+    private String currentDrawing;
 
     private Repository() {
         this.drawings = new ArrayList<>();
@@ -90,7 +90,7 @@ public class Repository extends Observable {
     }
 
     public List<Draw> getDrawings() {
-        return drawings;
+        return sortList();
     }
 
     public void addDrawing(int x, int y) {
@@ -188,7 +188,7 @@ public class Repository extends Observable {
             }
         }
         setChanged();
-        notifyObservers("Dragging " + currentDrawing);
+        notifyObservers("Dragging");
     }
 
     private void dragging(CodeBlock block, CodeBlock newBlock) {
@@ -222,12 +222,31 @@ public class Repository extends Observable {
                             null,
                             ""
                     );
-                    ((CodeBlock) drawing).setText(text);
-                    setChanged();
-                    notifyObservers("Set Text to " + currentDrawing);
+                    if (text != null) {
+                        ((CodeBlock) drawing).setText(text);
+                        setChanged();
+                        notifyObservers("Set Text to " + currentDrawing);
+                    }
                     return;
                 }
             }
         }
+    }
+
+    private List<Draw> sortList() {
+        List<Draw> newDrawings = new ArrayList<>();
+        List<CodeBlock> codeBlocks = new ArrayList<>();
+        List<Arrow> arrows = new ArrayList<>();
+
+        for (Draw drawing : drawings) {
+            if (drawing instanceof CodeBlock) {
+                codeBlocks.add((CodeBlock) drawing);
+            } else if (drawing instanceof Arrow) {
+                arrows.add((Arrow) drawing);
+            }
+        }
+        newDrawings.addAll(arrows);
+        newDrawings.addAll(codeBlocks);
+        return newDrawings;
     }
 }

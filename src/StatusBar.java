@@ -44,30 +44,8 @@ public class StatusBar extends JPanel implements Observer {
             progressbar.setText("Drawing " + option);
         } else if (option.equalsIgnoreCase("arrow")) {
             progressbar.setText("Drawing Arrows");
-        } else if (option.equalsIgnoreCase("dragging start block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("dragging end block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("dragging call method block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("dragging input/output block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("dragging variable declaration block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("dragging condition block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("dragging instruction block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("set text to call method block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("set text to input/output block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("set text to variable declaration block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("set text to condition block")) {
-            progressbar.setText(option);
-        } else if (option.equalsIgnoreCase("set text to instruction block")) {
-            progressbar.setText(option);
+        } else if (option.equalsIgnoreCase("dragging")) {
+            progressbar.setText("Dragging Block");
         }
 
 

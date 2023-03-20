@@ -5,15 +5,15 @@ import Drawings.Draw;
 import java.awt.*;
 
 public abstract class CodeBlock implements Draw {
+    protected final int incomingArrowLimit;
+    protected final int outgoingArrowLimit;
     protected int x1;
     protected int y1;
     protected int x2;
     protected int y2;
     protected Color color;
     protected String text;
-    protected final int incomingArrowLimit;
     protected int incomingArrowCount;
-    protected final int outgoingArrowLimit;
     protected int outgoingArrowCount;
 
     public CodeBlock(int x1, int y1, int x2, int y2, Color color, String text, int incomingArrowLimit, int outgoingArrowLimit) {
@@ -47,8 +47,16 @@ public abstract class CodeBlock implements Draw {
         return x1;
     }
 
+    public void setX1(int x1) {
+        this.x1 = x1;
+    }
+
     public int getY1() {
         return y1;
+    }
+
+    public void setY1(int y1) {
+        this.y1 = y1;
     }
 
     public boolean equals(Object obj) {
@@ -84,13 +92,5 @@ public abstract class CodeBlock implements Draw {
 
     public int getY2() {
         return y2;
-    }
-
-    public void setX1(int x1) {
-        this.x1 = x1;
-    }
-
-    public void setY1(int y1) {
-        this.y1 = y1;
     }
 }

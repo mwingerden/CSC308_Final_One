@@ -4,6 +4,7 @@ import java.awt.*;
 public class Main extends JFrame {
 
     public Main() {
+        //fefe
         setLayout(new BorderLayout());
         DrawArea drawArea = new DrawArea();
 

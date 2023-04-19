@@ -16,6 +16,9 @@ public class DrawArea extends JPanel implements Observer {
         setPreferredSize(new Dimension(300, 300));
         addMouseListener(controller);
         addMouseMotionListener(controller);
+        setLayout(new BorderLayout());
+        add(new StatusBar(), BorderLayout.SOUTH);
+        add(new MenuBarDraw(), BorderLayout.NORTH);
     }
 
     public void paintComponent(Graphics g) {

@@ -54,6 +54,9 @@ public class MenuBarDraw extends JMenuBar {
         JButton undo = new JButton("Undo");
         undo.addActionListener(controller);
 
+        JButton back = new JButton("Back");
+        back.addActionListener(controller);
+
         menuBar.add(file);
         menuBar.add(help);
         menuBar.add(block);

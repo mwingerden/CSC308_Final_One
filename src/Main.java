@@ -4,14 +4,11 @@ import java.awt.*;
 public class Main extends JFrame {
 
     public Main() {
-        setLayout(new BorderLayout());
-        DrawArea drawArea = new DrawArea();
+        setLayout(new CardLayout());
 
-        setJMenuBar(new MenuBarDraw());
-        add(new StatusBar(), BorderLayout.SOUTH);
-        add(drawArea, BorderLayout.CENTER);
+        add(new PanelLayout(), BorderLayout.CENTER);
 
-        setTitle("Final Project");
+        setTitle("Intelligent Tutoring System");
         setSize(900, 900);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

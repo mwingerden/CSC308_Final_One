@@ -32,6 +32,11 @@ public class Repository extends Observable {
         notifyObservers("new");
     }
 
+    public void updatePanel(String panel) {
+        setChanged();
+        notifyObservers(panel);
+    }
+
     public void saveList() {
         String name = (String) JOptionPane.showInputDialog(
                 new DrawArea(),

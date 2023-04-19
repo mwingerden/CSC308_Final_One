@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Controller implements ActionListener, MouseListener, MouseMotionListener {
+public class Controller implements ActionListener, MouseListener, MouseMotionListener, ItemListener {
     private final Repository repository;
 
     public Controller() {
@@ -20,6 +20,15 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
             repository.undo();
         } else if (e.getActionCommand().equalsIgnoreCase("about")) {
             repository.about();
+        } else if (e.getActionCommand().equalsIgnoreCase("Teacher")) {
+            repository.updatePanel("Teacher");
+        } else if (e.getActionCommand().equalsIgnoreCase("Student")) {
+            repository.updatePanel("Student");
+        } else if (e.getActionCommand().equalsIgnoreCase("Back")) {
+            repository.updatePanel("Back");
+        } else if (e.getActionCommand().equalsIgnoreCase("solve") || e.getActionCommand().equalsIgnoreCase("edit") ||
+                e.getActionCommand().equalsIgnoreCase("new")) {
+            repository.updatePanel(e.getActionCommand());
         } else {
             repository.setCurrentDrawing(e.getActionCommand());
         }
@@ -61,6 +70,11 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
 
     @Override
     public void mouseMoved(MouseEvent e) {
+
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
 
     }
 }

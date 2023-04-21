@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added Packages that fit the model view controller design pattern.">
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Formatted StartUp panel for now.">
+      <change afterPath="$PROJECT_DIR$/DrawingJSONFiles/Problem2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DrawingJSONFiles/Problem3.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DrawingJSONFiles/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/DrawingJSONFiles/Problem1.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/DrawArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/DrawArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/MenuBarDraw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MenuBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/PanelLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PanelLayout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/StartUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StartUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ListView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,22 +40,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/matth/IdeaProjects/CSC308_Final_One/DrawingJSONFiles",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\matth\IdeaProjects\CSC308_Final_One\DrawingJSONFiles" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -349,11 +353,17 @@
       <option name="project" value="LOCAL" />
       <updated>1682036677346</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Formatted StartUp panel for now.">
+      <created>1682040741977</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1682040741977</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created DrawArea to be an observer of Repository." />
     <MESSAGE value="Status Bar now updates to user actions." />
     <MESSAGE value="Added Save Implementation." />
     <MESSAGE value="Implemented Load.java" />
@@ -378,7 +388,8 @@
     <MESSAGE value="Added a teacher student layout path." />
     <MESSAGE value="Condensed the list and draw area files into one respectively." />
     <MESSAGE value="Added Packages that fit the model view controller design pattern." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Packages that fit the model view controller design pattern." />
+    <MESSAGE value="Formatted StartUp panel for now." />
+    <option name="LAST_COMMIT_MESSAGE" value="Formatted StartUp panel for now." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -390,11 +401,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/Repository.java</url>
-          <line>179</line>
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Model/Repository.java</url>
           <line>160</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
@@ -402,11 +408,6 @@
           <url>file://$PROJECT_DIR$/src/Model/Repository.java</url>
           <line>133</line>
           <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/View/PanelLayout.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="66" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

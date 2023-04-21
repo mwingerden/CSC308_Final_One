@@ -17,9 +17,10 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
             repository.newList();
         } else if (e.getActionCommand().equalsIgnoreCase("save")) {
             repository.saveList();
-        } else if (e.getActionCommand().equalsIgnoreCase("load")) {
-            repository.loadList();
-        } else if (e.getActionCommand().equalsIgnoreCase("undo")) {
+//        } else if (e.getActionCommand().equalsIgnoreCase("load")) {
+//            repository.loadList();
+        }
+        else if (e.getActionCommand().equalsIgnoreCase("undo")) {
             repository.undo();
         } else if (e.getActionCommand().equalsIgnoreCase("about")) {
             repository.about();
@@ -32,10 +33,12 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
         } else if (e.getActionCommand().equalsIgnoreCase("solve")) {
             repository.updatePanel("StudentDrawArea");
         }
-        else if (e.getActionCommand().equalsIgnoreCase("edit")
-                || e.getActionCommand().equalsIgnoreCase("new")) {
+        else if (e.getActionCommand().equalsIgnoreCase("edit") || e.getActionCommand().equalsIgnoreCase("new")) {
             repository.updatePanel("TeacherDrawArea");
-        } else {
+        } else if (e.getActionCommand().indexOf("Problem") == 0){
+            repository.loadList(e.getActionCommand());
+        }
+        else {
             repository.setCurrentDrawing(e.getActionCommand());
         }
     }

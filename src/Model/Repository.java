@@ -10,7 +10,6 @@ import java.util.*;
 
 public class Repository extends Observable {
     private static final Repository instance = new Repository();
-    Map<String, List<Draw>> saves = new HashMap<>();
     CodeBlock first;
     CodeBlock second;
     int clickCount = 0;
@@ -56,23 +55,24 @@ public class Repository extends Observable {
         }
     }
 
-    public void loadList() {
-        String name = (String) JOptionPane.showInputDialog(
-                new DrawArea("teacher"),
-                "Enter Name to Model.Load File:",
-                "Enter Name",
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                null,
-                ""
-        );
-        if (name != null) {
-            clickCount = 0;
-            drawings.clear();
-            drawings = Load.load(name);
-            setChanged();
-            notifyObservers("load");
-        }
+    public void loadList(String name) {
+//        String name = (String) JOptionPane.showInputDialog(
+//                new DrawArea("teacher"),
+//                "Enter Name to Model.Load File:",
+//                "Enter Name",
+//                JOptionPane.PLAIN_MESSAGE,
+//                null,
+//                null,
+//                ""
+//        );
+//        if (name != null) {
+//            clickCount = 0;
+//            drawings.clear();
+//            drawings = Load.load(name);
+//            setChanged();
+//            notifyObservers("load");
+//        }
+        drawings = Load.load(name);
     }
 
     public void undo() {

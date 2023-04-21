@@ -1,3 +1,7 @@
+package View;
+
+import Model.Repository;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;

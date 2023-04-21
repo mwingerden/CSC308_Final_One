@@ -1,6 +1,9 @@
+package Model;
+
 import Drawings.Arrow;
 import Drawings.Blocks.*;
 import Drawings.Draw;
+import View.DrawArea;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

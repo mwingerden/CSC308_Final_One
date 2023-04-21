@@ -1,3 +1,5 @@
+package Model;
+
 import Drawings.Arrow;
 import Drawings.Blocks.*;
 import Drawings.Draw;

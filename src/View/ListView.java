@@ -1,3 +1,7 @@
+package View;
+
+import Model.Repository;
+import Controller.Controller;
 import javax.swing.*;
 import java.util.Observable;
 import java.util.Observer;

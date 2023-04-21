@@ -1,5 +1,8 @@
+package Controller;
+
 import javax.swing.*;
 import java.awt.event.*;
+import Model.Repository;
 
 public class Controller implements ActionListener, MouseListener, MouseMotionListener, ItemListener {
     private final Repository repository;

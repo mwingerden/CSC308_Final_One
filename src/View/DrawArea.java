@@ -1,5 +1,8 @@
-import Drawings.Draw;
+package View;
 
+import Drawings.Draw;
+import Model.Repository;
+import Controller.Controller;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;

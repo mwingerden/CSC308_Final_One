@@ -1,4 +1,7 @@
+package View;
+
 import javax.swing.*;
+import Controller.Controller;
 
 public class MenuBarDraw extends JMenuBar {
     public MenuBarDraw() {
@@ -10,8 +13,8 @@ public class MenuBarDraw extends JMenuBar {
         JMenu block = new JMenu("Draw");
 
         JMenuItem newOption = new JMenuItem("New");
-        JMenuItem saveOption = new JMenuItem("Save");
-        JMenuItem loadOption = new JMenuItem("Load");
+        JMenuItem saveOption = new JMenuItem("Model.Save");
+        JMenuItem loadOption = new JMenuItem("Model.Load");
 
         JMenuItem startOption = new JMenuItem("Start Block");
         JMenuItem endOption = new JMenuItem("End Block");

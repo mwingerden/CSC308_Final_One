@@ -1,6 +1,9 @@
+package Model;
+
 import Drawings.Arrow;
 import Drawings.Blocks.*;
 import Drawings.Draw;
+import View.DrawArea;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -40,8 +43,8 @@ public class Repository extends Observable {
     public void saveList() {
         String name = (String) JOptionPane.showInputDialog(
                 new DrawArea("teacher"),
-                "Type Name for the Save File:",
-                "Save File",
+                "Type Name for the Model.Save File:",
+                "Model.Save File",
                 JOptionPane.PLAIN_MESSAGE,
                 null,
                 null,
@@ -58,7 +61,7 @@ public class Repository extends Observable {
     public void loadList() {
         String name = (String) JOptionPane.showInputDialog(
                 new DrawArea("teacher"),
-                "Enter Name to Load File:",
+                "Enter Name to Model.Load File:",
                 "Enter Name",
                 JOptionPane.PLAIN_MESSAGE,
                 null,

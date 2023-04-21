@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added a teacher student layout path.">
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Condensed the list and draw area files into one respectively.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DrawArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PanelLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelLayout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StudentView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeacherView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DrawArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/DrawArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Load.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Load.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MenuBarDraw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MenuBarDraw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PanelLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/PanelLayout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Save.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Save.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StartUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StartUpPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StatusBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StatusBar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -334,11 +340,17 @@
       <option name="project" value="LOCAL" />
       <updated>1681868099857</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Condensed the list and draw area files into one respectively.">
+      <created>1682036162654</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1682036162654</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added new Package and able to draw begin and end blocks." />
     <MESSAGE value="Implemented New Option." />
     <MESSAGE value="Created DrawArea to be an observer of Repository." />
     <MESSAGE value="Status Bar now updates to user actions." />
@@ -363,30 +375,36 @@
     <MESSAGE value="Added Drawable Arrow Head." />
     <MESSAGE value="Final Commit." />
     <MESSAGE value="Added a teacher student layout path." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a teacher student layout path." />
+    <MESSAGE value="Condensed the list and draw area files into one respectively." />
+    <option name="LAST_COMMIT_MESSAGE" value="Condensed the list and draw area files into one respectively." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Controller.java</url>
+          <url>file://$PROJECT_DIR$/src/Controller/Controller.java</url>
           <line>73</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>178</line>
+          <url>file://$PROJECT_DIR$/src/Model/Repository.java</url>
+          <line>179</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>159</line>
+          <url>file://$PROJECT_DIR$/src/Model/Repository.java</url>
+          <line>160</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>132</line>
+          <url>file://$PROJECT_DIR$/src/Model/Repository.java</url>
+          <line>133</line>
           <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/View/PanelLayout.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

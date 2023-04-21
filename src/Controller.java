@@ -21,14 +21,17 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
         } else if (e.getActionCommand().equalsIgnoreCase("about")) {
             repository.about();
         } else if (e.getActionCommand().equalsIgnoreCase("Teacher")) {
-            repository.updatePanel("Teacher");
+            repository.updatePanel("TeacherList");
         } else if (e.getActionCommand().equalsIgnoreCase("Student")) {
-            repository.updatePanel("Student");
+            repository.updatePanel("StudentList");
         } else if (e.getActionCommand().equalsIgnoreCase("Back")) {
-            repository.updatePanel("Back");
-        } else if (e.getActionCommand().equalsIgnoreCase("solve") || e.getActionCommand().equalsIgnoreCase("edit") ||
-                e.getActionCommand().equalsIgnoreCase("new")) {
-            repository.updatePanel(e.getActionCommand());
+            repository.updatePanel("StartUp");
+        } else if (e.getActionCommand().equalsIgnoreCase("solve")) {
+            repository.updatePanel("StudentDrawArea");
+        }
+        else if (e.getActionCommand().equalsIgnoreCase("edit")
+                || e.getActionCommand().equalsIgnoreCase("new")) {
+            repository.updatePanel("TeacherDrawArea");
         } else {
             repository.setCurrentDrawing(e.getActionCommand());
         }

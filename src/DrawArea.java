@@ -8,7 +8,29 @@ import java.util.Observer;
 public class DrawArea extends JPanel implements Observer {
     Repository repository;
 
-    public DrawArea() {
+    public DrawArea(String user) {
+        if(user.equalsIgnoreCase("student")) {
+            StudentDrawArea();
+        }
+        else if (user.equalsIgnoreCase("teacher")) {
+            TeacherDrawArea();
+        }
+    }
+
+    private void StudentDrawArea() {
+        repository = Repository.getInstance();
+        repository.addObserver(this);
+        Controller controller = new Controller();
+        setBackground(Color.PINK);
+        setPreferredSize(new Dimension(300, 300));
+        addMouseListener(controller);
+        addMouseMotionListener(controller);
+        setLayout(new BorderLayout());
+        add(new StatusBar(), BorderLayout.SOUTH);
+        add(new MenuBarDraw(), BorderLayout.NORTH);
+    }
+
+    private void TeacherDrawArea() {
         repository = Repository.getInstance();
         repository.addObserver(this);
         Controller controller = new Controller();

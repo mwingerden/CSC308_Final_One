@@ -24,7 +24,7 @@ public class Load {
             drawings.forEach(drawing -> parseDrawingObject((JSONObject) drawing));
         } catch (IOException | ParseException e) {
             JOptionPane.showMessageDialog(
-                    new DrawArea(),
+                    new DrawArea("teacher"),
                     "There is no file by the name of " + name + ".",
                     "Warning",
                     JOptionPane.WARNING_MESSAGE);

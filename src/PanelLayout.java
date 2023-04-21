@@ -14,27 +14,24 @@ public class PanelLayout extends JPanel implements Observer {
         addMouseMotionListener(controller);
         setLayout(new CardLayout());
         add(new StartUpPanel(), "StartUp");
-        add(new DrawArea(), "DrawArea");
-        add(new TeacherView(), "Teacher");
-        add(new StudentView(), "Student");
+        add(new DrawArea("teacher"), "TeacherDrawArea");
+        add(new DrawArea("student"), "StudentDrawArea");
+        add(new ListView("teacher"), "TeacherList");
+        add(new ListView("student"), "StudentList");
     }
 
     @Override
     public void update(Observable o, Object arg) {
         String panel = (String) arg;
-        if (panel.equalsIgnoreCase("teacher")) {
-            CardLayout cl = (CardLayout)(this.getLayout());
+        CardLayout cl = (CardLayout)(this.getLayout());
+        if (panel.equalsIgnoreCase("new") || panel.equalsIgnoreCase("edit")) {
+            cl.show(this, "TeacherDrawArea");
+        }
+        else if (panel.equalsIgnoreCase("solve")) {
+            cl.show(this, "StudentDrawArea");
+        }
+        else {
             cl.show(this, panel);
-        } else if (panel.equalsIgnoreCase("student")) {
-            CardLayout cl = (CardLayout)(this.getLayout());
-            cl.show(this, panel);
-        } else if (panel.equalsIgnoreCase("back")) {
-            CardLayout cl = (CardLayout)(this.getLayout());
-            cl.show(this, "StartUp");
-        } else if (panel.equalsIgnoreCase("solve") || panel.equalsIgnoreCase("edit") ||
-                   panel.equalsIgnoreCase("new")) {
-            CardLayout cl = (CardLayout)(this.getLayout());
-            cl.show(this, "DrawArea");
         }
     }
 }

@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Final Commit.">
-      <change afterPath="$PROJECT_DIR$/src/PanelLayout.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/StartUpPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/StudentView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TeacherView.java" afterDir="false" />
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added a teacher student layout path.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DrawArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MenuBarDraw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuBarDraw.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PanelLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelLayout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StudentView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TeacherView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ListView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -331,11 +327,17 @@
       <option name="project" value="LOCAL" />
       <updated>1681862934176</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Added a teacher student layout path.">
+      <created>1681868099857</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1681868099857</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Draw Interface" />
     <MESSAGE value="Added new Package and able to draw begin and end blocks." />
     <MESSAGE value="Implemented New Option." />
     <MESSAGE value="Created DrawArea to be an observer of Repository." />
@@ -360,14 +362,15 @@
     <MESSAGE value="Add File Directory." />
     <MESSAGE value="Added Drawable Arrow Head." />
     <MESSAGE value="Final Commit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Final Commit." />
+    <MESSAGE value="Added a teacher student layout path." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a teacher student layout path." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller.java</url>
-          <line>71</line>
+          <line>73</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -384,11 +387,6 @@
           <url>file://$PROJECT_DIR$/src/Repository.java</url>
           <line>132</line>
           <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/PanelLayout.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

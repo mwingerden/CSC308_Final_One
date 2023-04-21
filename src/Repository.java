@@ -39,7 +39,7 @@ public class Repository extends Observable {
 
     public void saveList() {
         String name = (String) JOptionPane.showInputDialog(
-                new DrawArea(),
+                new DrawArea("teacher"),
                 "Type Name for the Save File:",
                 "Save File",
                 JOptionPane.PLAIN_MESSAGE,
@@ -57,7 +57,7 @@ public class Repository extends Observable {
 
     public void loadList() {
         String name = (String) JOptionPane.showInputDialog(
-                new DrawArea(),
+                new DrawArea("teacher"),
                 "Enter Name to Load File:",
                 "Enter Name",
                 JOptionPane.PLAIN_MESSAGE,
@@ -219,7 +219,7 @@ public class Repository extends Observable {
             if (drawing instanceof CodeBlock && ((CodeBlock) drawing).contains(x, y)) {
                 if (!(drawing instanceof StartBlock || drawing instanceof EndBlock)) {
                     String text = (String) JOptionPane.showInputDialog(
-                            new DrawArea(),
+                            new DrawArea("teacher"),
                             "Name:",
                             "Enter Name",
                             JOptionPane.PLAIN_MESSAGE,

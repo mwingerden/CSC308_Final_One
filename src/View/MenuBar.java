@@ -3,8 +3,8 @@ package View;
 import javax.swing.*;
 import Controller.Controller;
 
-public class MenuBarDraw extends JMenuBar {
-    public MenuBarDraw() {
+public class MenuBar extends JMenuBar {
+    public MenuBar() {
         JMenuBar menuBar = new JMenuBar();
         Controller controller = new Controller();
 

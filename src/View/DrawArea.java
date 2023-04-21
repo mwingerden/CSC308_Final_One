@@ -30,7 +30,7 @@ public class DrawArea extends JPanel implements Observer {
         addMouseMotionListener(controller);
         setLayout(new BorderLayout());
         add(new StatusBar(), BorderLayout.SOUTH);
-        add(new MenuBarDraw(), BorderLayout.NORTH);
+        add(new MenuBar(), BorderLayout.NORTH);
     }
 
     private void TeacherDrawArea() {
@@ -43,7 +43,7 @@ public class DrawArea extends JPanel implements Observer {
         addMouseMotionListener(controller);
         setLayout(new BorderLayout());
         add(new StatusBar(), BorderLayout.SOUTH);
-        add(new MenuBarDraw(), BorderLayout.NORTH);
+        add(new MenuBar(), BorderLayout.NORTH);
     }
 
     public void paintComponent(Graphics g) {

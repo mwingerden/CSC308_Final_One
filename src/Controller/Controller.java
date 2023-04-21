@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import Model.Repository;
 
-public class Controller implements ActionListener, MouseListener, MouseMotionListener, ItemListener {
+public class Controller implements ActionListener, MouseListener, MouseMotionListener {
     private final Repository repository;
 
     public Controller() {
@@ -76,11 +76,6 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
-    }
-
-    @Override
-    public void itemStateChanged(ItemEvent e) {
 
     }
 }

@@ -6,12 +6,11 @@ import Drawings.Draw;
 import View.DrawArea;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
+import java.util.*;
 
 public class Repository extends Observable {
     private static final Repository instance = new Repository();
+    Map<String, List<Draw>> saves = new HashMap<>();
     CodeBlock first;
     CodeBlock second;
     int clickCount = 0;
@@ -25,7 +24,6 @@ public class Repository extends Observable {
 
     public static Repository getInstance() {
         return instance;
-
     }
 
     public void newList() {

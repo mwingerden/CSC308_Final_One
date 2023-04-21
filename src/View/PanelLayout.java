@@ -17,7 +17,7 @@ public class PanelLayout extends JPanel implements Observer {
         addMouseListener(controller);
         addMouseMotionListener(controller);
         setLayout(new CardLayout());
-        add(new StartUpPanel(), "StartUp");
+        add(new StartUp(), "StartUp");
         add(new DrawArea("teacher"), "TeacherDrawArea");
         add(new DrawArea("student"), "StudentDrawArea");
         add(new ListView("teacher"), "TeacherList");

@@ -1,11 +1,9 @@
-package View;
 
-import Controller.Controller;
 import javax.swing.*;
 
 public class StartUp extends JPanel {
     public StartUp() {
-        Controller controller = new Controller();
+        MainController controller = new MainController();
         JLabel jLabel1 = new JLabel("Are you ");
         JButton teacher = new JButton("Teacher");
         teacher.addActionListener(controller);

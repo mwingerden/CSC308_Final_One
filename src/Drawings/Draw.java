@@ -1,7 +1,0 @@
-package Drawings;
-
-import java.awt.*;
-
-public interface Draw {
-    void draw(Graphics g);
-}

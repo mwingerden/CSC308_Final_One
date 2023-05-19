@@ -10,6 +10,8 @@ public class MenuBar extends JMenuBar {
     public MenuBar(){
         MainController mainController = new MainController();
         JMenuBar menubar = new JMenuBar();
+        JButton undo = new JButton("Undo");
+        JButton redo = new JButton("Redo");
         JMenuItem home = new JMenuItem("Home");
         JMenuItem Back = new JMenuItem("Back");
         JMenu file = new JMenu("File");
@@ -27,6 +29,9 @@ public class MenuBar extends JMenuBar {
         JMenuItem io = new JMenuItem("I/O");
         JMenuItem var = new JMenuItem("Variable");
         JMenuItem arrow = new JMenuItem("Arrow");
+
+        undo.addActionListener(mainController);
+        redo.addActionListener(mainController);
         home.addActionListener(mainController);
         Back.addActionListener(mainController);
         newItem.addActionListener(mainController);
@@ -55,6 +60,8 @@ public class MenuBar extends JMenuBar {
         menubar.add(file);
         menubar.add(help);
         menubar.add(shape);
+        menubar.add(undo);
+        menubar.add(redo);
         menubar.add(home);
         menubar.add(Back);
         add(menubar);

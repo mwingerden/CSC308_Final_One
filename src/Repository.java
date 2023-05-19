@@ -17,28 +17,62 @@ import java.util.Observable;
 public class Repository extends Observable {
     private static final Repository instance = new Repository();
     private List<Draw> drawings;
+    private List<Draw> UndoDrawings;
     private String blockToDraw;
     private String status;
     private String problemDesc;
     private String problemName;
     private Boolean editing;
+    private String currentPanel;
 
     private Repository() {
         this.blockToDraw = "";
+        this.currentPanel = "";
         this.drawings = new ArrayList<>();
         this.problemName = null;
         this.editing = false;
-    }
-
-    //TODO: Updates the observers with the new panel info.
-    public void updatePanel(String panel) {
-        setChanged();
-        notifyObservers(panel);
+        this.UndoDrawings = new ArrayList<>();
     }
 
     public static Repository getInstance() {
         return instance;
     }
+
+    //TODO: Updates the observers with the new panel info.
+    public void updatePanel(String panel) {
+        if(panel.equalsIgnoreCase("back") && currentPanel.equalsIgnoreCase("StudentDrawArea")) {
+            setChanged();
+            notifyObservers("StudentListView");
+        }
+        else if(panel.equalsIgnoreCase("back") && currentPanel.equalsIgnoreCase("TeacherDrawArea")) {
+            setChanged();
+            notifyObservers("TeacherListView");
+        }
+        else {
+            this.currentPanel = panel;
+            setChanged();
+            notifyObservers(panel);
+        }
+    }
+
+    public void UndoList() {
+        Draw temp = this.drawings.get(this.drawings.size() - 1);
+        UndoDrawings.add(temp);
+        this.drawings.remove(temp);
+        setChanged();
+        notifyObservers();
+    }
+
+    public void RedoList() {
+        if(!this.UndoDrawings.isEmpty()) {
+            Draw temp = this.UndoDrawings.get(this.UndoDrawings.size() - 1);
+            drawings.add(temp);
+            this.UndoDrawings.remove(temp);
+            setChanged();
+            notifyObservers();
+        }
+    }
+
     /**
      * getDrawings method adds all blocks and arrows to a list of drawings and returns said new list.
      * @return newDrawings
@@ -66,8 +100,10 @@ public class Repository extends Observable {
         } else{
             System.out.println("not deleted");
         }
-        setChanged();
-        notifyObservers();
+        updatePanel("StartUp");
+        updatePanel("TeacherListView");
+//        setChanged();
+//        notifyObservers();
     }
 
     public void setProblemLoad(String name)
@@ -79,7 +115,6 @@ public class Repository extends Observable {
      * A saveList method that allows the user to save the work space if needed.
      * @throws IOException
      */
-
     public void setEditing(){
         editing = true;
     }
@@ -92,7 +127,7 @@ public class Repository extends Observable {
         String name = problemName;
         if (!editing) {
             name = (String) JOptionPane.showInputDialog(
-                    new WorkSpace(),
+                    new TeacherDrawArea(),
                     "Problem Title:",
                     "Problem Title",
                     JOptionPane.PLAIN_MESSAGE,
@@ -217,6 +252,7 @@ public class Repository extends Observable {
      * @param block, added block
      */
     public void addBlock(Block block){
+        UndoDrawings.clear();
         drawings.add(block);
     }
     /**
@@ -248,7 +284,7 @@ public class Repository extends Observable {
             if (drawing instanceof Block && ((Block) drawing).contains(x, y)) {
                 if (!(drawing instanceof StartBlock || drawing instanceof EndBlock)) {
                     String text = (String) JOptionPane.showInputDialog(
-                            new WorkSpace(),
+                            new TeacherDrawArea(),
                             "Name:",
                             "Enter Name",
                             JOptionPane.PLAIN_MESSAGE,

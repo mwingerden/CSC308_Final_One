@@ -29,7 +29,7 @@ public class Load {
             drawings.forEach(drawing -> parseDrawingObject((JSONObject) drawing));
         } catch (IOException | ParseException e) {
             JOptionPane.showMessageDialog(
-                    new WorkSpace(),
+                    new TeacherDrawArea(),
                     "There is no problem by the name of " + name + ".",
                     "Warning",
                     JOptionPane.WARNING_MESSAGE);

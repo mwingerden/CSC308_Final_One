@@ -12,12 +12,12 @@ import java.util.Observer;
  * @author  Juan Custodio
  * @author  Mary Lemmer
  */
-public class WorkSpace extends JPanel implements Observer {
+public class TeacherDrawArea extends JPanel implements Observer {
     Repository repository;
     /**
      * The Main.WorkSpace method sets up the layout of the panel.
      */
-    public WorkSpace() {
+    public TeacherDrawArea() {
         repository = Repository.getInstance();
         repository.addObserver(this);
         MainController controller = new MainController();

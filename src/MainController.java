@@ -36,16 +36,20 @@ public class MainController implements MouseMotionListener, ActionListener, Mous
             case "Home" -> Repository.getInstance().updatePanel("StartUp");
             case "Back" -> Repository.getInstance().updatePanel("Back");
             case "Edit" -> {
-                Repository.getInstance().loadList();
-                Repository.getInstance().setEditing();
-                Repository.getInstance().updatePanel("TeacherDrawArea");
+                if(Repository.getInstance().loadList()) {
+                    Repository.getInstance().setEditing();
+                    Repository.getInstance().updatePanel("TeacherDrawArea");
                 }
-
+            }
+            case "Attempt" -> {
+                if(Repository.getInstance().loadList()) {
+                    Repository.getInstance().setEditing();
+                    Repository.getInstance().updatePanel("StudentDrawArea");
+                }
+            }
             case "New" -> {Repository.getInstance().updatePanel("TeacherDrawArea");
                 Repository.getInstance().clearBlocks();}
-            case "Delete" -> {
-                Repository.getInstance().deleteProblem();
-            }
+            case "Delete" ->  Repository.getInstance().deleteProblem();
             case "Undo" -> Repository.getInstance().UndoList();
             case "Redo" -> Repository.getInstance().RedoList();
             default -> menuItemClicked(e.getActionCommand());
@@ -109,7 +113,7 @@ public class MainController implements MouseMotionListener, ActionListener, Mous
     }
     private void menuItemClicked(String e) {
         switch (e) {
-            case "New" -> {
+            case "Clear" -> {
                 Repository.getInstance().clearBlocks();
                 Repository.getInstance().setStatus("New diagram");
                 Repository.getInstance().setBlockToDraw("None");

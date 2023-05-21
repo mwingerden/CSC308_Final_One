@@ -36,9 +36,12 @@ public class TeacherListView extends JPanel implements Observer {
         editButton.addActionListener(mainController);
         JButton deleteButton = new JButton("Delete");
         deleteButton.addActionListener(mainController);
+        JButton homeButton = new JButton("Home");
+        homeButton.addActionListener(mainController);
         southPanel.add(newButton);
         southPanel.add(editButton);
         southPanel.add(deleteButton);
+        southPanel.add(homeButton);
 
         WestPanel.setBackground(Color.GRAY);
         GridLayout grid = new GridLayout(problems.size() + 1,1);

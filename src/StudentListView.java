@@ -25,7 +25,7 @@ public class StudentListView extends JPanel implements Observer {
         add(selectProblem,BorderLayout.LINE_START);
 
         JButton attempt = new JButton("Attempt");
-        attempt.addActionListener(e -> Repository.getInstance().updatePanel("StudentDrawArea"));
+        attempt.addActionListener(new MainController());
         //attempt.addActionListener(new MainController());
         add(attempt, BorderLayout.SOUTH);
 

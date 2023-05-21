@@ -17,7 +17,7 @@ import java.util.Observable;
 public class Repository extends Observable {
     private static final Repository instance = new Repository();
     private List<Draw> drawings;
-    private List<Draw> UndoDrawings;
+    private final List<Draw> undoDrawings;
     private String blockToDraw;
     private String status;
     private String problemDesc;
@@ -31,7 +31,7 @@ public class Repository extends Observable {
         this.drawings = new ArrayList<>();
         this.problemName = null;
         this.editing = false;
-        this.UndoDrawings = new ArrayList<>();
+        this.undoDrawings = new ArrayList<>();
     }
 
     public static Repository getInstance() {
@@ -40,15 +40,20 @@ public class Repository extends Observable {
 
     //TODO: Updates the observers with the new panel info.
     public void updatePanel(String panel) {
-        if(panel.equalsIgnoreCase("back") && currentPanel.equalsIgnoreCase("StudentDrawArea")) {
+        if(panel.equalsIgnoreCase("back") &&
+                currentPanel.equalsIgnoreCase("StudentDrawArea")) {
+            this.problemName = null;
             setChanged();
             notifyObservers("StudentListView");
         }
-        else if(panel.equalsIgnoreCase("back") && currentPanel.equalsIgnoreCase("TeacherDrawArea")) {
+        else if(panel.equalsIgnoreCase("back") &&
+                currentPanel.equalsIgnoreCase("TeacherDrawArea")) {
+            this.problemName = null;
             setChanged();
             notifyObservers("TeacherListView");
         }
         else {
+            this.problemName = null;
             this.currentPanel = panel;
             setChanged();
             notifyObservers(panel);
@@ -56,18 +61,20 @@ public class Repository extends Observable {
     }
 
     public void UndoList() {
-        Draw temp = this.drawings.get(this.drawings.size() - 1);
-        UndoDrawings.add(temp);
-        this.drawings.remove(temp);
-        setChanged();
-        notifyObservers();
+        if(!this.drawings.isEmpty()) {
+            Draw temp = this.drawings.get(this.drawings.size() - 1);
+            undoDrawings.add(temp);
+            this.drawings.remove(temp);
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public void RedoList() {
-        if(!this.UndoDrawings.isEmpty()) {
-            Draw temp = this.UndoDrawings.get(this.UndoDrawings.size() - 1);
+        if(!this.undoDrawings.isEmpty()) {
+            Draw temp = this.undoDrawings.get(this.undoDrawings.size() - 1);
             drawings.add(temp);
-            this.UndoDrawings.remove(temp);
+            this.undoDrawings.remove(temp);
             setChanged();
             notifyObservers();
         }
@@ -157,7 +164,7 @@ public class Repository extends Observable {
     /**
      * A loadList method allowing the user to load a previously saved file.
      */
-    public void loadList() {
+    public Boolean loadList() {
         /*String name = (String) JOptionPane.showInputDialog(
                 new WorkSpace(),
                 "Enter Name to Main.Load File:",
@@ -172,7 +179,9 @@ public class Repository extends Observable {
             drawings = Load.load(problemName);
             setChanged();
             notifyObservers("Load Description");
+            return true;
         }
+        return false;
     }
 
     /**
@@ -252,7 +261,7 @@ public class Repository extends Observable {
      * @param block, added block
      */
     public void addBlock(Block block){
-        UndoDrawings.clear();
+        undoDrawings.clear();
         drawings.add(block);
     }
     /**
@@ -261,6 +270,7 @@ public class Repository extends Observable {
     public void clearBlocks(){
         if (!drawings.isEmpty()){
             drawings.clear();
+            undoDrawings.clear();
             setChanged();
             notifyObservers("Clear Description");
         }

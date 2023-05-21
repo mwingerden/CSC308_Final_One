@@ -9,17 +9,17 @@ public class MenuBar extends JMenuBar {
      */
     public MenuBar(){
         MainController mainController = new MainController();
-        JMenuBar menubar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         JButton undo = new JButton("Undo");
         JButton redo = new JButton("Redo");
         JMenuItem home = new JMenuItem("Home");
         JMenuItem Back = new JMenuItem("Back");
-        JMenu file = new JMenu("File");
-        JMenu help = new JMenu("Help");
-        JMenu shape = new JMenu("Shape");
-        JMenuItem newItem = new JMenuItem("New");
+        JMenu problemSettings = new JMenu("Settings");
+//        JMenu help = new JMenu("Help");
+        JMenu shape = new JMenu("Shapes");
+        JMenuItem newItem = new JMenuItem("Clear");
         JMenuItem save = new JMenuItem("Save");
-        JMenuItem load = new JMenuItem("Load");
+//        JMenuItem load = new JMenuItem("Load");
         JMenuItem about = new JMenuItem("About");
         JMenuItem ifElse = new JMenuItem("If/Else");
         JMenuItem command = new JMenuItem("Instruct");
@@ -36,7 +36,7 @@ public class MenuBar extends JMenuBar {
         Back.addActionListener(mainController);
         newItem.addActionListener(mainController);
         save.addActionListener(mainController);
-        load.addActionListener(mainController);
+//        load.addActionListener(mainController);
         ifElse.addActionListener(mainController);
         command.addActionListener(mainController);
         start.addActionListener(mainController);
@@ -45,10 +45,10 @@ public class MenuBar extends JMenuBar {
         io.addActionListener(mainController);
         var.addActionListener(mainController);
         arrow.addActionListener(mainController);
-        file.add(newItem);
-        file.add(save);
-        file.add(load);
-        help.add(about);
+        problemSettings.add(newItem);
+        problemSettings.add(save);
+//        problemSettings.add(load);
+//        help.add(about);
         shape.add(start);
         shape.add(end);
         shape.add(ifElse);
@@ -57,13 +57,13 @@ public class MenuBar extends JMenuBar {
         shape.add(io);
         shape.add(var);
         shape.add(arrow);
-        menubar.add(file);
-        menubar.add(help);
-        menubar.add(shape);
-        menubar.add(undo);
-        menubar.add(redo);
-        menubar.add(home);
-        menubar.add(Back);
-        add(menubar);
+        menuBar.add(problemSettings);
+//        menubar.add(help);
+        menuBar.add(shape);
+        menuBar.add(undo);
+        menuBar.add(redo);
+        menuBar.add(home);
+        menuBar.add(Back);
+        add(menuBar);
     }
 }

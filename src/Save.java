@@ -57,7 +57,10 @@ public class Save {
         JSONObject jsonObjectDetails = new JSONObject();
         jsonObjectDetails.put("X1", Integer.toString(codeBlock.getX1()));
         jsonObjectDetails.put("Y1", Integer.toString(codeBlock.getY1()));
-        jsonObjectDetails.put("Text", codeBlock.getText());
+        jsonObjectDetails.put("arrowInLimit", Integer.toString(codeBlock.getArrowInLimit()));
+        jsonObjectDetails.put("arrowOutLimit", Integer.toString(codeBlock.getArrowOutLimit()));
+        jsonObjectDetails.put("arrowInCount", Integer.toString(codeBlock.getArrowInCount()));
+        jsonObjectDetails.put("arrowOutCount", Integer.toString(codeBlock.getArrowOutCount()));
         if (codeBlock instanceof CallMethodBlock) {
             jsonObjectDetails.put("Name", "Main.CallMethodBlock");
             jsonObject.put("CodeBlock", jsonObjectDetails);

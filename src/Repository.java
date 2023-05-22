@@ -324,7 +324,7 @@ public class Repository extends Observable {
         Block b2 = null;
         for (Draw drawing : drawings) {
             if (drawing instanceof Block && ((Block) drawing).contains(x1, y1) && !(drawing instanceof EndBlock)){
-                b1 = blockOneArrow(drawing, x1, y1);
+                b1 = blockOneArrow(drawing);
             }
             if (drawing instanceof Block && ((Block) drawing).contains(x2, y2) && !(drawing instanceof StartBlock)) {
                 b2 = (Block) drawing;
@@ -340,7 +340,7 @@ public class Repository extends Observable {
         notifyObservers();
     }
 
-    private Block blockOneArrow(Draw drawing, int x1, int y1) {
+    private Block blockOneArrow(Draw drawing) {
         if (drawing instanceof StartBlock){
             if (((StartBlock)drawing).maxNumsOut()){
                 return null;

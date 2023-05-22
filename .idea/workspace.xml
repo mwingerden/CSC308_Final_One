@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Added undo and redo.">
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Fixed some things.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MenuBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Load.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Load.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StudentListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentListView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeacherListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeacherListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Save.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Save.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -380,11 +379,17 @@
       <option name="project" value="LOCAL" />
       <updated>1684457841494</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Fixed some things.">
+      <created>1684709737970</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1684709737970</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implemented Undo and reformatted code." />
     <MESSAGE value="Able to draw rudimentary arrows." />
     <MESSAGE value="Arrows can now be saved and loaded." />
     <MESSAGE value="Made repository more robust." />
@@ -409,7 +414,8 @@
     <MESSAGE value="I am able to load list from json file and be selected from student or teacher." />
     <MESSAGE value="Brought over my final 309 project to this project." />
     <MESSAGE value="Added undo and redo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added undo and redo." />
+    <MESSAGE value="Fixed some things." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some things." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -431,18 +437,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>263</line>
-          <option name="timeStamp" value="72" />
+          <line>335</line>
+          <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Repository.java</url>
-          <line>109</line>
-          <option name="timeStamp" value="77" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/MainController.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="81" />
+          <url>file://$PROJECT_DIR$/src/Load.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="86" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

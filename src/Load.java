@@ -80,32 +80,31 @@ public class Load {
         if (codeBlock.get("Name").equals("Main.CallMethodBlock")) {
             drawing = new CallMethodBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")));
-            drawing.setText((String) codeBlock.get("Text"));
         } else if (codeBlock.get("Name").equals("Main.ConditionBlock")) {
             drawing = new ConditionBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")));
-            drawing.setText((String) codeBlock.get("Text"));
         } else if (codeBlock.get("Name").equals("Main.EndBlock")) {
             drawing = new EndBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")), "PINK");
-            drawing.setText((String) codeBlock.get("Text"));
         } else if (codeBlock.get("Name").equals("Main.InputOutputBlock")) {
             drawing = new InputOutputBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")));
-            drawing.setText((String) codeBlock.get("Text"));
         } else if (codeBlock.get("Name").equals("Main.InstructionBlock")) {
             drawing = new InstructionBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")));
-            drawing.setText((String) codeBlock.get("Text"));
         } else if (codeBlock.get("Name").equals("Main.StartBlock")) {
             drawing = new StartBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")),"BLUE");
-            drawing.setText((String) codeBlock.get("Text"));
         } else if (codeBlock.get("Name").equals("Main.VariableDeclarationBlock")) {
             drawing = new VariableDeclarationBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")));
-            drawing.setText((String) codeBlock.get("Text"));
         }
+        assert drawing != null;
+        drawing.setText((String) codeBlock.get("Text"));
+        drawing.setArrowInLimit(Integer.parseInt((String) codeBlock.get("arrowInLimit")));
+        drawing.setArrowOutLimit(Integer.parseInt((String) codeBlock.get("arrowOutLimit")));
+        drawing.setArrowInCount(Integer.parseInt((String) codeBlock.get("arrowInCount")));
+        drawing.setArrowOutCount(Integer.parseInt((String) codeBlock.get("arrowOutCount")));
         return drawing;
     }
     /**
@@ -115,12 +114,19 @@ public class Load {
      */
     private static Draw loadArrow(JSONArray arrow) {
         Arrow arrowFinal;
-        ArrayList<Block> CodeBlocks = new ArrayList<>();
+        ArrayList<Block> blocks = new ArrayList<>();
         for (Object o : arrow) {
-            JSONObject temp = (JSONObject) o;
-            CodeBlocks.add((Block)loadCodeBlock((JSONObject) temp.get("CodeBlock")));
+            Block temp = (Block)loadCodeBlock((JSONObject) ((JSONObject) o).get("CodeBlock"));
+            for(Draw drawing : drawingsList) {
+                if(drawing instanceof Block) {
+                    if(temp.equals(drawing)) {
+                        blocks.add((Block) drawing);
+                        break;
+                    }
+                }
+            }
         }
-        arrowFinal = new Arrow(CodeBlocks.get(0), CodeBlocks.get(1));
+        arrowFinal = new Arrow(blocks.get(0), blocks.get(1));
         return arrowFinal;
     }
 }

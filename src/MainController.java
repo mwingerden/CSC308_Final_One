@@ -75,9 +75,9 @@ public class MainController implements MouseMotionListener, ActionListener, Mous
         if (Repository.getInstance().getBlockToDraw().equals("Arrow")) {
             Repository.getInstance().setStatus("Arrow is being drawn");
         }
-        else{
-            Repository.getInstance().setStatus("Dragging");
-        }
+//        else{
+//            Repository.getInstance().setStatus("Dragging");
+//        }
         startDragx = e.getX();
         startDragy = e.getY();
     }

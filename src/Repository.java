@@ -145,7 +145,7 @@ public class Repository extends Observable {
         }
 
         if (name != null) {
-            setChanged();
+//            setChanged();
             notifyObservers("Save Description");
             Save.save(drawings, name, problemDesc);
             setChanged();
@@ -204,9 +204,11 @@ public class Repository extends Observable {
             dragX = newx;
             dragY = newy;
             applyDrag(blockToDrag, dragX, dragY);
+            setChanged();
+            notifyObservers("Dragging");
         }
-        setChanged();
-        notifyObservers("Dragging");
+//        setChanged();
+//        notifyObservers("Dragging");
     }
 
     private void applyDrag(Block blockToDrag, int dragX, int dragY) {
@@ -237,11 +239,11 @@ public class Repository extends Observable {
         newBlock.setText(block.getText());
         for (Draw temp1 : tempList) {
             if (temp1 instanceof Arrow arrow) {
-                if (arrow.getInBlock().equals(block)) {
-                    drawings.add(new Arrow(newBlock, arrow.getOutBlock()));
+                if (arrow.getBlock1().equals(block)) {
+                    drawings.add(new Arrow(newBlock, arrow.getBlock2()));
                     drawings.remove(arrow);
-                } else if (arrow.getOutBlock().equals(block)) {
-                    drawings.add(new Arrow(arrow.getInBlock(), newBlock));
+                } else if (arrow.getBlock2().equals(block)) {
+                    drawings.add(new Arrow(arrow.getBlock1(), newBlock));
                     drawings.remove(arrow);
                 }
             }

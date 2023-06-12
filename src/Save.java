@@ -8,48 +8,71 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 /**
- * The Main.Save class stores the user's saved files
+ * The Save class stores the user's saved files
  */
 public class Save {
+
     /**
-     * save method saves the file and its components
-     * @param drawings, blocks and arrows to save
-     * @param name, file name
-     * @throws IOException
+     * Saves all elements of a problem to a file in the Drawings directory.
+     *
+     * @param problemToSave Problem object containing needed elements for a problem file.
+     * @throws IOException if an issue occurs creating or opening file
      */
     @SuppressWarnings("unchecked")
-    public static void save(List<Draw> drawings, String name, String description) throws IOException {
-        JSONArray drawingsList = new JSONArray();
-        JSONObject jsonObject = new JSONObject();
+    public static void save(Problem problemToSave) throws IOException {
 
-        jsonObject.put("Problem Description", description);
-        drawingsList.add(jsonObject);
+        JSONArray fileElements = new JSONArray();
 
-        for (Draw drawing : drawings) {
-            if (drawing instanceof Block) {
-                jsonObject = storeCodeBlock((Block)drawing);
-            }
-             else if (drawing instanceof Arrow) {
-               jsonObject = storeArrow(drawing);
-          }
-            drawingsList.add(jsonObject);
-        }
-        try (FileWriter file = new FileWriter("Drawings/" + name + ".json")) {
-            file.write(drawingsList.toJSONString());
+        JSONObject problemDescription = new JSONObject();
+        problemDescription.put("Problem Description", problemToSave.getProblemDescription());
+        fileElements.add(problemDescription);
+
+        JSONObject teacherDrawing = new JSONObject();
+        teacherDrawing.put("Teacher Solution", saveDrawingList(problemToSave.getTeacherSolution()));
+        fileElements.add(teacherDrawing);
+
+        JSONObject studentDrawing = new JSONObject();
+        studentDrawing.put("Student Attempt", saveDrawingList(problemToSave.getStudentAttempt()));
+        fileElements.add(studentDrawing);
+
+        JSONObject problemHints = new JSONObject();
+        problemHints.put("Hints", problemToSave.getHints());
+        fileElements.add(problemHints);
+
+        try (FileWriter file = new FileWriter("Drawings/" + problemToSave.getProblemName() + ".json")) {
+            file.write(fileElements.toJSONString());
             file.flush();
+            file.close();
         } catch (FileNotFoundException e) {
-            File newFile = new File("Drawings/" + name + ".json");
+            File newFile = new File("Drawings/" + problemToSave.getProblemName() + ".json");
             FileWriter file = new FileWriter(newFile);
-            file.write(drawingsList.toJSONString());
+            file.write(fileElements.toJSONString());
             file.flush();
+            file.close();
         } catch (IOException e){
             e.printStackTrace();
         }
     }
+
+    @SuppressWarnings("unchecked")
+    private static JSONArray saveDrawingList(List<Draw> drawings) {
+        JSONArray drawingArray = new JSONArray();
+        JSONObject shape = new JSONObject();
+        for (Draw drawing : drawings) {
+            if (drawing instanceof Block block) {
+                shape = storeCodeBlock(block);
+            } else if (drawing instanceof Arrow) {
+                shape = storeArrow(drawing);
+            }
+            drawingArray.add(shape);
+        }
+        return drawingArray;
+    }
+
     /**
      * storeCodeBlock method will hold the blocks saved for the future
      * @param codeBlock, type of block to store
-     * @return
+     * @return JSONObject containing the information for a specific Block object
      */
     @SuppressWarnings("unchecked")
     private static JSONObject storeCodeBlock(Block codeBlock) {
@@ -61,26 +84,28 @@ public class Save {
         jsonObjectDetails.put("arrowOutLimit", Integer.toString(codeBlock.getArrowOutLimit()));
         jsonObjectDetails.put("arrowInCount", Integer.toString(codeBlock.getArrowInCount()));
         jsonObjectDetails.put("arrowOutCount", Integer.toString(codeBlock.getArrowOutCount()));
+        jsonObjectDetails.put("Text", codeBlock.getBlockText());
+        jsonObjectDetails.put("Hint", codeBlock.getHintText());
         if (codeBlock instanceof CallMethodBlock) {
-            jsonObjectDetails.put("Name", "Main.CallMethodBlock");
+            jsonObjectDetails.put("Name", "CallMethodBlock");
             jsonObject.put("CodeBlock", jsonObjectDetails);
         } else if (codeBlock instanceof ConditionBlock) {
-            jsonObjectDetails.put("Name", "Main.ConditionBlock");
+            jsonObjectDetails.put("Name", "ConditionBlock");
             jsonObject.put("CodeBlock", jsonObjectDetails);
         } else if (codeBlock instanceof EndBlock) {
-            jsonObjectDetails.put("Name", "Main.EndBlock");
+            jsonObjectDetails.put("Name", "EndBlock");
             jsonObject.put("CodeBlock", jsonObjectDetails);
         } else if (codeBlock instanceof InputOutputBlock) {
-            jsonObjectDetails.put("Name", "Main.InputOutputBlock");
+            jsonObjectDetails.put("Name", "InputOutputBlock");
             jsonObject.put("CodeBlock", jsonObjectDetails);
         } else if (codeBlock instanceof InstructionBlock) {
-            jsonObjectDetails.put("Name", "Main.InstructionBlock");
+            jsonObjectDetails.put("Name", "InstructionBlock");
             jsonObject.put("CodeBlock", jsonObjectDetails);
         } else if (codeBlock instanceof StartBlock) {
-            jsonObjectDetails.put("Name", "Main.StartBlock");
+            jsonObjectDetails.put("Name", "StartBlock");
             jsonObject.put("CodeBlock", jsonObjectDetails);
         } else if (codeBlock instanceof VariableDeclarationBlock) {
-            jsonObjectDetails.put("Name", "Main.VariableDeclarationBlock");
+            jsonObjectDetails.put("Name", "VariableDeclarationBlock");
             jsonObject.put("CodeBlock", jsonObjectDetails);
         }
         return jsonObject;
@@ -102,7 +127,7 @@ public class Save {
             jsonObjectDetails = storeCodeBlock(codeBlock);
             jsonArray.add(jsonObjectDetails);
         }
-        jsonObject.put("Main.Arrow", jsonArray);
+        jsonObject.put("Arrow", jsonArray);
         return jsonObject;
     }
 }

@@ -1,12 +1,15 @@
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.util.*;
 import java.util.List;
-import java.util.Observable;
+
 /**
- * The Main.Repository class holds all the needed information of other classes.
+ * The Repository class holds all the needed information of other classes.
  *
  * @author  Nathon Ho
  * @author  Matthew Wingerden
@@ -16,55 +19,39 @@ import java.util.Observable;
  */
 public class Repository extends Observable {
     private static final Repository instance = new Repository();
-    private List<Draw> drawings;
+
+    private Problem loadedProblem = new Problem("",
+            "",
+            Collections.emptyList(),
+            Collections.emptyList(),
+            Collections.emptyList());
+    private List<Draw> drawnChart;
     private final List<Draw> undoDrawings;
+
+    private boolean loadSolution = false;
     private String blockToDraw;
     private String status;
-    private String problemDesc;
-    private String problemName;
-    private Boolean editing;
-    private String currentPanel;
-
     private Repository() {
         this.blockToDraw = "";
-        this.currentPanel = "";
-        this.drawings = new ArrayList<>();
-        this.problemName = null;
-        this.editing = false;
+        this.drawnChart = new ArrayList<>();
         this.undoDrawings = new ArrayList<>();
-    }
-
-    public static Repository getInstance() {
-        return instance;
     }
 
     //TODO: Updates the observers with the new panel info.
     public void updatePanel(String panel) {
-        if(panel.equalsIgnoreCase("back") &&
-                currentPanel.equalsIgnoreCase("StudentDrawArea")) {
-            this.problemName = null;
-            setChanged();
-            notifyObservers("StudentListView");
-        }
-        else if(panel.equalsIgnoreCase("back") &&
-                currentPanel.equalsIgnoreCase("TeacherDrawArea")) {
-            this.problemName = null;
-            setChanged();
-            notifyObservers("TeacherListView");
-        }
-        else {
-            this.problemName = null;
-            this.currentPanel = panel;
-            setChanged();
-            notifyObservers(panel);
-        }
+        setChanged();
+        notifyObservers(panel);
     }
 
     public void UndoList() {
-        if(!this.drawings.isEmpty()) {
-            Draw temp = this.drawings.get(this.drawings.size() - 1);
+        if(!this.drawnChart.isEmpty()) {
+            Draw temp = this.drawnChart.get(this.drawnChart.size() - 1);
             undoDrawings.add(temp);
-            this.drawings.remove(temp);
+            this.drawnChart.remove(temp);
+            if (temp instanceof Arrow){
+                ((Arrow) temp).block1.removeOutArrow((Arrow)temp);
+                ((Arrow) temp).block2.removeInArrow((Arrow)temp);
+            }
             setChanged();
             notifyObservers();
         }
@@ -73,13 +60,16 @@ public class Repository extends Observable {
     public void RedoList() {
         if(!this.undoDrawings.isEmpty()) {
             Draw temp = this.undoDrawings.get(this.undoDrawings.size() - 1);
-            drawings.add(temp);
+            drawnChart.add(temp);
             this.undoDrawings.remove(temp);
             setChanged();
             notifyObservers();
         }
     }
 
+    public static Repository getInstance() {
+        return instance;
+    }
     /**
      * getDrawings method adds all blocks and arrows to a list of drawings and returns said new list.
      * @return newDrawings
@@ -88,11 +78,11 @@ public class Repository extends Observable {
         List<Draw> newDrawings = new ArrayList<>();
         List<Block> codeBlocks = new ArrayList<>();
         List<Arrow> arrows = new ArrayList<>();
-        for (Draw drawing : drawings) {
-            if (drawing instanceof Block) {
-                codeBlocks.add((Block) drawing);
-            } else if (drawing instanceof Arrow) {
-                arrows.add((Arrow) drawing);
+        for (Draw drawing : drawnChart) {
+            if (drawing instanceof Block block) {
+                codeBlocks.add(block);
+            } else if (drawing instanceof Arrow arrow) {
+                arrows.add(arrow);
             }
        }
         newDrawings.addAll(arrows);
@@ -100,41 +90,18 @@ public class Repository extends Observable {
         return newDrawings;
     }
 
-    public void deleteProblem(){
-        File f1 = new File("Drawings/"+ problemName + ".json");
-        if(f1.delete()){
-            System.out.println("deleted");
-        } else{
-            System.out.println("not deleted");
-        }
-        updatePanel("StartUp");
-        updatePanel("TeacherListView");
-//        setChanged();
-//        notifyObservers();
-    }
-
-    public void setProblemLoad(String name)
-    {
-        this.problemName = name;
+    public Problem getLoadedProblem() {
+        return this.loadedProblem;
     }
 
     /**
      * A saveList method that allows the user to save the work space if needed.
-     * @throws IOException
+     * @throws IOException if unable to save file
      */
-    public void setEditing(){
-        editing = true;
-    }
-
-    public void unsetEditing(){
-        editing = false;
-    }
-
-    public void saveList() throws IOException {
-        String name = problemName;
-        if (!editing) {
-            name = (String) JOptionPane.showInputDialog(
-                    new TeacherDrawArea(),
+    public String saveList(Problem problemToSave) throws IOException {
+        if (Objects.isNull(problemToSave)) {
+            String name = (String) JOptionPane.showInputDialog(
+                    new WorkSpace(),
                     "Problem Title:",
                     "Problem Title",
                     JOptionPane.PLAIN_MESSAGE,
@@ -142,46 +109,116 @@ public class Repository extends Observable {
                     null,
                     ""
             );
+            if (name != null) {
+                problemToSave = new Problem(name,
+                        "",
+                        Collections.emptyList(),
+                        Collections.emptyList(),
+                        Collections.emptyList());
+            } else {
+                return null;
+            }
+        } else {
+            problemToSave.setDrawing(this.loadSolution, this.drawnChart);
         }
-
-        if (name != null) {
+        this.loadedProblem = problemToSave;
+        setChanged();
+        notifyObservers("Saved");
+        Save.save(problemToSave);
+        return problemToSave.getProblemName();
 //            setChanged();
-            notifyObservers("Save Description");
-            Save.save(drawings, name, problemDesc);
+//            notifyObservers("save");
+
+    }
+
+    public void saveStudentSubmission() {
+        try {
+            Save.save(loadedProblem);
+            for (Draw d : loadedProblem.getStudentAttempt()){
+                if (d instanceof Block && !(d instanceof EndBlock)){
+                    ((Block) d).setColor(Color.WHITE);
+                }
+            }
+            ProblemChecker pc = new ProblemChecker(loadedProblem);
+            Draw diffDraw = pc.CheckProblem();
+
+            if (diffDraw instanceof EndBlock){
+                //case that the graphs are the same;
+
+                loadedProblem.setProgress("complete");
+                loadedProblem.setFeedback("Correct!");
+
+            }
+
+            if (diffDraw instanceof Block){
+                if (loadedProblem.getTeacherSolution().contains((Block)diffDraw)){
+                    //case, student graph is missing a block
+                    loadedProblem.setProgress("in progress");
+                    loadedProblem.setFeedback("You are Missing a Block or a Block has incorrect information");
+
+                }
+                else if (loadedProblem.getStudentAttempt().contains((Block)diffDraw)){
+                    //case, student contains extra blocks
+                    for (Draw d : loadedProblem.getStudentAttempt()){
+                        if (d instanceof Block && !(d instanceof EndBlock)){
+                            if (d.equals(diffDraw)){
+                                ((Block) d).setColor(Color.RED);
+                            }
+
+                        }
+                    }
+
+
+                    loadedProblem.setProgress("in progress");
+                    loadedProblem.setFeedback("You have an extra block or a block has incorrect information");
+                }
+            }
+            else{
+            }
             setChanged();
-            notifyObservers("save");
+            notifyObservers();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-    }
-
-    public void saveProblemDescription(String desc) {
-        this.problemDesc = desc;
-    }
-
-    public String loadProblemDescription() {
-        return this.problemDesc;
     }
 
     /**
      * A loadList method allowing the user to load a previously saved file.
      */
-    public Boolean loadList() {
-        /*String name = (String) JOptionPane.showInputDialog(
-                new WorkSpace(),
-                "Enter Name to Main.Load File:",
-                "Enter Name",
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                null,
-                ""
-        );*/
+    public void loadList(boolean loadSolution, String problemName) {
         if (problemName != null) {
-            drawings.clear();
-            drawings = Load.load(problemName);
+            drawnChart.clear();
+            this.loadedProblem = Load.load(problemName);
+            // Error loading file
+            if (Objects.isNull(this.loadedProblem)) {
+                return;
+            }
+            if (loadSolution) {
+                this.drawnChart = this.loadedProblem.getTeacherSolution();
+                this.loadSolution = true;
+            } else {
+                this.drawnChart = this.loadedProblem.getStudentAttempt();
+                this.loadSolution = false;
+            }
             setChanged();
-            notifyObservers("Load Description");
-            return true;
+            notifyObservers("Loaded");
         }
-        return false;
+    }
+
+    public void delete(String problemName) {
+        try {
+            File deleteProblem = new File("Drawings/" + problemName + ".json");
+            Files.deleteIfExists(deleteProblem.toPath());
+            setChanged();
+            notifyObservers("Deleted");
+            clearChanged();
+        } catch (IOException ioe) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Selected problem unable to be found in Drawings directory.",
+                    "Warning",
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     /**
@@ -195,8 +232,8 @@ public class Repository extends Observable {
         Block blockToDrag = null;
         int dragX;
         int dragY;
-        for (Draw drawing : drawings) {
-            if (drawing instanceof Block && ((Block) drawing).contains(x, y)) {
+        for (Draw drawing : drawnChart) {
+            if (drawing instanceof Block block && block.contains(x, y)) {
                 blockToDrag = (Block) drawing;
             }
         }
@@ -204,11 +241,9 @@ public class Repository extends Observable {
             dragX = newx;
             dragY = newy;
             applyDrag(blockToDrag, dragX, dragY);
-            setChanged();
-            notifyObservers("Dragging");
         }
-//        setChanged();
-//        notifyObservers("Dragging");
+        setChanged();
+        notifyObservers("Dragging");
     }
 
     private void applyDrag(Block blockToDrag, int dragX, int dragY) {
@@ -235,22 +270,37 @@ public class Repository extends Observable {
      * @param newBlock, block after dragging
      */
     private void dragging(Block block, Block newBlock) {
-        List<Draw> tempList = new ArrayList<>(drawings);
-        newBlock.setText(block.getText());
+        List<Draw> tempList = new ArrayList<>(drawnChart);
+        newBlock.setBlockText(block.getBlockText());
+        newBlock.setHintText((block.getHintText()));
+        newBlock.setArrowInCount(block.getArrowInCount());
+        newBlock.setArrowOutCount(block.getArrowOutCount());
         for (Draw temp1 : tempList) {
             if (temp1 instanceof Arrow arrow) {
                 if (arrow.getBlock1().equals(block)) {
-                    drawings.add(new Arrow(newBlock, arrow.getBlock2()));
-                    drawings.remove(arrow);
+                    drawnChart.add(new Arrow(newBlock, arrow.getBlock2()));
+                    drawnChart.remove(arrow);
                 } else if (arrow.getBlock2().equals(block)) {
-                    drawings.add(new Arrow(arrow.getBlock1(), newBlock));
-                    drawings.remove(arrow);
+                    drawnChart.add(new Arrow(arrow.getBlock1(), newBlock));
+                    drawnChart.remove(arrow);
                 }
             }
         }
-        drawings.remove(block);
-        drawings.add(newBlock);
+        drawnChart.remove(block);
+        drawnChart.add(newBlock);
     }
+
+    public void deleteBlock(int x, int y) {
+        for (Draw drawing : drawnChart) {
+            if (drawing instanceof Block block && block.contains(x, y)) {
+                drawnChart.remove(drawing);
+                setChanged();
+                notifyObservers();
+                break;
+            }
+        }
+    }
+
     /**
      * setter that helps decide what block is drawn.
      * @param blockToDraw, what block is needed
@@ -264,19 +314,34 @@ public class Repository extends Observable {
      */
     public void addBlock(Block block){
         undoDrawings.clear();
-        drawings.add(block);
+        if (!(block instanceof StartBlock) && !(block instanceof EndBlock)){
+            newBlockText(block);
+        }
+        drawnChart.add(block);
     }
     /**
-     * A method that clears all the blocks on the work space.
+     * A method that clears all the blocks on the work space. Clears hint index for each solution block if
+     * called by student.
      */
     public void clearBlocks(){
-        if (!drawings.isEmpty()){
-            drawings.clear();
-            undoDrawings.clear();
+        if (!drawnChart.isEmpty()){
+            if (!this.loadSolution) {
+                clearSolutionBlockHintIndex();
+            }
+            drawnChart.clear();
             setChanged();
             notifyObservers("Clear Description");
         }
     }
+
+    private void clearSolutionBlockHintIndex() {
+        for (Draw drawing : this.loadedProblem.getTeacherSolution()) {
+            if (drawing instanceof Block block) {
+                block.resetStudentHintIndex();
+            }
+        }
+    }
+
     /**
      * Setter method used to change the status bar text status.
      * @param status, text to be displayed
@@ -291,12 +356,18 @@ public class Repository extends Observable {
      * @param x, block's x coordinate
      * @param y, block's y coordinate
      */
-    public void addText(int x, int y) {
-        for (Draw drawing : drawings) {
-            if (drawing instanceof Block && ((Block) drawing).contains(x, y)) {
-                if (!(drawing instanceof StartBlock || drawing instanceof EndBlock)) {
+    public void blockText(MouseEvent e, int x, int y) {
+        for (Draw drawing : drawnChart) {
+            if (drawing instanceof Block block && block.contains(x, y)) {
+                if (e.isControlDown()) {
+                    if (this.loadSolution) {
+                        block.teacherSideHint();
+                    } else {
+                        findCorrespondingTeacherBlock(block);
+                    }
+                } else if (!(block instanceof StartBlock || block instanceof EndBlock)) {
                     String text = (String) JOptionPane.showInputDialog(
-                            new TeacherDrawArea(),
+                            new WorkSpace(),
                             "Name:",
                             "Enter Name",
                             JOptionPane.PLAIN_MESSAGE,
@@ -305,17 +376,68 @@ public class Repository extends Observable {
                             ""
                     );
                     if (text != null) {
-                        ((Block) drawing).setText(text);
+                        block.setBlockText(text);
                         setChanged();
                         notifyObservers("Created Text");
                     }
-                    return;
                 }
             }
         }
     }
+
+    private void findCorrespondingTeacherBlock(Block studentBlock) {
+        boolean foundTeacherBlock = false;
+        for (Draw drawing: this.loadedProblem.getTeacherSolution()) {
+            if (drawing instanceof Block teacherBlock) {
+                if ((teacherBlock instanceof StartBlock && studentBlock instanceof StartBlock) ||
+                (teacherBlock instanceof EndBlock && studentBlock instanceof EndBlock)) {
+                    teacherBlock.studentSideHint();
+                    foundTeacherBlock = true;
+                    break;
+                } else if (!(teacherBlock instanceof StartBlock || teacherBlock instanceof EndBlock) &&
+                        (teacherBlock.getBlockText().equals(studentBlock.getBlockText()))) {
+                    teacherBlock.studentSideHint();
+                    foundTeacherBlock = true;
+                    break;
+                }
+            }
+        }
+        if (!foundTeacherBlock) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "ERROR: Could not locate corresponding teacher block. Check the text assigned to the " +
+                            "block you are attempting to get a hint for matches the prompt exactly."
+            );
+        }
+    }
+
+    private void newBlockText(Block newBlock) {
+        String text = (String) JOptionPane.showInputDialog(
+                new WorkSpace(),
+                "Name:",
+                "Enter Name",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                ""
+        );
+        if (text != null) {
+            newBlock.setBlockText(text);
+            setChanged();
+            notifyObservers("Created Text");
+        } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "ERROR: Must input text block represents.",
+                    "No Input Found",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            newBlockText(newBlock);
+        }
+    }
+
     /**
-     * addArrow method used by the Main.MainController to add arrows between blocks.
+     * addArrow method used by the MainController to add arrows between blocks.
      * @param x1, arrow's first x coordinate
      * @param y1, arrow's first y coordinate
      * @param x2, arrow's second x coordinate
@@ -324,30 +446,33 @@ public class Repository extends Observable {
     public void addArrow(int x1, int y1, int x2, int y2){
         Block b1 = null;
         Block b2 = null;
-        for (Draw drawing : drawings) {
-            if (drawing instanceof Block && ((Block) drawing).contains(x1, y1) && !(drawing instanceof EndBlock)){
-                b1 = blockOneArrow(drawing);
+        for (Draw drawing : drawnChart) {
+            if (drawing instanceof Block block && block.contains(x1, y1) && !(drawing instanceof EndBlock)){
+                b1 = blockOneArrow(drawing, x1, y1);
+
             }
-            if (drawing instanceof Block && ((Block) drawing).contains(x2, y2) && !(drawing instanceof StartBlock)) {
+            if (drawing instanceof Block block && block.contains(x2, y2) && !(drawing instanceof StartBlock)) {
                 b2 = (Block) drawing;
             }
         }
         if(b1 != null && b2 != null && b1 != b2){
-            if(b1.checkOutGoing() && b2.checkInGoing())
-            {
-                drawings.add(new Arrow(b1,b2));
+            if(b1.checkOutGoing() && b2.checkInGoing()) {
+                Arrow a = new Arrow(b1, b2);
+                b1.addOutArrow(a);
+                b2.addInArrow(a);
+                drawnChart.add(a);
             }
         }
         setChanged();
         notifyObservers();
     }
 
-    private Block blockOneArrow(Draw drawing) {
-        if (drawing instanceof StartBlock){
-            if (((StartBlock)drawing).maxNumsOut()){
+    private Block blockOneArrow(Draw drawing, int x1, int y1) {
+        if (drawing instanceof StartBlock startBlock){
+            if (startBlock.maxNumsOut()){
                 return null;
             }else{
-                ((StartBlock) drawing).increaseNumOut();
+                startBlock.increaseNumOut();
                 return (Block) drawing;
             }
         }else {

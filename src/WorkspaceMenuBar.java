@@ -1,13 +1,14 @@
 
 import javax.swing.*;
+
 /**
  * The MenuBar class where the user will use menu items to interact with the application.
  */
-public class MenuBar extends JMenuBar {
+public class WorkspaceMenuBar extends JMenuBar {
     /**
      * MenuBar constructor sets up all the needed menu for the user.
      */
-    public MenuBar(){
+    public WorkspaceMenuBar() {
         MainController mainController = new MainController();
         JMenuBar menuBar = new JMenuBar();
         JButton undo = new JButton("Undo");

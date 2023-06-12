@@ -5,13 +5,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class ProblemDescription extends JPanel implements Observer {
-    JTextField problemDescText;
+    JTextArea problemDescText;
     Repository repository = Repository.getInstance();
 
     public ProblemDescription() {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(Color.LIGHT_GRAY);
-        problemDescText = new JTextField();
+        problemDescText = new JTextArea(Repository.getInstance().getLoadedProblem().getProblemDescription());
         JLabel text = new JLabel("Problem Description:");
         add(text);
         add(problemDescText);
@@ -20,14 +20,17 @@ public class ProblemDescription extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        String update = (String) arg;
+        /*String update = (String) arg;
         if(update != null) {
             switch (update) {
-                case "Save Description" -> repository.saveProblemDescription(problemDescText.getText());
-                case "Load Description" -> problemDescText.setText(repository.loadProblemDescription());
+                case "Saved" -> repository
+                        .getLoadedProblem()
+                        .setProblemDescription(problemDescText.getText());
+                case "Loaded" -> problemDescText
+                        .setText(repository.getLoadedProblem().getProblemDescription());
                 case "Clear Description" -> problemDescText.setText("");
             }
 
-        }
+        }*/
     }
 }

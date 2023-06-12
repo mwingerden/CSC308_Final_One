@@ -5,7 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * WorkSpace class where all the blocks will be displayed on by the user's inputs.
+ * TeacherWorkspace class where all the blocks will be displayed on by the user's inputs.
  *
  * @author  Nathon Ho
  * @author  Matthew Wingerden
@@ -13,27 +13,35 @@ import java.util.Observer;
  * @author  Juan Custodio
  * @author  Mary Lemmer
  */
-public class StudentDrawArea extends JPanel implements Observer {
+public class StudentWorkspace extends JPanel implements Observer {
     Repository repository;
+
     /**
-     * The WorkSpace method sets up the layout of the panel.
+     * The TeacherWorkspace method sets up the layout of the panel.
      */
-    public StudentDrawArea() {
+    public StudentWorkspace() {
         repository = Repository.getInstance();
         repository.addObserver(this);
         MainController controller = new MainController();
-        BorderLayout layout = new BorderLayout();
-        setLayout(layout);
         setBackground(Color.PINK);
         setPreferredSize(new Dimension(300, 300));
         addMouseListener(controller);
         addMouseMotionListener(controller);
-        JButton buttonSubmit = new JButton("Submit");
-        buttonSubmit.addActionListener(controller);
-        add(new MenuBar(), BorderLayout.NORTH);
-        add(new StatusBar(77), BorderLayout.SOUTH);
-        add(buttonSubmit, BorderLayout.EAST);
+
+        BorderLayout layout = new BorderLayout();
+        setLayout(layout);
+        JPanel workspacePanel = new JPanel();
+        workspacePanel.setLayout(new BoxLayout(workspacePanel, BoxLayout.Y_AXIS));
+        JButton submit = new JButton("Submit");
+        submit.addActionListener(new MainController());
+        add(submit, BorderLayout.SOUTH);
+        workspacePanel.setBackground(Color.PINK);
+
+        WorkspaceMenuBar workspaceMenuBar = new WorkspaceMenuBar();
+
+        add(workspaceMenuBar, BorderLayout.NORTH);
     }
+
     /**
      * paintComponent method that allows the different blocks to be drawn on screen by user.
      * @param g the <code>Graphics</code> object to protect

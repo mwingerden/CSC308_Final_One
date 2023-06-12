@@ -22,36 +22,17 @@ public class MainController implements MouseMotionListener, ActionListener, Mous
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if (drawingOptions.contains(e.getActionCommand())) {
             Repository.getInstance().setBlockToDraw(e.getActionCommand());
-        }
-        if(e.getSource() instanceof JRadioButton){
-            Repository.getInstance().setProblemLoad(e.getActionCommand());
         }
         switch (e.getActionCommand()) {
             //TODO: The button press or other such actions are most likely be placed here.
             case "Teacher" -> Repository.getInstance().updatePanel("TeacherListView");
             case "Student" -> Repository.getInstance().updatePanel("StudentListView");
             case "Home" -> Repository.getInstance().updatePanel("StartUp");
-            case "Back" -> Repository.getInstance().updatePanel("Back");
-            case "Edit" -> {
-                if(Repository.getInstance().loadList()) {
-                    Repository.getInstance().setEditing();
-                    Repository.getInstance().updatePanel("TeacherDrawArea");
-                }
-            }
-            case "Attempt" -> {
-                if(Repository.getInstance().loadList()) {
-                    Repository.getInstance().setEditing();
-                    Repository.getInstance().updatePanel("StudentDrawArea");
-                }
-            }
-            case "New" -> {Repository.getInstance().updatePanel("TeacherDrawArea");
-                Repository.getInstance().clearBlocks();}
-            case "Delete" ->  Repository.getInstance().deleteProblem();
             case "Undo" -> Repository.getInstance().UndoList();
             case "Redo" -> Repository.getInstance().RedoList();
+            case "Submit" -> Repository.getInstance().saveStudentSubmission();
             default -> menuItemClicked(e.getActionCommand());
         }
     }
@@ -62,8 +43,10 @@ public class MainController implements MouseMotionListener, ActionListener, Mous
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (SwingUtilities.isRightMouseButton(e)) {
-            Repository.getInstance().addText(e.getX(), e.getY());
+        if (SwingUtilities.isRightMouseButton(e) || (SwingUtilities.isRightMouseButton(e) && e.isControlDown())) {
+            Repository.getInstance().blockText(e, e.getX(), e.getY());
+        } else if (e.isShiftDown()) {
+            //Repository.getInstance().deleteBlock(e.getX(), e.getY());
         } else {
             if (e.getButton() == MouseEvent.BUTTON1) {
                 change_status(e);
@@ -75,9 +58,6 @@ public class MainController implements MouseMotionListener, ActionListener, Mous
         if (Repository.getInstance().getBlockToDraw().equals("Arrow")) {
             Repository.getInstance().setStatus("Arrow is being drawn");
         }
-//        else{
-//            Repository.getInstance().setStatus("Dragging");
-//        }
         startDragx = e.getX();
         startDragy = e.getY();
     }
@@ -88,9 +68,6 @@ public class MainController implements MouseMotionListener, ActionListener, Mous
         if (Repository.getInstance().getBlockToDraw().equals("Arrow")) {
             Repository.getInstance().addArrow(startDragx,startDragy,endDragx,endDragy);
         }
-        else {
-            Repository.getInstance().drag(startDragx, startDragy, endDragx, endDragy);
-        }
     }
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -100,6 +77,7 @@ public class MainController implements MouseMotionListener, ActionListener, Mous
     }
     @Override
     public void mouseDragged(MouseEvent e) {
+        Repository.getInstance().setStatus("Dragging");
         endDragx = e.getX();
         endDragy = e.getY();
         if(!Repository.getInstance().getBlockToDraw().equals("Arrow")){
@@ -113,27 +91,19 @@ public class MainController implements MouseMotionListener, ActionListener, Mous
     }
     private void menuItemClicked(String e) {
         switch (e) {
-            case "Clear" -> {
+            case "New" -> {
                 Repository.getInstance().clearBlocks();
                 Repository.getInstance().setStatus("New diagram");
                 Repository.getInstance().setBlockToDraw("None");
-                Repository.getInstance().unsetEditing();
             }
             case "Save" -> {
                 Repository.getInstance().setStatus("Saving diagram");
                 Repository.getInstance().setBlockToDraw("None");
                 try {
-                    Repository.getInstance().saveList();
+                    Repository.getInstance().saveList(Repository.getInstance().getLoadedProblem());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                Repository.getInstance().updatePanel("TeacherListView");
-                Repository.getInstance().unsetEditing();
-            }
-            case "Load" -> {
-                Repository.getInstance().setStatus("Loading diagram");
-                Repository.getInstance().setBlockToDraw("None");
-                Repository.getInstance().loadList();
             }
         }
     }

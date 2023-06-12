@@ -6,70 +6,68 @@ import org.json.simple.parser.ParseException;
 import javax.swing.*;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.File;
+import java.util.*;
 
 /**
- * Main.Load class that handles the loading of files and blocks.
+ * Load class that handles the loading of files and blocks.
  */
 public class Load {
-    private static final List<Draw> drawingsList = new ArrayList<>();
+    private static final List<Draw> blockList = new ArrayList<>();
     /**
      * load method will try to load a file of a certain name.
      * @param name, file name
      * @return drawingsList
      */
     @SuppressWarnings("unchecked")
-    public static List<Draw> load(String name) {
+    public static Problem load(String name) {
         JSONParser jsonParser = new JSONParser();
         try (FileReader reader = new FileReader("Drawings/" + name + ".json")) {
             Object obj = jsonParser.parse(reader);
-            JSONArray drawings = (JSONArray) obj;
-            drawings.forEach(drawing -> parseDrawingObject((JSONObject) drawing));
+            JSONArray fileElements = (JSONArray) obj;
+
+            String description = ((JSONObject) fileElements.get(0)).get("Problem Description").toString();
+            List<Draw> teacherDrawings = parseDrawingArray((JSONArray)
+                            ((JSONObject) fileElements.get(1))
+                            .get("Teacher Solution"));
+            List<Draw> studentAttempt = parseDrawingArray((JSONArray)
+                    ((JSONObject) fileElements.get(2))
+                            .get("Student Attempt"));
+            List<String> hints = (List<String>) ((JSONObject) fileElements.get(3)).get("Hints");
+
+            return new Problem(name, description, teacherDrawings, studentAttempt, hints);
+
         } catch (IOException | ParseException e) {
             JOptionPane.showMessageDialog(
-                    new TeacherDrawArea(),
+                    null,
                     "There is no problem by the name of " + name + ".",
                     "Warning",
                     JOptionPane.WARNING_MESSAGE);
+            return null;
         }
-        return drawingsList;
     }
 
-    public static ArrayList<String> get_names(){
-        ArrayList<String> names = new ArrayList<>();
-
-        File drawings = new File("Drawings");
-
-        for (File f : drawings.listFiles()){
-            names.add(f.getName().replaceAll("\\.\\w+",""));
+    @SuppressWarnings("unchecked")
+    private static List<Draw> parseDrawingArray(JSONArray drawingElements) {
+        if (Objects.isNull(drawingElements)) {
+            return Collections.emptyList();
         }
-
-        return names;
+        List<Draw> blocks = new ArrayList<>();
+        drawingElements.forEach(drawObject -> blocks.add(getDrawObject((JSONObject) drawObject)));
+        return blocks;
     }
 
-    /**
-     * parseDrawingObject method adds arrows or blocks to list if needed.
-     * @param drawing, can be either block or arrow
-     */
-    private static void parseDrawingObject(JSONObject drawing) {
-        String description = (String) drawing.get("Problem Description");
-        if (description != null) {
-            Repository.getInstance().saveProblemDescription(description);
-            return;
-        }
-
-        JSONObject drawingObject = (JSONObject) drawing.get("CodeBlock");
+    private static Draw getDrawObject(JSONObject block) {
+        JSONObject drawingObject = (JSONObject) block.get("CodeBlock");
         if (drawingObject != null) {
-            drawingsList.add(loadCodeBlock(drawingObject));
-            return;
+            return loadCodeBlock(drawingObject);
         }
-        JSONArray drawingObjects = (JSONArray) drawing.get("Main.Arrow");
+        JSONArray drawingObjects = (JSONArray) block.get("Arrow");
         if (drawingObjects != null) {
-            drawingsList.add(loadArrow(drawingObjects));
+            return loadArrow(drawingObjects);
         }
+        return null;
     }
+
     /**
      * loadCodeBlock method returns the different blocks and loads them into a list.
      * @param codeBlock, type of block
@@ -77,36 +75,51 @@ public class Load {
      */
     private static Draw loadCodeBlock(JSONObject codeBlock) {
         Block drawing = null;
-        if (codeBlock.get("Name").equals("Main.CallMethodBlock")) {
+        if (codeBlock.get("Name").equals("CallMethodBlock")) {
             drawing = new CallMethodBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")));
-        } else if (codeBlock.get("Name").equals("Main.ConditionBlock")) {
+        } else if (codeBlock.get("Name").equals("ConditionBlock")) {
             drawing = new ConditionBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")));
-        } else if (codeBlock.get("Name").equals("Main.EndBlock")) {
+        } else if (codeBlock.get("Name").equals("EndBlock")) {
             drawing = new EndBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")), "PINK");
-        } else if (codeBlock.get("Name").equals("Main.InputOutputBlock")) {
+        } else if (codeBlock.get("Name").equals("InputOutputBlock")) {
             drawing = new InputOutputBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")));
-        } else if (codeBlock.get("Name").equals("Main.InstructionBlock")) {
+        } else if (codeBlock.get("Name").equals("InstructionBlock")) {
             drawing = new InstructionBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")));
-        } else if (codeBlock.get("Name").equals("Main.StartBlock")) {
+        } else if (codeBlock.get("Name").equals("StartBlock")) {
             drawing = new StartBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")),"BLUE");
-        } else if (codeBlock.get("Name").equals("Main.VariableDeclarationBlock")) {
+        } else if (codeBlock.get("Name").equals("VariableDeclarationBlock")) {
             drawing = new VariableDeclarationBlock(Integer.parseInt((String) codeBlock.get("X1")),
                     Integer.parseInt((String) codeBlock.get("Y1")));
         }
         assert drawing != null;
-        drawing.setText((String) codeBlock.get("Text"));
+        drawing.setBlockText((String) codeBlock.get("Text"));
+        getHints(codeBlock.get("Hint"), drawing);
         drawing.setArrowInLimit(Integer.parseInt((String) codeBlock.get("arrowInLimit")));
         drawing.setArrowOutLimit(Integer.parseInt((String) codeBlock.get("arrowOutLimit")));
         drawing.setArrowInCount(Integer.parseInt((String) codeBlock.get("arrowInCount")));
         drawing.setArrowOutCount(Integer.parseInt((String) codeBlock.get("arrowOutCount")));
+        blockList.add(drawing);
         return drawing;
     }
+
+    private static void getHints(Object hintsObject, Block drawing) {
+        if (hintsObject.getClass().isArray() || hintsObject instanceof Collection) {
+            List<String> hintList = new ArrayList<>();
+            for (Object object : (List<?>) hintsObject) {
+                if (object instanceof String hint) {
+                    hintList.add(hint);
+                }
+            }
+            drawing.setHintText(hintList);
+        }
+    }
+
     /**
      * loadArrow method adds the arrow between blocks and returns needed arrow for each.
      * @param arrow, loaded arrow
@@ -117,7 +130,7 @@ public class Load {
         ArrayList<Block> blocks = new ArrayList<>();
         for (Object o : arrow) {
             Block temp = (Block)loadCodeBlock((JSONObject) ((JSONObject) o).get("CodeBlock"));
-            for(Draw drawing : drawingsList) {
+            for(Draw drawing : blockList) {
                 if(drawing instanceof Block) {
                     if(temp.equals(drawing)) {
                         blocks.add((Block) drawing);

@@ -1,11 +1,11 @@
 
 import java.awt.*;
 /**
- * The Main.CallMethodBlock class that extends block abstract class.
+ * The CallMethodBlock class that extends block abstract class.
  */
 public class CallMethodBlock extends Block{
     /**
-     * Constructor method for Main.CallMethodBlock giving the required parameters.
+     * Constructor method for CallMethodBlock giving the required parameters.
      * @param x, block's x coordinate
      * @param y, block's y coordinate
      */
@@ -13,7 +13,7 @@ public class CallMethodBlock extends Block{
         super(x, y, x+150, y+75, String.valueOf(Color.RED),2,1);
     }
     /**
-     * The draw method handles drawing the block, uses two lines and rectangles to represent Main.CallMethodBlock.
+     * The draw method handles drawing the block, uses two lines and rectangles to represent CallMethodBlock.
      * @param g, Graphics abstract class
      */
     @Override
@@ -24,8 +24,8 @@ public class CallMethodBlock extends Block{
         g.drawRect(x, y, x2-x, y2-y);
         g.drawLine(x+10, y, x+10, y2);
         g.drawLine(x2-10, y, x2-10, y2);
-        if(this.text != null) {
-            g.drawString(this.text, x+20, getCenterY()+10);
+        if(this.blockText != null) {
+            g.drawString(this.blockText, x+20, getCenterY()+10);
         }
     }
     /**

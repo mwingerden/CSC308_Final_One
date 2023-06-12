@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Fixed the loading glitches.">
+    <list default="true" id="26eef035-6d71-4ced-a669-5e3ec459e482" name="Changes" comment="Changed how the arrow heads are drawn.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Arrow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -392,11 +389,24 @@
       <option name="project" value="LOCAL" />
       <updated>1684719521136</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Changed how the arrow heads are drawn.">
+      <created>1684882715492</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1684882715492</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Changed how the arrow heads are drawn.">
+      <created>1684882807167</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1684882807167</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Arrows can now be saved and loaded." />
     <MESSAGE value="Made repository more robust." />
     <MESSAGE value="Removes Arrow Implementation." />
     <MESSAGE value="Implemented rudimentary dragging arrow implementation." />
@@ -421,7 +431,8 @@
     <MESSAGE value="Added undo and redo." />
     <MESSAGE value="Fixed some things." />
     <MESSAGE value="Fixed the loading glitches." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the loading glitches." />
+    <MESSAGE value="Changed how the arrow heads are drawn." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed how the arrow heads are drawn." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

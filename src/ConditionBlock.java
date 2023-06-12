@@ -2,11 +2,11 @@
 import java.awt.*;
 
 /**
- * The Main.ConditionBlock class represented by a diamond shape when drawn by the user.
+ * The ConditionBlock class represented by a diamond shape when drawn by the user.
  */
 public class ConditionBlock extends Block{
     /**
-     * Main.ConditionBlock constructor taking in the necessary parameters.
+     * ConditionBlock constructor taking in the necessary parameters.
      * @param x, block's x coordinate
      * @param y, block's y coordinate
      */
@@ -14,7 +14,7 @@ public class ConditionBlock extends Block{
         super(x, y, x + 100, y + 50, String.valueOf(Color.RED),2,2);
     }
     /**
-     * Main.Draw method uses abstract class graphics 2D to draw the diamond block.
+     * Draw method uses abstract class graphics 2D to draw the diamond block.
      * @param g, Graphics
      */
     @Override
@@ -26,8 +26,8 @@ public class ConditionBlock extends Block{
         g2.fillPolygon(xCoords, yCoords, 4);
         g2.setColor(Color.BLACK);
         g2.drawPolygon(xCoords, yCoords, 4);
-        if(this.text != null) {
-            g.drawString(this.text, x + 10, getCenterY());
+        if(this.blockText != null) {
+            g.drawString(this.blockText, x + 10, getCenterY());
         }
     }
     /**

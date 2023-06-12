@@ -12,18 +12,16 @@ public class PanelLayout extends JPanel implements Observer {
         repository.addObserver(this);
         MainController controller = new MainController();
         addMouseListener(controller);
+        addMouseMotionListener(controller);
         setLayout(new CardLayout());
         add(new StartUp(), "StartUp");
         //TODO: This is where you would add the panels.
-        //TODO: Just call add then the construction of the Panel along with a name descriptor as seen in the rest of the method.
+        //TODO: Just call add then the construction of the Panel along with a name descriptor as seen in the rest of
+        // the method.
         //TODO: The name descriptor will be used in the update below.
         add(new StudentListView(), "StudentListView");
         add(new TeacherListView(), "TeacherListView");
-//        add(new WorkSpace("teacher"), "TeacherDrawArea");
-        add(new StudentDrawArea(), "StudentDrawArea");
-        add(new TeacherDrawArea(), "TeacherDrawArea");
-//        add(new WorkSpace("teacher"), "TeacherList");
-//        add(new WorkSpace("student"), "StudentList");
+        add(new StudentSolutionPanel(), "StudentSolutionPanel");
     }
 
     @Override
@@ -37,9 +35,8 @@ public class PanelLayout extends JPanel implements Observer {
             switch (panel) {
                 case "StudentListView" -> cl.show(this, "StudentListView");
                 case "TeacherListView" -> cl.show(this, "TeacherListView");
-                case "StudentDrawArea" -> cl.show(this, "StudentDrawArea");
+                case "StudentSolutionPanel" -> cl.show(this, "StudentSolutionPanel");
                 case "StartUp" -> cl.show(this, "StartUp");
-                case "TeacherDrawArea" -> cl.show(this, "TeacherDrawArea");
             }
         }
 

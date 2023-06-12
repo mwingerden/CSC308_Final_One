@@ -31,16 +31,38 @@ public class Repository extends Observable {
     private boolean loadSolution = false;
     private String blockToDraw;
     private String status;
+    private Login login = null;
     private Repository() {
         this.blockToDraw = "";
         this.drawnChart = new ArrayList<>();
         this.undoDrawings = new ArrayList<>();
     }
 
-    //TODO: Updates the observers with the new panel info.
     public void updatePanel(String panel) {
+        if(panel.equals("TeacherListView")) {
+            login.setVisible(true);
+        }
         setChanged();
         notifyObservers(panel);
+    }
+
+    public void setUpLogin(JPanel parent) {
+        this.login = new Login(parent);
+    }
+
+    public void authenticateLogin() {
+        if(!login.isSucceeded()) {
+            updatePanel("StartUp");
+            login.dispose();
+        }
+        else {
+            login.dispose();
+        }
+    }
+
+    public void closeLogin() {
+        login.dispose();
+        updatePanel("StartUp");
     }
 
     public void UndoList() {
